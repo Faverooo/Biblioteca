@@ -1,0 +1,22 @@
+[
+    {
+        "tipo": "Libro",
+        "id": 1,
+        "titolo": "Il Signore degli Anelli",
+        "percorsoImg": "path/to/image.jpg",
+        "anno": 1954,
+        "pagine": 1178,
+        "autore": "J.R.R. Tolkien"
+    },
+    {
+        "tipo": "Film",
+        "id": 2,
+        "titolo": "Inception",
+        "percorsoImg": "path/to/image.jpg",
+        "anno": 2010,
+        "size": 1500,
+        "durata": 148,
+        "regista": "Christopher Nolan",
+        "lingua": "English"
+    }
+]

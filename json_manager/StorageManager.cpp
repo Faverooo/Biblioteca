@@ -4,7 +4,10 @@
 #include "../modello_logico/Film.h"
 #include "../modello_logico/Canzone.h"
 #include "../modello_logico/Album.h"
-#include<QJsonArray>
+#include "JsonVisitor.h"
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QFile>
 
 void StorageManager::fromJOToStorage(const QJsonObject &json)
 {
@@ -67,17 +70,20 @@ void StorageManager::fromJOToStorage(const QJsonObject &json)
                         }
                         else if (json["tipo"].toString() == "Canzone")
                         {
-                            if (json.contains("artista") && json["artista"].isString()) {
+                            if (json.contains("artista") && json["artista"].isString())
+                            {
                                 QString artista = json["artista"].toString();
                                 ptr = new Canzone(titolo, percorsoImg, anno, size, durata, artista, id);
                             }
                         }
                         else
                         {
-                            if (json.contains("archivio") && json["archivio"].isArray()) {
+                            if (json.contains("archivio") && json["archivio"].isArray())
+                            {
                                 QJsonArray jsonArray = json["archivio"].toArray();
                                 QList<int> archivio;
-                                for (const QJsonValue& value : jsonArray) {
+                                for (const QJsonValue &value : jsonArray)
+                                {
                                     archivio.append(value.toInt());
                                 }
                                 ptr = new Album(titolo, percorsoImg, anno, size, durata, archivio, id);
@@ -87,7 +93,86 @@ void StorageManager::fromJOToStorage(const QJsonObject &json)
                 }
             }
         }
-        if(ptr!=nullptr)
+        if (ptr != nullptr)
             storage.push_back(ptr);
+    }
+}
+
+void StorageManager::fromFiletoStorage(const QString &path)
+{
+    storage.clear();
+
+    QFile file(path);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qWarning("Couldn't open file.");
+        return;
+    }
+
+    QByteArray fileData = file.readAll();
+    file.close();
+
+    QJsonDocument doc(QJsonDocument::fromJson(fileData));
+    if (!doc.isArray())
+    {
+        qWarning("Invalid JSON document. Expected an array of objects.");
+        return;
+    }
+
+    QJsonArray jsonArray = doc.array();
+    for (const QJsonValue &value : jsonArray)
+    {
+        if (value.isObject())
+        {
+            QJsonObject jsonObject = value.toObject();
+            fromJOToStorage(jsonObject);
+        }
+        else
+        {
+            qWarning("Invalid JSON element. Expected an object.");
+        }
+    }
+}
+
+void StorageManager::printToFile(const QString &path)
+{
+    QFile file(path);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qWarning("Couldn't open file.");
+        return;
+    }
+
+    QJsonArray jsonArray;
+    for (Media *media : storage)
+    {
+        QJsonObject jsonObject;
+        JsonVisitor jsonvisitor;
+        media->acceptVisitor(&jsonvisitor);
+        jsonObject = jsonvisitor.getJsonObj();
+        jsonArray.append(jsonObject);
+    }
+
+    QJsonDocument doc(jsonArray);
+    file.write(doc.toJson());
+    file.close();
+}
+
+
+void StorageManager::addToStorage(Media &media)
+{
+    storage.push_back(&media);
+}
+
+void StorageManager::removeToStorage(int id)
+{
+    for (auto it = storage.begin(); it != storage.end(); ++it)
+    {
+        if ((*it)->getID() == id)
+        {
+            delete *it;
+            storage.erase(it);
+            return;
+        }
     }
 }

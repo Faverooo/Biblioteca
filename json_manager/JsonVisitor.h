@@ -14,7 +14,7 @@ private:
 public:
     void visit(Libro *libro);
     void visit(Rivista *rivista);
-    void visit(Film *film) = 0;
+    void visit(Film *film);
     void visit(Canzone *canzone);
     void visit(Album *album);
 
@@ -22,6 +22,9 @@ public:
     void toJsonM(Media* m);
     void toJsonMT(MediaTextual* mt);
     void toJsonMD(MediaDigital* md);
+
+    //getter
+    QJsonObject getJsonObj() const;
 };
 
 #endif // JSONVISIOR_H
