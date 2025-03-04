@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "qstring": "cpp",
-        "qjsonobject": "cpp"
+        "qjsonobject": "cpp",
+        "variant": "cpp"
     }
 }
