@@ -16,7 +16,7 @@ public:
     Media(const QString& titolo, const QString& percorsoImg, int anno, int id = 0);
 
     int getID() const;
-    void setID(const int& newID);
+    void setID(const int newID);
 
     QString getTitolo() const;
     void setTitolo(const QString& newTitolo);
@@ -25,12 +25,12 @@ public:
     void setPercorsoImg(const QString& newPercorsoImg);
 
     int getAnno() const;
-    void setAnno(const int& newAnno);
+    void setAnno(const int newAnno);
 
     virtual void acceptVisitor(Visitor* visitor) = 0;
     virtual void toJson(QJsonObject& json) const;
     virtual void fromJson(const QJsonObject& json);
-};;
+};
 
 
 #endif // MEDIA_H

@@ -10,7 +10,7 @@ int Rivista::getNumero() const {
     return numero;
 }
 
-void Rivista::setNumero(const int& newNumero) {
+void Rivista::setNumero(const int newNumero) {
     numero = newNumero;
 }
 
@@ -20,6 +20,7 @@ void Rivista::acceptVisitor(Visitor* visitor) {
 }
 
 void Rivista::toJson(QJsonObject& json) const {
+    json = QJsonObject(); //CANCELLO
     json["tipo"] = "Rivista";
     MediaTextual::toJson(json);
     json["numero"] = numero;

@@ -20,6 +20,7 @@ void Libro::acceptVisitor(Visitor* visitor) {
 }
 
 void Libro::toJson(QJsonObject& json) const {
+    json = QJsonObject(); //CANCELLO
     json["tipo"] = "Libro";
     MediaTextual::toJson(json);
     json["autore"] = autore;
@@ -27,6 +28,8 @@ void Libro::toJson(QJsonObject& json) const {
 
 void Libro::fromJson(const QJsonObject& json) {
     MediaTextual::fromJson(json);
-    autore = json["autore"].toString();
+    if (json.contains("autore") && json["autore"].isString()) {
+        autore = json["autore"].toString();
+    }
 }
 

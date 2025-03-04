@@ -12,11 +12,11 @@ public:
     MediaTextual(const QString& titolo, const QString& percorsoImg, int anno, int pagine, unsigned int id = 0);
 
     int getPagine() const;
-    void setPagine(const int& p);
+    void setPagine(const int p);
 
     void toJson(QJsonObject& json) const;
     void fromJson(const QJsonObject& json);
-};;
+};
 
 
 #endif // MEDIATEXTUAL_H

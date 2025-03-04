@@ -17,7 +17,7 @@ public:
     void toJson(QJsonObject& json) const;
     void fromJson(const QJsonObject& json);
     
-};;
+};
 
 
 #endif // LIBRO_H

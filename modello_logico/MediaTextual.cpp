@@ -9,7 +9,7 @@ int MediaTextual::getPagine() const {
     return pagine;
 }
 
-void MediaTextual::setPagine(const int& p) {
+void MediaTextual::setPagine(const int p) {
     pagine = p;
 }
 

@@ -9,7 +9,7 @@ int Media::getID() const {
     return id;
 }
 
-void Media::setID(const int& newID) {
+void Media::setID(const int newID) {
     id = newID;
 }
 
@@ -33,12 +33,11 @@ int Media::getAnno() const {
     return anno;
 }
 
-void Media::setAnno(const int& newAnno) {
+void Media::setAnno(const int newAnno) {
     anno = newAnno;
 }
 
 void Media::toJson(QJsonObject& json) const {
-    json = QJsonObject(); //CANCELLO
     json["id"] = static_cast<int>(id);
     json["titolo"] = titolo;
     json["percorsoImg"] = percorsoImg;
