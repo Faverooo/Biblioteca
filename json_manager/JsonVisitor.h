@@ -18,6 +18,7 @@ public:
     void visit(Canzone *canzone);
     void visit(Album *album);
 
+    //metodi chiamati dai visitor
     void toJsonM(Media* m);
     void toJsonMT(MediaTextual* mt);
     void toJsonMD(MediaDigital* md);
