@@ -6,12 +6,15 @@
 
 class Album: public MediaDigital{
 private:
-   QString regista;
-   QString lingua;
+   QList<int> archivio;
 public:
     Album();
-    Album(const QString& titolo, const QString& percorsoImg, int anno, unsigned int size, unsigned int durata, QString regista, QString lingua, unsigned int id = 0);
+    Album(const QString& titolo, const QString& percorsoImg, int anno, unsigned int size, unsigned int durata, QList<int> archivio, unsigned int id = 0);
     
+    QList<int> getArchivio() const;
+    void addToArchivio(int id);
+    void removeFromArchivio(int id);
+
    
     void acceptVisitor(Visitor* visitor);
     void toJson(QJsonObject& json) const;
