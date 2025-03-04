@@ -3,9 +3,9 @@
 
 #include<QString>
 #include<QJsonObject>
+#include "../visitor/Visitor.h"
 
-
-class Media{
+class Media {
 private:
     QString titolo;
     QString percorsoImg;

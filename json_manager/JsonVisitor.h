@@ -1,0 +1,26 @@
+#ifndef JSONVISIOR_H
+#define JSONVISIOR_H
+
+#include"../visitor/Visitor.h"
+#include<QJsonObject>
+#include<QJsonArray>
+class Media;
+class MediaTextual;
+class MediaDigital;
+
+class JsonVisitor: public Visitor {
+private:
+    QJsonObject json;
+public:
+    void visit(Libro *libro);
+    void visit(Rivista *rivista);
+    void visit(Film *film) = 0;
+    void visit(Canzone *canzone);
+    void visit(Album *album);
+
+    void toJsonM(Media* m);
+    void toJsonMT(MediaTextual* mt);
+    void toJsonMD(MediaDigital* md);
+};
+
+#endif // JSONVISIOR_H
