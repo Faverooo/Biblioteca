@@ -10,7 +10,7 @@ public:
     void fromJOToStorage(const QJsonObject& json);
     void fromFiletoStorage(const QString& path);
     void printToFile(const QString& path);
-    void addToStorage(Media& media);
+    void addToStorage(Media* media);
     void removeToStorage(int id);
 };
 

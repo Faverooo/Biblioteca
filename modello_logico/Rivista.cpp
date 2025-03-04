@@ -3,7 +3,7 @@
 
 Rivista::Rivista(): MediaTextual(){}
 
-Rivista::Rivista(const QString& titolo, const QString& percorsoImg, int anno, int pagine, int numero, unsigned int id = 0)
+Rivista::Rivista(const QString& titolo, const QString& percorsoImg, int anno, int pagine, int numero, unsigned int id)
     : MediaTextual(titolo, percorsoImg, anno, pagine, id), numero(numero) {}
 
 int Rivista::getNumero() const {
@@ -19,15 +19,5 @@ void Rivista::acceptVisitor(Visitor* visitor) {
     visitor->visit(this);
 }
 
-void Rivista::toJson(QJsonObject& json) const {
-    json = QJsonObject(); //CANCELLO
-    json["tipo"] = "Rivista";
-    MediaTextual::toJson(json);
-    json["numero"] = numero;
-}
 
-void Rivista::fromJson(const QJsonObject& json) {
-    MediaTextual::fromJson(json);
-    numero = json["numero"].toInt();
-}
 

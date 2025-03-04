@@ -16,10 +16,7 @@ public:
     QString getLingua() const;
     void setLingua(const QString& newLingua);
    
-    void acceptVisitor(Visitor* visitor);
-    void toJson(QJsonObject& json) const;
-    void fromJson(const QJsonObject& json);
-    
+    void acceptVisitor(Visitor* visitor);    
 };
 
 

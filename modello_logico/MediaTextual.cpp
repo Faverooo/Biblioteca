@@ -2,7 +2,7 @@
 
 MediaTextual::MediaTextual(){}
 
-MediaTextual::MediaTextual(const QString& titolo, const QString& percorsoImg, int anno, int pagine, unsigned int id = 0)
+MediaTextual::MediaTextual(const QString& titolo, const QString& percorsoImg, int anno, int pagine, unsigned int id)
     : Media(titolo, percorsoImg, anno, id), pagine(pagine) {}
 
 int MediaTextual::getPagine() const {
@@ -14,14 +14,3 @@ void MediaTextual::setPagine(const int p) {
 }
 
 
-void MediaTextual::toJson(QJsonObject& json) const {
-    Media::toJson(json);
-    json["pagine"] = pagine;
-}
-
-void MediaTextual::fromJson(const QJsonObject& json) {
-    Media::fromJson(json);
-    if (json.contains("pagine") && json["pagine"].isDouble()) {
-        pagine = json["pagine"].toInt();
-    }
-}

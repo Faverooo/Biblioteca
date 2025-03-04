@@ -17,8 +17,6 @@ public:
     unsigned int getDurata() const;
     void setDurata(unsigned int newDurata);
 
-    void toJson(QJsonObject& json) const;
-    void fromJson(const QJsonObject& json);
 };
 
 

@@ -159,9 +159,9 @@ void StorageManager::printToFile(const QString &path)
 }
 
 
-void StorageManager::addToStorage(Media &media)
+void StorageManager::addToStorage(Media *media)
 {
-    storage.push_back(&media);
+    storage.push_back(media);
 }
 
 void StorageManager::removeToStorage(int id)

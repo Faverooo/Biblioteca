@@ -2,8 +2,10 @@
 
 Media::Media(){}
 
-Media::Media(const QString& titolo, const QString& percorsoImg, int anno, int id = 0)
+Media::Media(const QString& titolo, const QString& percorsoImg, int anno, int id)
     : titolo(titolo), percorsoImg(percorsoImg), anno(anno), id(id) {}
+
+Media::~Media(){}
 
 int Media::getID() const {
     return id;
@@ -35,24 +37,4 @@ int Media::getAnno() const {
 
 void Media::setAnno(const int newAnno) {
     anno = newAnno;
-}
-
-void Media::toJson(QJsonObject& json) const {
-    json["id"] = static_cast<int>(id);
-    json["titolo"] = titolo;
-    json["percorsoImg"] = percorsoImg;
-    json["anno"] = anno;
-}
-
-void Media::fromJson(const QJsonObject& json) {
-    if (json.contains("id") && json["id"].isDouble() &&
-        json.contains("titolo") && json["titolo"].isString() &&
-        json.contains("percorsoImg") && json["percorsoImg"].isString() &&
-        json.contains("anno") && json["anno"].isDouble()) {
-        
-        id = json["id"].toInt();
-        titolo = json["titolo"].toString();
-        percorsoImg = json["percorsoImg"].toString();
-        anno = json["anno"].toInt();
-    }
 }

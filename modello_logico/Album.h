@@ -16,10 +16,7 @@ public:
     void removeFromArchivio(int id);
 
    
-    void acceptVisitor(Visitor* visitor);
-    void toJson(QJsonObject& json) const;
-    void fromJson(const QJsonObject& json);
-    
+    void acceptVisitor(Visitor* visitor);    
 };
 
 

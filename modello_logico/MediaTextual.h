@@ -14,8 +14,6 @@ public:
     int getPagine() const;
     void setPagine(const int p);
 
-    void toJson(QJsonObject& json) const;
-    void fromJson(const QJsonObject& json);
 };
 
 

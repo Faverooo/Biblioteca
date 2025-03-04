@@ -13,10 +13,7 @@ public:
     QString getAutore() const;
     void setAutore(const QString& newAutore);
    
-    void acceptVisitor(Visitor* visitor);
-    void toJson(QJsonObject& json) const;
-    void fromJson(const QJsonObject& json);
-    
+    void acceptVisitor(Visitor* visitor);    
 };
 
 

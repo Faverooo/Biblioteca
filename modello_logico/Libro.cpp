@@ -3,7 +3,7 @@
 
 Libro::Libro(): MediaTextual(){}
 
-Libro::Libro(const QString& titolo, const QString& percorsoImg, int anno, int pagine, QString autore, unsigned int id = 0)
+Libro::Libro(const QString& titolo, const QString& percorsoImg, int anno, int pagine, QString autore, unsigned int id)
     : MediaTextual(titolo, percorsoImg, anno, pagine, id), autore(autore) {}
 
 QString Libro::getAutore() const {
@@ -17,19 +17,5 @@ void Libro::setAutore(const QString& newAutore) {
 
 void Libro::acceptVisitor(Visitor* visitor) {
     visitor->visit(this);
-}
-
-void Libro::toJson(QJsonObject& json) const {
-    json = QJsonObject(); //CANCELLO
-    json["tipo"] = "Libro";
-    MediaTextual::toJson(json);
-    json["autore"] = autore;
-}
-
-void Libro::fromJson(const QJsonObject& json) {
-    MediaTextual::fromJson(json);
-    if (json.contains("autore") && json["autore"].isString()) {
-        autore = json["autore"].toString();
-    }
 }
 
