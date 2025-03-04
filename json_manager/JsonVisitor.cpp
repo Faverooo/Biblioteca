@@ -5,24 +5,47 @@
 #include "../modello_logico/Canzone.h"
 #include "../modello_logico/Album.h"
 
+
+
 void JsonVisitor::visit(Libro *libro) {
-    json = QJsonObject();
+    json = QJsonObject(); 
+    json["tipo"] = "Libro";
+    toJsonMT(libro);
+    json["autore"] = libro->getAutore();
 }
 
 void JsonVisitor::visit(Rivista *rivista) {
-    // Implementation goes here
+    json = QJsonObject(); 
+    json["tipo"] = "Rivista";
+    toJsonMT(rivista);
+    json["numero"] = rivista->getNumero();
 }
 
 void JsonVisitor::visit(Film *film) {
-    // Implementation goes here
+    json = QJsonObject(); 
+    json["tipo"] = "Film";
+    toJsonMD(film);
+    json["regista"] = film->getRegista();
+    json["lingua"] = film->getLingua();
 }
 
 void JsonVisitor::visit(Canzone *canzone) {
-    // Implementation goes here
+    json = QJsonObject(); 
+    json["tipo"] = "Canzone";
+    toJsonMD(canzone);
+    json["artista"] = canzone->getArtista();
 }
 
 void JsonVisitor::visit(Album *album) {
-    // Implementation goes here
+    json = QJsonObject(); 
+    json["tipo"] = "Album";
+    toJsonMD(album);
+
+    QJsonArray jsonArray;
+    for (int id : album->getArchivio()) {
+        jsonArray.append(id);
+    }
+    json["archivio"] = jsonArray;
 }
 
 void JsonVisitor::toJsonM(Media* m) {
