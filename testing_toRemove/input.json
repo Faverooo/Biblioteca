@@ -18,5 +18,52 @@
         "durata": 148,
         "regista": "Christopher Nolan",
         "lingua": "English"
+    },
+    {
+        "tipo": "Libro",
+        "id": 3,
+        "titolo": "1984",
+        "percorsoImg": "path/to/image.jpg",
+        "anno": 1949,
+        "pagine": 328,
+        "autore": "George Orwell"
+    },
+    {
+        "tipo": "Film",
+        "id": 4,
+        "titolo": "The Matrix",
+        "percorsoImg": "path/to/image.jpg",
+        "anno": 1999,
+        "size": 1360,
+        "durata": 136,
+        "regista": "Lana Wachowski, Lilly Wachowski",
+        "lingua": "English"
+    },
+    {
+        "tipo": "Libro",
+        "id": 7,
+        "titolo": "Pride and Prejudice",
+        "percorsoImg": "path/to/image.jpg",
+        "anno": 1813,
+        "pagine": 279,
+        "autore": "Jane Austen"
+    },
+    {
+        "tipo": "Rivista",
+        "id": 11,
+        "titolo": "Time",
+        "percorsoImg": "path/to/image.jpg",
+        "anno": 2021,
+        "numero": 48
+    },
+    {
+        "tipo": "Album",
+        "id": 1,
+        "titolo": "Greatest Hits",
+        "percorsoImg": "path/to/image.jpg",
+        "anno": 2020,
+        "size": 500,
+        "durata": 3600,
+        "archivio": [101, 102, 103, 104]
     }
 ]

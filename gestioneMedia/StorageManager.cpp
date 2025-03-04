@@ -8,6 +8,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QFile>
+#include<QRandomGenerator>
 
 void StorageManager::fromJOToStorage(const QJsonObject &json)
 {
@@ -175,4 +176,25 @@ void StorageManager::removeToStorage(int id)
             return;
         }
     }
+}
+
+
+int StorageManager::generateID() const
+{
+    int id;
+    bool unique;
+    do
+    {
+        id = QRandomGenerator::global()->bounded(1, std::numeric_limits<int>::max());
+        unique = true;
+        for (const Media *media : storage)
+        {
+            if (media->getID() == id)
+            {
+                unique = false;
+                break;
+            }
+        }
+    } while (!unique);
+    return id;
 }
