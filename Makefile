@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_NO_DEBUG -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -Wall -Wextra -fPIC -D_REENTRANT $(DEFINES)
 CXXFLAGS      = -pipe -O2 -Wall -Wextra -fPIC -D_REENTRANT $(DEFINES)
-INCPATH       = -I. -I. -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++
+INCPATH       = -I. -I. -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++
 QMAKE         = /usr/bin/qmake6
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = Biblioteca1.0.0
 DISTDIR = /home/marco/Biblioteca/.tmp/Biblioteca1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1 -Wl,-rpath-link,/usr/lib/x86_64-linux-gnu
-LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt6Gui.so /usr/lib/x86_64-linux-gnu/libGLX.so /usr/lib/x86_64-linux-gnu/libOpenGL.so /usr/lib/x86_64-linux-gnu/libQt6Core.so -lpthread -lGLX -lOpenGL   
+LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt6Widgets.so /usr/lib/x86_64-linux-gnu/libQt6Gui.so /usr/lib/x86_64-linux-gnu/libGLX.so /usr/lib/x86_64-linux-gnu/libOpenGL.so /usr/lib/x86_64-linux-gnu/libQt6Core.so -lpthread -lGLX -lOpenGL   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -52,8 +52,10 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = json_manager/JsonVisitor.cpp \
-		json_manager/StorageManager.cpp \
+SOURCES       = gestioneMedia/JsonVisitor.cpp \
+		gestioneMedia/StorageManager.cpp \
+		interfaccia_grafica/main.cpp \
+		interfaccia_grafica/SearchView.cpp \
 		modello_logico/Album.cpp \
 		modello_logico/Canzone.cpp \
 		modello_logico/Film.cpp \
@@ -62,9 +64,12 @@ SOURCES       = json_manager/JsonVisitor.cpp \
 		modello_logico/MediaDigital.cpp \
 		modello_logico/MediaTextual.cpp \
 		modello_logico/Rivista.cpp \
-		testing_toRemove/test.cpp 
+		testing_toRemove/test.cpp moc_MainWindow.cpp \
+		moc_SearchView.cpp
 OBJECTS       = JsonVisitor.o \
 		StorageManager.o \
+		main.o \
+		SearchView.o \
 		Album.o \
 		Canzone.o \
 		Film.o \
@@ -73,7 +78,9 @@ OBJECTS       = JsonVisitor.o \
 		MediaDigital.o \
 		MediaTextual.o \
 		Rivista.o \
-		test.o
+		test.o \
+		moc_MainWindow.o \
+		moc_SearchView.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/linux.conf \
@@ -89,6 +96,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_core_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_dbus.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_dbus_private.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_designer.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_eglfs_kms_gbm_support_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri \
@@ -96,8 +104,12 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_fb_support_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_gui.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_gui_private.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_help.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_input_support_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_kms_support_private.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_linguist.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_multimedia.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_multimediawidgets.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_network.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_network_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_opengl.pri \
@@ -106,10 +118,13 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_openglwidgets_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_printsupport.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_printsupport_private.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_spatialaudio.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_sql.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_sql_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_testlib.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_testlib_private.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_uiplugin.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_uitools.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_widgets.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_widgets_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri \
@@ -131,6 +146,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/resources.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/moc.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/unix/opengl.prf \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/uic.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/unix/thread.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/qmake_use.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/file_copies.prf \
@@ -138,8 +154,10 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/lex.prf \
-		Biblioteca.pro json_manager/JsonVisitor.h \
-		json_manager/StorageManager.h \
+		Biblioteca.pro gestioneMedia/JsonVisitor.h \
+		gestioneMedia/StorageManager.h \
+		interfaccia_grafica/MainWindow.h \
+		interfaccia_grafica/SearchView.h \
 		modello_logico/Album.h \
 		modello_logico/Canzone.h \
 		modello_logico/Film.h \
@@ -148,8 +166,10 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		modello_logico/MediaDigital.h \
 		modello_logico/MediaTextual.h \
 		modello_logico/Rivista.h \
-		visitor/Visitor.h json_manager/JsonVisitor.cpp \
-		json_manager/StorageManager.cpp \
+		visitor/Visitor.h gestioneMedia/JsonVisitor.cpp \
+		gestioneMedia/StorageManager.cpp \
+		interfaccia_grafica/main.cpp \
+		interfaccia_grafica/SearchView.cpp \
 		modello_logico/Album.cpp \
 		modello_logico/Canzone.cpp \
 		modello_logico/Film.cpp \
@@ -185,6 +205,7 @@ Makefile: Biblioteca.pro /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qmake.c
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_core_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_dbus.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_dbus_private.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_designer.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_eglfs_kms_gbm_support_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri \
@@ -192,8 +213,12 @@ Makefile: Biblioteca.pro /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qmake.c
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_fb_support_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_gui.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_gui_private.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_help.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_input_support_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_kms_support_private.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_linguist.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_multimedia.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_multimediawidgets.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_network.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_network_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_opengl.pri \
@@ -202,10 +227,13 @@ Makefile: Biblioteca.pro /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qmake.c
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_openglwidgets_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_printsupport.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_printsupport_private.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_spatialaudio.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_sql.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_sql_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_testlib.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_testlib_private.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_uiplugin.pri \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_uitools.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_widgets.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_widgets_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri \
@@ -227,6 +255,7 @@ Makefile: Biblioteca.pro /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qmake.c
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/resources.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/moc.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/unix/opengl.prf \
+		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/uic.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/unix/thread.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/qmake_use.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/file_copies.prf \
@@ -235,6 +264,7 @@ Makefile: Biblioteca.pro /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qmake.c
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/lex.prf \
 		Biblioteca.pro \
+		/usr/lib/x86_64-linux-gnu/libQt6Widgets.prl \
 		/usr/lib/x86_64-linux-gnu/libQt6Gui.prl \
 		/usr/lib/x86_64-linux-gnu/libQt6Core.prl
 	$(QMAKE) -o Makefile Biblioteca.pro
@@ -253,6 +283,7 @@ Makefile: Biblioteca.pro /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qmake.c
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_core_private.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_dbus.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_dbus_private.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_designer.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_devicediscovery_support_private.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_eglfs_kms_gbm_support_private.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri:
@@ -260,8 +291,12 @@ Makefile: Biblioteca.pro /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qmake.c
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_fb_support_private.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_gui.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_gui_private.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_help.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_input_support_private.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_kms_support_private.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_linguist.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_multimedia.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_multimediawidgets.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_network.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_network_private.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_opengl.pri:
@@ -270,10 +305,13 @@ Makefile: Biblioteca.pro /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qmake.c
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_openglwidgets_private.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_printsupport.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_printsupport_private.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_spatialaudio.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_sql.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_sql_private.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_testlib.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_testlib_private.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_uiplugin.pri:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_uitools.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_widgets.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_widgets_private.pri:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri:
@@ -295,6 +333,7 @@ Makefile: Biblioteca.pro /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qmake.c
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/resources.prf:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/moc.prf:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/unix/opengl.prf:
+/usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/uic.prf:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/unix/thread.prf:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/qmake_use.prf:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/file_copies.prf:
@@ -303,6 +342,7 @@ Makefile: Biblioteca.pro /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++/qmake.c
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/yacc.prf:
 /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/lex.prf:
 Biblioteca.pro:
+/usr/lib/x86_64-linux-gnu/libQt6Widgets.prl:
 /usr/lib/x86_64-linux-gnu/libQt6Gui.prl:
 /usr/lib/x86_64-linux-gnu/libQt6Core.prl:
 qmake: FORCE
@@ -320,8 +360,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents json_manager/JsonVisitor.h json_manager/StorageManager.h modello_logico/Album.h modello_logico/Canzone.h modello_logico/Film.h modello_logico/Libro.h modello_logico/Media.h modello_logico/MediaDigital.h modello_logico/MediaTextual.h modello_logico/Rivista.h visitor/Visitor.h $(DISTDIR)/
-	$(COPY_FILE) --parents json_manager/JsonVisitor.cpp json_manager/StorageManager.cpp modello_logico/Album.cpp modello_logico/Canzone.cpp modello_logico/Film.cpp modello_logico/Libro.cpp modello_logico/Media.cpp modello_logico/MediaDigital.cpp modello_logico/MediaTextual.cpp modello_logico/Rivista.cpp testing_toRemove/test.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents gestioneMedia/JsonVisitor.h gestioneMedia/StorageManager.h interfaccia_grafica/MainWindow.h interfaccia_grafica/SearchView.h modello_logico/Album.h modello_logico/Canzone.h modello_logico/Film.h modello_logico/Libro.h modello_logico/Media.h modello_logico/MediaDigital.h modello_logico/MediaTextual.h modello_logico/Rivista.h visitor/Visitor.h $(DISTDIR)/
+	$(COPY_FILE) --parents gestioneMedia/JsonVisitor.cpp gestioneMedia/StorageManager.cpp interfaccia_grafica/main.cpp interfaccia_grafica/MainWindow.cpp interfaccia_grafica/SearchView.cpp modello_logico/Album.cpp modello_logico/Canzone.cpp modello_logico/Film.cpp modello_logico/Libro.cpp modello_logico/Media.cpp modello_logico/MediaDigital.cpp modello_logico/MediaTextual.cpp modello_logico/Rivista.cpp testing_toRemove/test.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -353,23 +393,36 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -Wall -Wextra -fPIC -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all:
+compiler_moc_header_make_all: moc_MainWindow.cpp moc_SearchView.cpp
 compiler_moc_header_clean:
+	-$(DEL_FILE) moc_MainWindow.cpp moc_SearchView.cpp
+moc_MainWindow.cpp: interfaccia_grafica/MainWindow.h \
+		moc_predefs.h \
+		/usr/lib/qt6/libexec/moc
+	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/marco/Biblioteca/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -I/home/marco/Biblioteca -I/home/marco/Biblioteca -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/include/c++/12 -I/usr/include/x86_64-linux-gnu/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/x86_64-linux-gnu/12/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include interfaccia_grafica/MainWindow.h -o moc_MainWindow.cpp
+
+moc_SearchView.cpp: interfaccia_grafica/SearchView.h \
+		moc_predefs.h \
+		/usr/lib/qt6/libexec/moc
+	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/marco/Biblioteca/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -I/home/marco/Biblioteca -I/home/marco/Biblioteca -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/include/c++/12 -I/usr/include/x86_64-linux-gnu/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/x86_64-linux-gnu/12/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include interfaccia_grafica/SearchView.h -o moc_SearchView.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
+compiler_uic_make_all:
+compiler_uic_clean:
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
 compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean 
+compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean 
 
 ####### Compile
 
-JsonVisitor.o: json_manager/JsonVisitor.cpp json_manager/JsonVisitor.h \
+JsonVisitor.o: gestioneMedia/JsonVisitor.cpp gestioneMedia/JsonVisitor.h \
 		visitor/Visitor.h \
 		modello_logico/Libro.h \
 		modello_logico/MediaTextual.h \
@@ -379,9 +432,9 @@ JsonVisitor.o: json_manager/JsonVisitor.cpp json_manager/JsonVisitor.h \
 		modello_logico/MediaDigital.h \
 		modello_logico/Canzone.h \
 		modello_logico/Album.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o JsonVisitor.o json_manager/JsonVisitor.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o JsonVisitor.o gestioneMedia/JsonVisitor.cpp
 
-StorageManager.o: json_manager/StorageManager.cpp json_manager/StorageManager.h \
+StorageManager.o: gestioneMedia/StorageManager.cpp gestioneMedia/StorageManager.h \
 		modello_logico/Media.h \
 		visitor/Visitor.h \
 		modello_logico/Libro.h \
@@ -391,8 +444,19 @@ StorageManager.o: json_manager/StorageManager.cpp json_manager/StorageManager.h 
 		modello_logico/MediaDigital.h \
 		modello_logico/Canzone.h \
 		modello_logico/Album.h \
-		json_manager/JsonVisitor.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o StorageManager.o json_manager/StorageManager.cpp
+		gestioneMedia/JsonVisitor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o StorageManager.o gestioneMedia/StorageManager.cpp
+
+main.o: interfaccia_grafica/main.cpp gestioneMedia/StorageManager.h \
+		modello_logico/Media.h \
+		visitor/Visitor.h \
+		interfaccia_grafica/MainWindow.cpp \
+		interfaccia_grafica/MainWindow.h \
+		interfaccia_grafica/SearchView.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o interfaccia_grafica/main.cpp
+
+SearchView.o: interfaccia_grafica/SearchView.cpp interfaccia_grafica/SearchView.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SearchView.o interfaccia_grafica/SearchView.cpp
 
 Album.o: modello_logico/Album.cpp modello_logico/Album.h \
 		modello_logico/MediaDigital.h \
@@ -438,12 +502,18 @@ Rivista.o: modello_logico/Rivista.cpp modello_logico/Rivista.h \
 		visitor/Visitor.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Rivista.o modello_logico/Rivista.cpp
 
-test.o: testing_toRemove/test.cpp json_manager/StorageManager.h \
+test.o: testing_toRemove/test.cpp gestioneMedia/StorageManager.h \
 		modello_logico/Media.h \
 		visitor/Visitor.h \
 		modello_logico/Canzone.h \
 		modello_logico/MediaDigital.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o test.o testing_toRemove/test.cpp
+
+moc_MainWindow.o: moc_MainWindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp
+
+moc_SearchView.o: moc_SearchView.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_SearchView.o moc_SearchView.cpp
 
 ####### Install
 

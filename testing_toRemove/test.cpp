@@ -23,6 +23,7 @@ void testStorageManager() {
     qDebug() << "Test completato. Controlla il file di output:" << outputFilePath;
 }
 
+/*
 int main(int argc, char *argv[]) {
     QCoreApplication app(argc, argv);
 
@@ -30,3 +31,4 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+*/
