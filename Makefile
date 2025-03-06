@@ -54,6 +54,7 @@ OBJECTS_DIR   = ./
 
 SOURCES       = gestioneMedia/JsonVisitor.cpp \
 		gestioneMedia/StorageManager.cpp \
+		interfaccia_grafica/CardScrollArea.cpp \
 		interfaccia_grafica/main.cpp \
 		interfaccia_grafica/MainWindow.cpp \
 		interfaccia_grafica/SearchView.cpp \
@@ -65,12 +66,15 @@ SOURCES       = gestioneMedia/JsonVisitor.cpp \
 		modello_logico/MediaDigital.cpp \
 		modello_logico/MediaTextual.cpp \
 		modello_logico/Rivista.cpp \
-		testing_toRemove/test.cpp moc_Card.cpp \
+		testing_toRemove/test.cpp \
+		visitor/CardVisitor.cpp moc_Card.cpp \
 		moc_CardScrollArea.cpp \
 		moc_MainWindow.cpp \
-		moc_SearchView.cpp
+		moc_SearchView.cpp \
+		moc_CardVisitor.cpp
 OBJECTS       = JsonVisitor.o \
 		StorageManager.o \
+		CardScrollArea.o \
 		main.o \
 		MainWindow.o \
 		SearchView.o \
@@ -83,10 +87,12 @@ OBJECTS       = JsonVisitor.o \
 		MediaTextual.o \
 		Rivista.o \
 		test.o \
+		CardVisitor.o \
 		moc_Card.o \
 		moc_CardScrollArea.o \
 		moc_MainWindow.o \
-		moc_SearchView.o
+		moc_SearchView.o \
+		moc_CardVisitor.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt6/mkspecs/common/linux.conf \
@@ -166,8 +172,10 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		modello_logico/MediaDigital.h \
 		modello_logico/MediaTextual.h \
 		modello_logico/Rivista.h \
+		visitor/CardVisitor.h \
 		visitor/Visitor.h gestioneMedia/JsonVisitor.cpp \
 		gestioneMedia/StorageManager.cpp \
+		interfaccia_grafica/CardScrollArea.cpp \
 		interfaccia_grafica/main.cpp \
 		interfaccia_grafica/MainWindow.cpp \
 		interfaccia_grafica/SearchView.cpp \
@@ -179,7 +187,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		modello_logico/MediaDigital.cpp \
 		modello_logico/MediaTextual.cpp \
 		modello_logico/Rivista.cpp \
-		testing_toRemove/test.cpp
+		testing_toRemove/test.cpp \
+		visitor/CardVisitor.cpp
 QMAKE_TARGET  = Biblioteca
 DESTDIR       = 
 TARGET        = Biblioteca
@@ -345,8 +354,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents gestioneMedia/JsonVisitor.h gestioneMedia/StorageManager.h interfaccia_grafica/Card.h interfaccia_grafica/CardScrollArea.h interfaccia_grafica/MainWindow.h interfaccia_grafica/SearchView.h modello_logico/Album.h modello_logico/Canzone.h modello_logico/Film.h modello_logico/Libro.h modello_logico/Media.h modello_logico/MediaDigital.h modello_logico/MediaTextual.h modello_logico/Rivista.h visitor/Visitor.h $(DISTDIR)/
-	$(COPY_FILE) --parents gestioneMedia/JsonVisitor.cpp gestioneMedia/StorageManager.cpp interfaccia_grafica/main.cpp interfaccia_grafica/MainWindow.cpp interfaccia_grafica/SearchView.cpp modello_logico/Album.cpp modello_logico/Canzone.cpp modello_logico/Film.cpp modello_logico/Libro.cpp modello_logico/Media.cpp modello_logico/MediaDigital.cpp modello_logico/MediaTextual.cpp modello_logico/Rivista.cpp testing_toRemove/test.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents gestioneMedia/JsonVisitor.h gestioneMedia/StorageManager.h interfaccia_grafica/Card.h interfaccia_grafica/CardScrollArea.h interfaccia_grafica/MainWindow.h interfaccia_grafica/SearchView.h modello_logico/Album.h modello_logico/Canzone.h modello_logico/Film.h modello_logico/Libro.h modello_logico/Media.h modello_logico/MediaDigital.h modello_logico/MediaTextual.h modello_logico/Rivista.h visitor/CardVisitor.h visitor/Visitor.h $(DISTDIR)/
+	$(COPY_FILE) --parents gestioneMedia/JsonVisitor.cpp gestioneMedia/StorageManager.cpp interfaccia_grafica/CardScrollArea.cpp interfaccia_grafica/main.cpp interfaccia_grafica/MainWindow.cpp interfaccia_grafica/SearchView.cpp modello_logico/Album.cpp modello_logico/Canzone.cpp modello_logico/Film.cpp modello_logico/Libro.cpp modello_logico/Media.cpp modello_logico/MediaDigital.cpp modello_logico/MediaTextual.cpp modello_logico/Rivista.cpp testing_toRemove/test.cpp visitor/CardVisitor.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -378,16 +387,15 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -Wall -Wextra -fPIC -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_Card.cpp moc_CardScrollArea.cpp moc_MainWindow.cpp moc_SearchView.cpp
+compiler_moc_header_make_all: moc_Card.cpp moc_CardScrollArea.cpp moc_MainWindow.cpp moc_SearchView.cpp moc_CardVisitor.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_Card.cpp moc_CardScrollArea.cpp moc_MainWindow.cpp moc_SearchView.cpp
+	-$(DEL_FILE) moc_Card.cpp moc_CardScrollArea.cpp moc_MainWindow.cpp moc_SearchView.cpp moc_CardVisitor.cpp
 moc_Card.cpp: interfaccia_grafica/Card.h \
 		moc_predefs.h \
 		/usr/lib/qt6/libexec/moc
 	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/marco/Biblioteca/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -I/home/marco/Biblioteca -I/home/marco/Biblioteca -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/include/c++/12 -I/usr/include/x86_64-linux-gnu/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/x86_64-linux-gnu/12/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include interfaccia_grafica/Card.h -o moc_Card.cpp
 
 moc_CardScrollArea.cpp: interfaccia_grafica/CardScrollArea.h \
-		interfaccia_grafica/Card.h \
 		moc_predefs.h \
 		/usr/lib/qt6/libexec/moc
 	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/marco/Biblioteca/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -I/home/marco/Biblioteca -I/home/marco/Biblioteca -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/include/c++/12 -I/usr/include/x86_64-linux-gnu/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/x86_64-linux-gnu/12/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include interfaccia_grafica/CardScrollArea.h -o moc_CardScrollArea.cpp
@@ -401,6 +409,12 @@ moc_SearchView.cpp: interfaccia_grafica/SearchView.h \
 		moc_predefs.h \
 		/usr/lib/qt6/libexec/moc
 	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/marco/Biblioteca/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -I/home/marco/Biblioteca -I/home/marco/Biblioteca -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/include/c++/12 -I/usr/include/x86_64-linux-gnu/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/x86_64-linux-gnu/12/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include interfaccia_grafica/SearchView.h -o moc_SearchView.cpp
+
+moc_CardVisitor.cpp: visitor/CardVisitor.h \
+		visitor/Visitor.h \
+		moc_predefs.h \
+		/usr/lib/qt6/libexec/moc
+	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/marco/Biblioteca/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -I/home/marco/Biblioteca -I/home/marco/Biblioteca -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/include/c++/12 -I/usr/include/x86_64-linux-gnu/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/x86_64-linux-gnu/12/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include visitor/CardVisitor.h -o moc_CardVisitor.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -443,6 +457,13 @@ StorageManager.o: gestioneMedia/StorageManager.cpp gestioneMedia/StorageManager.
 		gestioneMedia/JsonVisitor.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o StorageManager.o gestioneMedia/StorageManager.cpp
 
+CardScrollArea.o: interfaccia_grafica/CardScrollArea.cpp interfaccia_grafica/CardScrollArea.h \
+		visitor/CardVisitor.h \
+		visitor/Visitor.h \
+		gestioneMedia/StorageManager.h \
+		modello_logico/Media.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CardScrollArea.o interfaccia_grafica/CardScrollArea.cpp
+
 main.o: interfaccia_grafica/main.cpp gestioneMedia/StorageManager.h \
 		modello_logico/Media.h \
 		visitor/Visitor.h \
@@ -454,8 +475,7 @@ MainWindow.o: interfaccia_grafica/MainWindow.cpp interfaccia_grafica/MainWindow.
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o interfaccia_grafica/MainWindow.cpp
 
 SearchView.o: interfaccia_grafica/SearchView.cpp interfaccia_grafica/SearchView.h \
-		interfaccia_grafica/CardScrollArea.h \
-		interfaccia_grafica/Card.h
+		interfaccia_grafica/CardScrollArea.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SearchView.o interfaccia_grafica/SearchView.cpp
 
 Album.o: modello_logico/Album.cpp modello_logico/Album.h \
@@ -502,12 +522,20 @@ Rivista.o: modello_logico/Rivista.cpp modello_logico/Rivista.h \
 		visitor/Visitor.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Rivista.o modello_logico/Rivista.cpp
 
-test.o: testing_toRemove/test.cpp gestioneMedia/StorageManager.h \
-		modello_logico/Media.h \
-		visitor/Visitor.h \
-		modello_logico/Canzone.h \
-		modello_logico/MediaDigital.h
+test.o: testing_toRemove/test.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o test.o testing_toRemove/test.cpp
+
+CardVisitor.o: visitor/CardVisitor.cpp visitor/CardVisitor.h \
+		visitor/Visitor.h \
+		modello_logico/Libro.h \
+		modello_logico/MediaTextual.h \
+		modello_logico/Media.h \
+		modello_logico/Rivista.h \
+		modello_logico/Film.h \
+		modello_logico/MediaDigital.h \
+		modello_logico/Canzone.h \
+		modello_logico/Album.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CardVisitor.o visitor/CardVisitor.cpp
 
 moc_Card.o: moc_Card.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_Card.o moc_Card.cpp
@@ -520,6 +548,9 @@ moc_MainWindow.o: moc_MainWindow.cpp
 
 moc_SearchView.o: moc_SearchView.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_SearchView.o moc_SearchView.cpp
+
+moc_CardVisitor.o: moc_CardVisitor.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_CardVisitor.o moc_CardVisitor.cpp
 
 ####### Install
 

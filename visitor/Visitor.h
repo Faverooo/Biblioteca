@@ -1,6 +1,7 @@
 #ifndef VISIOR_H
 #define VISIOR_H
 
+class Media;
 class Libro;
 class Rivista;
 class Film;

@@ -10,6 +10,16 @@
 #include <QFile>
 #include<QRandomGenerator>
 
+QList<Media*> StorageManager::getStorage() const{
+    return storage;
+}
+
+StorageManager& StorageManager::instance() {
+    static StorageManager instance;
+    return instance;
+}
+
+
 void StorageManager::fromJOToStorage(const QJsonObject &json)
 {
     if (json.contains("tipo") && json["tipo"].isString())
