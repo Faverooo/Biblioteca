@@ -14,6 +14,9 @@
 #include"SearchView.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
+    resize(1200, 800); // Larghezza: 1200, Altezza: 800
+    setMinimumSize(600, 400);
+
     stackedWidget = new QStackedWidget(this);
     QWidget *headerWidget = new QWidget(this);
     headerWidget->setStyleSheet("background-color: #f5deb3;"); 
@@ -26,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     headerLayout->addStretch();
     headerLayout->addWidget(exitButton);
 
-    headerWidget->setFixedHeight(this->height() * 0.1);
+    headerWidget->setFixedHeight(this->height() * 0.08);
 
     QVBoxLayout *mainLayout = new QVBoxLayout();
     mainLayout->addWidget(headerWidget);
@@ -41,7 +44,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     
     SearchView *searchView = new SearchView();
     stackedWidget->addWidget(searchView);
-    setCentralWidget(stackedWidget);
     
 }
 

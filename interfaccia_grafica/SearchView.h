@@ -8,6 +8,8 @@
 #include <QPushButton>
 #include <QComboBox>
 #include <QListWidget>
+#include <QCheckBox>
+#include <QLabel>
 
 class SearchView : public QWidget {
     Q_OBJECT
@@ -16,14 +18,6 @@ public:
     explicit SearchView(QWidget *parent = nullptr);
 
 private:
-    QVBoxLayout *mainLayout;
-    QHBoxLayout *topBarLayout;
-    QVBoxLayout *sideBarLayout;
-    QLineEdit *searchBar;
-    QComboBox *selector;
-    QPushButton *searchButton;
-    QListWidget *booksDisplay;
-
     void setupUI();
 };
 
