@@ -1,5 +1,5 @@
-#ifndef MAINWNDOW_H
-#define MAINWNDOW_H
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
 #include <QMainWindow>
 #include <QWidget>
@@ -19,4 +19,4 @@ private slots:
 
 };
 
-#endif // MAINWNDOW_H
+#endif // MAINWINDOW_H

@@ -1,7 +1,7 @@
 #include<QApplication>
 
 #include"../gestioneMedia/StorageManager.h"
-#include"MainWindow.cpp"
+#include"MainWindow.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 
     MainWindow mainWindow;
     mainWindow.show();
-
+    mainWindow.setMinimumSize(800,500);
     return app.exec();
 }
 

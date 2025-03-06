@@ -15,11 +15,10 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     resize(1200, 800); // Larghezza: 1200, Altezza: 800
-    setMinimumSize(600, 400);
 
     stackedWidget = new QStackedWidget(this);
     QWidget *headerWidget = new QWidget(this);
-    headerWidget->setStyleSheet("background-color: #f5deb3;"); 
+    headerWidget->setStyleSheet("background-color:rgb(247, 239, 224);"); 
 
     QHBoxLayout *headerLayout = new QHBoxLayout(headerWidget);
     QLabel *titleLabel = new QLabel("MyArchive", headerWidget);
