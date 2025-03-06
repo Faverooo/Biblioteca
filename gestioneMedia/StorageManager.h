@@ -12,6 +12,7 @@ public:
     void printToFile(const QString& path);
     void addToStorage(Media* media);
     void removeToStorage(int id);
+    int generateID() const;
 };
 
 
