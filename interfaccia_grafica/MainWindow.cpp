@@ -14,15 +14,19 @@
 #include"SearchView.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
-    resize(1200, 800); // Larghezza: 1200, Altezza: 800
+    resize(1200, 800);
+
 
     stackedWidget = new QStackedWidget(this);
     QWidget *headerWidget = new QWidget(this);
-    headerWidget->setStyleSheet("background-color:rgb(247, 239, 224);"); 
+    headerWidget->setStyleSheet("background-color:rgb(166, 250, 140); border: 2px solid rgb(3, 85, 34); border-radius: 10px;");
+    
 
     QHBoxLayout *headerLayout = new QHBoxLayout(headerWidget);
     QLabel *titleLabel = new QLabel("MyArchive", headerWidget);
     QPushButton *exitButton = new QPushButton("Exit", headerWidget);
+    titleLabel->setStyleSheet("border: 0px;");
+    exitButton->setStyleSheet("padding: 10px;");
 
     headerLayout->addWidget(titleLabel);
     headerLayout->addStretch();

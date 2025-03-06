@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
 
     MainWindow mainWindow;
     mainWindow.show();
-    mainWindow.setMinimumSize(800,500);
     return app.exec();
 }
 

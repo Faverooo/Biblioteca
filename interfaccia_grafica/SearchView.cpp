@@ -1,12 +1,10 @@
 #include "SearchView.h"
+#include "CardScrollArea.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QLineEdit>
-#include <QComboBox>
-#include <QPushButton>
-#include <QCheckBox>
 #include <QListWidget>
-#include <QLabel>
+#include <QScrollArea>
+#include <QWidget>
 
 SearchView::SearchView(QWidget *parent) : QWidget(parent)
 {
@@ -20,40 +18,47 @@ void SearchView::setupUI()
 
     // Layout della barra laterale di ricerca
     QVBoxLayout *sideBarLayout = new QVBoxLayout();
-    QLineEdit *searchBar = new QLineEdit(this);
+    searchBar = new QLineEdit(this);
     searchBar->setPlaceholderText("CERCA:");
-    QPushButton *searchButton = new QPushButton(this);
+    searchButton = new QPushButton(this);
     searchButton->setText("O"); // Icona lente d'ingrandimento
     sideBarLayout->addWidget(searchBar);
     sideBarLayout->addWidget(searchButton);
     sideBarLayout->addWidget(new QLabel("PER:"));
-    sideBarLayout->addWidget(new QCheckBox("Titolo", this));
-    sideBarLayout->addWidget(new QCheckBox("Anno", this));
-    sideBarLayout->addWidget(new QCheckBox("Autore/Regista/Artista", this));
-    QPushButton *addButton = new QPushButton("+ AGGIUNGI", this);
+    titleCheckBox = new QCheckBox("Titolo", this);
+    yearCheckBox = new QCheckBox("Anno", this);
+    authorCheckBox = new QCheckBox("Autore/Regista/Artista", this);
+    sideBarLayout->addWidget(titleCheckBox);
+    sideBarLayout->addWidget(yearCheckBox);
+    sideBarLayout->addWidget(authorCheckBox);
+    addButton = new QPushButton("+ AGGIUNGI", this);
     sideBarLayout->addStretch();
     sideBarLayout->addWidget(addButton);
 
     // Definizione delle proporzioni della barra laterale
-    QWidget *sideBarWidget = new QWidget(this);
+    sideBarWidget = new QWidget(this);
+    sideBarWidget->setObjectName("sideBarWidget");
     sideBarWidget->setLayout(sideBarLayout);
     sideBarWidget->setFixedWidth(this->width() * 0.28);
 
     // Layout della barra superiore
     QHBoxLayout *topBarLayout = new QHBoxLayout();
-    QComboBox *selector = new QComboBox(this);
+    selector = new QComboBox(this);
     selector->addItem("TUTTO");
     selector->addItem("Libri");
+    selector->addItem("Riviste");
     selector->addItem("Film");
-    selector->addItem("Musica");
-    QPushButton *resetButton = new QPushButton("AZZERA FILTRI", this);
+    selector->addItem("Canzoni");
+    selector->addItem("Album");
+    resetButton = new QPushButton("AZZERA FILTRI", this);
     topBarLayout->addWidget(new QLabel("VISUALIZZA:"));
     topBarLayout->addWidget(selector);
     topBarLayout->addStretch();
     topBarLayout->addWidget(resetButton);
 
     // Definizione delle proporzioni della barra superiore
-    QWidget *topBarWidget = new QWidget(this);
+    topBarWidget = new QWidget(this);
+    topBarWidget->setObjectName("topBarWidget");
     topBarWidget->setLayout(topBarLayout);
     topBarWidget->setFixedHeight(this->height() * 0.1);
 
@@ -61,10 +66,8 @@ void SearchView::setupUI()
     QVBoxLayout *contentLayout = new QVBoxLayout();
     contentLayout->addWidget(topBarWidget);
 
-    // Placeholder per la visualizzazione dei contenuti
-    QWidget *contentPlaceholder = new QWidget(this);
-    contentPlaceholder->setStyleSheet("background-color: white;");
-    contentLayout->addWidget(contentPlaceholder);
+    CardScrollArea *cardScrollArea = new CardScrollArea(this);
+    contentLayout->addWidget(cardScrollArea);
 
     // Aggiunta dei layout al layout principale
     mainLayout->addWidget(sideBarWidget);
@@ -98,6 +101,10 @@ void SearchView::setupUI()
         "   border-radius: 10px;"
         "   padding: 5px;"
         "   background-color: white;"
+        "   color: black;" // Assicurati che il testo sia visibile
+        "}"
+        "QComboBox:hover {"
+        "   color: black;" 
         "}"
         "QComboBox::drop-down {"
         "   subcontrol-origin: padding;"
@@ -115,6 +122,7 @@ void SearchView::setupUI()
         "QComboBox QAbstractItemView {"
         "   border: 2px solid #8f8f8f;"
         "   selection-background-color: #4CAF50;"
+        "   color: black;" // Assicurati che il testo degli elementi del menu a discesa sia visibile
         "}"
         "QCheckBox {"
         "   padding: 5px;"
@@ -123,8 +131,12 @@ void SearchView::setupUI()
         "   padding: 5px;"
         "}"
         "QWidget#sideBarWidget {"
-        "   background-color: #d3d3d3;"
-        "   border: 2px solid #8f8f8f;"
+        "   border: 2px solid #000000;" // Bordo nero
+        "   border-radius: 10px;"
+        "   padding: 10px;"
+        "}"
+        "QWidget#topBarWidget {"
+        "   border: 2px solid #000000;" // Bordo nero
         "   border-radius: 10px;"
         "   padding: 10px;"
         "}"

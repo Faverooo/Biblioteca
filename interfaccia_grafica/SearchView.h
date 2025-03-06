@@ -2,14 +2,13 @@
 #define SEARCHVIEW_H
 
 #include <QWidget>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
 #include <QLineEdit>
-#include <QPushButton>
 #include <QComboBox>
-#include <QListWidget>
+#include <QPushButton>
 #include <QCheckBox>
 #include <QLabel>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
 
 class SearchView : public QWidget {
     Q_OBJECT
@@ -19,6 +18,17 @@ public:
 
 private:
     void setupUI();
+
+    QLineEdit *searchBar;
+    QPushButton *searchButton;
+    QCheckBox *titleCheckBox;
+    QCheckBox *yearCheckBox;
+    QCheckBox *authorCheckBox;
+    QPushButton *addButton;
+    QComboBox *selector;
+    QPushButton *resetButton;
+    QWidget *sideBarWidget;
+    QWidget *topBarWidget;
 };
 
 #endif // SEARCHVIEW_H
