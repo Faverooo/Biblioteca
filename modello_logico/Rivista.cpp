@@ -3,15 +3,15 @@
 
 Rivista::Rivista(): MediaTextual(){}
 
-Rivista::Rivista(const QString& titolo, const QString& percorsoImg, int anno, int pagine, int numero, unsigned int id)
-    : MediaTextual(titolo, percorsoImg, anno, pagine, id), numero(numero) {}
+Rivista::Rivista(const QString& titolo, const QString& percorsoImg, int anno, int pagine, QString& editore, unsigned int id)
+    : MediaTextual(titolo, percorsoImg, anno, pagine, id), editore(editore) {}
 
-int Rivista::getNumero() const {
-    return numero;
+QString Rivista::getEditore() const {
+    return editore;
 }
 
-void Rivista::setNumero(const int newNumero) {
-    numero = newNumero;
+void Rivista::setEditore(QString& newEditore) {
+    editore = newEditore;
 }
 
 

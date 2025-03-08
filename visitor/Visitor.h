@@ -8,6 +8,8 @@ class Film;
 class Canzone;
 class Album;
 
+
+// da implementare nelle classi figlie
 class Visitor {
 public:
     virtual void visit(Libro *libro) = 0;

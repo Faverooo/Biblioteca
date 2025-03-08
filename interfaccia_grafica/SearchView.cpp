@@ -25,6 +25,7 @@ void SearchView::setupUI()
     sideBarLayout->addWidget(searchBar);
     sideBarLayout->addWidget(searchButton);
     sideBarLayout->addWidget(new QLabel("PER:"));
+    //filtri
     titleCheckBox = new QCheckBox("Titolo", this);
     yearCheckBox = new QCheckBox("Anno", this);
     authorCheckBox = new QCheckBox("Autore/Regista/Artista", this);
@@ -101,12 +102,12 @@ void SearchView::setupUI()
         "   border-radius: 10px;"
         "   padding: 5px;"
         "   background-color: white;"
-        "   color: black;" // Assicurati che il testo sia visibile
+        "   color: black;" 
         "}"
         "QComboBox:hover {"
         "   color: black;" 
         "}"
-        "QComboBox::drop-down {"
+        "QComboBox::drop-down {" 
         "   subcontrol-origin: padding;"
         "   subcontrol-position: top right;"
         "   width: 20px;"
@@ -122,7 +123,7 @@ void SearchView::setupUI()
         "QComboBox QAbstractItemView {"
         "   border: 2px solid #8f8f8f;"
         "   selection-background-color: #4CAF50;"
-        "   color: black;" // Assicurati che il testo degli elementi del menu a discesa sia visibile
+        "   color: black;" 
         "}"
         "QCheckBox {"
         "   padding: 5px;"
@@ -131,12 +132,12 @@ void SearchView::setupUI()
         "   padding: 5px;"
         "}"
         "QWidget#sideBarWidget {"
-        "   border: 2px solid #000000;" // Bordo nero
+        "   border: 2px solid #000000;" 
         "   border-radius: 10px;"
         "   padding: 10px;"
         "}"
         "QWidget#topBarWidget {"
-        "   border: 2px solid #000000;" // Bordo nero
+        "   border: 2px solid #000000;" 
         "   border-radius: 10px;"
         "   padding: 10px;"
         "}"
