@@ -5,7 +5,7 @@
 
 AbsEditWidget::AbsEditWidget(QWidget *parent) : QWidget(parent)
 {
-    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout = new QVBoxLayout(this);
 
     layout->addWidget(new QLabel("Titolo:", this));
     LEtitolo = new QLineEdit(this);

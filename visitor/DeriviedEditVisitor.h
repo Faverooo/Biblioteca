@@ -16,7 +16,7 @@ class AbsEditWidget : public QWidget
     Q_OBJECT
 
 protected:
-    int id = -1;
+    int id;
     QLineEdit *LEtitolo;
     QLineEdit *LEanno;
     QLineEdit *LEpercorso;

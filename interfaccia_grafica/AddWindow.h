@@ -2,6 +2,8 @@
 #define ADD_WINDOW_H
 
 #include <QWidget>
+#include<QLabel>
+#include<QVBoxLayout>
 
 class AddWindow : public QWidget {
     Q_OBJECT
@@ -10,8 +12,9 @@ public:
     explicit AddWindow(QWidget *parent = nullptr);
     
 private:
-    
-private slots:
+    QLabel *banner;
+    QWidget* editwidget;
+    QVBoxLayout *layout;
     
 };
 
