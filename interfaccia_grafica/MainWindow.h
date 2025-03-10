@@ -15,7 +15,7 @@ private:
     QStackedWidget *stackedWidget;
 
 private slots:
-    
+    void showAddView();
 
 };
 

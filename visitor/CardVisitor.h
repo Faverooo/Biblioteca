@@ -7,7 +7,7 @@
 #include <QLabel>
 #include <QObject>
 
-class CardVisitor: public QWidget, public Visitor{
+class CardVisitor: public QObject, public Visitor{
     Q_OBJECT
 
 private: 
@@ -22,7 +22,7 @@ private:
     QPushButton* remove;
 
 public:
-    CardVisitor(QWidget* parent = nullptr) : QWidget(parent){}
+    CardVisitor(QObject* parent = nullptr);
     virtual void visit(Libro *libro);
     virtual void visit(Rivista *rivista);
     virtual void visit(Film *film);

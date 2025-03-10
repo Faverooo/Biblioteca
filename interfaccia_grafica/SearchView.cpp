@@ -9,6 +9,9 @@
 SearchView::SearchView(QWidget *parent) : QWidget(parent)
 {
     setupUI();
+
+    connect(addButton, &QPushButton::clicked, this, &SearchView::addButtonClicked);
+
 }
 
 void SearchView::setupUI()

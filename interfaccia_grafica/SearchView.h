@@ -29,6 +29,9 @@ private:
     QPushButton *resetButton;
     QWidget *sideBarWidget;
     QWidget *topBarWidget;
+
+signals:
+    void addButtonClicked();
 };
 
 #endif // SEARCHVIEW_H

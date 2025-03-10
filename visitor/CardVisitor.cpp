@@ -12,6 +12,10 @@
 #include <QDebug>
 
 
+CardVisitor::CardVisitor(QObject* parent) : QObject(parent){}
+
+
+
 void CardVisitor::visit(Libro *libro)
 {
     card = new QWidget;
@@ -110,7 +114,7 @@ void CardVisitor::visit(Film *film)
     // Layout per gli attributi e i pulsanti
     QVBoxLayout *rightLayout = new QVBoxLayout();
     QLabel *size = new QLabel("Dimensione (MB): " + QString::number(film->getSize()));
-    QLabel *durata = new QLabel("Durata (sec): " + QString::number(film->getDurata()));
+    QLabel *durata = new QLabel("Durata (min): " + QString::number(film->getDurata()));
     QLabel *regista = new QLabel("Regista: " + film->getRegista());
     QLabel *lingua = new QLabel("Lingua: " + film->getLingua());
 
