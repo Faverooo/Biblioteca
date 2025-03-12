@@ -1,60 +1,42 @@
 [
     {
-        "tipo": "Libro",
-        "id": 1,
-        "titolo": "Il Signore degli Anelli",
-        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
         "anno": 1954,
+        "autore": "J.R.R. Tolkien",
+        "id": 1,
         "pagine": 1178,
-        "autore": "J.R.R. Tolkien"
+        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
+        "tipo": "Libro",
+        "titolo": "Il Signore degli Anelli"
     },
     {
-        "tipo": "Film",
-        "id": 2,
-        "titolo": "Inception",
-        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
         "anno": 2010,
-        "size": 1500,
         "durata": 148,
+        "id": 2,
+        "lingua": "English",
+        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
         "regista": "Christopher Nolan",
-        "lingua": "English"
-    },
-    {
-        "tipo": "Libro",
-        "id": 3,
-        "titolo": "1984",
-        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
-        "anno": 1949,
-        "pagine": 328,
-        "autore": "George Orwell"
-    },
-    {
+        "size": 1500,
         "tipo": "Film",
-        "id": 4,
-        "titolo": "The Matrix",
-        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
-        "anno": 1999,
-        "size": 1360,
-        "durata": 136,
-        "regista": "Lana Wachowski, Lilly Wachowski",
-        "lingua": "English"
+        "titolo": "Inception"
     },
     {
+        "anno": 1949,
+        "autore": "George Orwell",
+        "id": 3,
+        "pagine": 328,
+        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
         "tipo": "Libro",
-        "id": 7,
-        "titolo": "Pride and Prejudice",
-        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
-        "anno": 1813,
-        "pagine": 279,
-        "autore": "Jane Austen"
+        "titolo": "1984"
     },
     {
-        "tipo": "Rivista",
-        "id": 11,
-        "titolo": "Time",
+        "anno": 1999,
+        "durata": 136,
+        "id": 4,
+        "lingua": "English",
         "percorsoImg": "salvataggi/immagini/demoimg.jpg",
-        "anno": 2021,
-        "numero": 48
+        "regista": "Lana Wachowski, Lilly Wachowski",
+        "size": 1360,
+        "tipo": "Film",
+        "titolo": "The Matrix"
     }
 ]
-

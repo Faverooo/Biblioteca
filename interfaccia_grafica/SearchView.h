@@ -1,6 +1,8 @@
 #ifndef SEARCHVIEW_H
 #define SEARCHVIEW_H
 
+#include "CardScrollArea.h"
+
 #include <QWidget>
 #include <QLineEdit>
 #include <QComboBox>
@@ -15,6 +17,7 @@ class SearchView : public QWidget {
 
 public:
     explicit SearchView(QWidget *parent = nullptr);
+    void refresh();
 
 private:
     void setupUI();
@@ -29,6 +32,8 @@ private:
     QPushButton *resetButton;
     QWidget *sideBarWidget;
     QWidget *topBarWidget;
+    QVBoxLayout *contentLayout;
+    CardScrollArea *cardScrollArea;
 
 signals:
     void addButtonClicked();

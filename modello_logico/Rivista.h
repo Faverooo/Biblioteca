@@ -11,7 +11,7 @@ public:
     Rivista();
     Rivista(const QString& titolo, const QString& percorsoImg, int anno, int pagine, QString& editore, unsigned int id = 0);
     QString getEditore() const;
-    void setEditore(QString& newEditore);
+    void setEditore(const QString& newEditore);
    
     void acceptVisitor(Visitor* visitor);
 };

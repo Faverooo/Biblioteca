@@ -1,5 +1,4 @@
 #include "SearchView.h"
-#include "CardScrollArea.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QListWidget>
@@ -67,10 +66,10 @@ void SearchView::setupUI()
     topBarWidget->setFixedHeight(this->height() * 0.1);
 
     // Layout contenitore principale
-    QVBoxLayout *contentLayout = new QVBoxLayout();
+    contentLayout = new QVBoxLayout();
     contentLayout->addWidget(topBarWidget);
 
-    CardScrollArea *cardScrollArea = new CardScrollArea(this);
+    cardScrollArea = new CardScrollArea(this);
     contentLayout->addWidget(cardScrollArea);
 
     // Aggiunta dei layout al layout principale
@@ -145,4 +144,10 @@ void SearchView::setupUI()
         "   padding: 10px;"
         "}"
     );
+}
+
+
+void SearchView::refresh() {
+    // Assuming cardScrollArea is a member variable of SearchView
+    cardScrollArea->refreshCards();
 }

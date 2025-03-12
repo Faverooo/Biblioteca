@@ -5,6 +5,7 @@
 #include <QLineEdit>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QLabel>
 #include "../modello_logico/Media.h"
 #include "../modello_logico/Libro.h"
 #include "../modello_logico/Rivista.h"
@@ -23,13 +24,16 @@ public:
     void setAnno(const QString &anno);
     void setPercorso(const QString &percorso);
     void setID(const int newID);
+    void saveImg();
+    virtual Media *getMedia() = 0;
 
 protected:
     QVBoxLayout *layout;
     QLineEdit *LEtitolo;
     QLineEdit *LEanno;
-    QLineEdit *LEpercorso;
+    QLabel *LEpercorso;
     QPushButton *selectImageButton;
+    QString filePath;
     int id;
 
 private slots:
@@ -48,6 +52,20 @@ public:
 
 private:
     QLineEdit *LEautore;
+    QLineEdit *LEpagine;
+};
+
+class RivistaEditWidget : public AbsEditWidget {
+    Q_OBJECT
+
+public:
+    explicit RivistaEditWidget(QWidget *parent = nullptr);
+
+    void setEditore(const QString &newEditore);
+    void setPagine(const QString &pagine);
+    Media *getMedia();
+private:
+    QLineEdit *LEeditore;
     QLineEdit *LEpagine;
 };
 

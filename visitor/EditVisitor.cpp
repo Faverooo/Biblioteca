@@ -2,6 +2,8 @@
 #include <QDebug>
 
 void EditVisitor::visit(Libro *libro) {
+    if (editWidget)
+        delete editWidget;
     editWidget = new LibroEditWidget();
     LibroEditWidget *libroEditWidget = qobject_cast<LibroEditWidget*>(editWidget);
     libroEditWidget->setTitolo(libro->getTitolo());
@@ -14,7 +16,16 @@ void EditVisitor::visit(Libro *libro) {
 }
 
 void EditVisitor::visit(Rivista *rivista) {
-    // Implementation goes here
+    if (editWidget)
+        delete editWidget;
+    editWidget = new RivistaEditWidget();
+    RivistaEditWidget *rivistaEditWidget = qobject_cast<RivistaEditWidget*>(editWidget);
+    rivistaEditWidget->setTitolo(rivista->getTitolo());
+    rivistaEditWidget->setAnno(QString::number(rivista->getAnno()));
+    rivistaEditWidget->setEditore(rivista->getEditore());
+    rivistaEditWidget->setPagine(QString::number(rivista->getPagine()));
+    rivistaEditWidget->setPercorso(rivista->getPercorsoImg());
+    rivistaEditWidget->setID(rivista->getID());
 }
 
 void EditVisitor::visit(Film *film) {

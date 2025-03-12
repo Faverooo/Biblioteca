@@ -10,7 +10,7 @@ QString Rivista::getEditore() const {
     return editore;
 }
 
-void Rivista::setEditore(QString& newEditore) {
+void Rivista::setEditore(const QString& newEditore) {
     editore = newEditore;
 }
 

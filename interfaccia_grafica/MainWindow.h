@@ -1,22 +1,26 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QWidget>
-#include <QStackedWidget>
+#include "SearchView.h"
+#include "AddWindow.h"
 
+#include <QMainWindow>
+#include <QStackedWidget>
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
+
 public:
     explicit MainWindow(QWidget *parent = nullptr);
 
-private:
-    QStackedWidget *stackedWidget;
-
 private slots:
     void showAddView();
+    void showSearchView();
 
+private:
+    QStackedWidget *stackedWidget;
+    SearchView *searchView;
+    AddWindow *addWindow;
 };
 
 #endif // MAINWINDOW_H

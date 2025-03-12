@@ -1,6 +1,5 @@
 #include "DeriviedEditVisitor.h"
 
-#include <QLabel>
 #include <QFileDialog>
 #include <QFile>
 #include <QDir>
@@ -20,7 +19,7 @@ AbsEditWidget::AbsEditWidget(QWidget *parent) : QWidget(parent)
     layout->addWidget(LEanno);
 
     layout->addWidget(new QLabel("Percorso:", this));
-    LEpercorso = new QLineEdit(this);
+    LEpercorso = new QLabel(this);
     layout->addWidget(LEpercorso);
 
     selectImageButton = new QPushButton("Seleziona Immagine", this);
@@ -49,9 +48,8 @@ void AbsEditWidget::setID(const int newID)
     id = newID;
 }
 
-void AbsEditWidget::openFileDialog()
+void AbsEditWidget::saveImg()
 {
-    QString filePath = QFileDialog::getOpenFileName(this, "Seleziona Immagine", "", "Immagini (*.png *.jpg *.jpeg)");
     if (!filePath.isEmpty())
     {
         QFile file(filePath);
@@ -64,16 +62,19 @@ void AbsEditWidget::openFileDialog()
             }
             QString fileName = QFileInfo(filePath).fileName();
             QString newFilePath = dir.filePath(fileName);
-            if (QFile::copy(filePath, newFilePath))
-            {
-                LEpercorso->setText(newFilePath);
-            }
-            else
+            if (!QFile::copy(filePath, newFilePath))
             {
                 QMessageBox::warning(this, "Errore", "Impossibile copiare il file.");
             }
+            filePath = QString("/salvataggi/immagini/%1").arg(fileName);
         }
     }
+}
+
+void AbsEditWidget::openFileDialog()
+{
+    filePath = QFileDialog::getOpenFileName(this, "Seleziona Immagine", "", "Immagini (*.png *.jpg *.jpeg)");
+    LEpercorso->setText(filePath);
 }
 
 LibroEditWidget::LibroEditWidget(QWidget *parent) : AbsEditWidget(parent)
@@ -107,4 +108,37 @@ Media *LibroEditWidget::getMedia()
     libro->setPagine(LEpagine->text().toInt());
     libro->setID(id);
     return libro;
+}
+
+RivistaEditWidget::RivistaEditWidget(QWidget *parent) : AbsEditWidget(parent)
+{
+    layout->addWidget(new QLabel("Editore:", this));
+    LEeditore = new QLineEdit(this);
+    layout->addWidget(LEeditore);
+
+    layout->addWidget(new QLabel("Pagine:", this));
+    LEpagine = new QLineEdit(this);
+    layout->addWidget(LEpagine);
+}
+
+void RivistaEditWidget::setEditore(const QString &newEditore)
+{
+    LEeditore->setText(newEditore);
+}
+
+void RivistaEditWidget::setPagine(const QString &pagine)
+{
+    LEpagine->setText(pagine);
+}
+
+Media *RivistaEditWidget::getMedia()
+{
+    Rivista *rivista = new Rivista();
+    rivista->setTitolo(LEtitolo->text());
+    rivista->setAnno(LEanno->text().toInt());
+    rivista->setPercorsoImg(LEpercorso->text());
+    rivista->setEditore(LEeditore->text());
+    rivista->setPagine(LEpagine->text().toInt());
+    rivista->setID(id);
+    return rivista;
 }

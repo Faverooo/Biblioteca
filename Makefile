@@ -428,6 +428,16 @@ compiler_moc_header_make_all: moc_AddWindow.cpp moc_CardScrollArea.cpp moc_MainW
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_AddWindow.cpp moc_CardScrollArea.cpp moc_MainWindow.cpp moc_SearchView.cpp moc_CardVisitor.cpp moc_DeriviedEditVisitor.cpp
 moc_AddWindow.cpp: interfaccia_grafica/AddWindow.h \
+		visitor/DeriviedEditVisitor.h \
+		modello_logico/Media.h \
+		visitor/Visitor.h \
+		modello_logico/Libro.h \
+		modello_logico/MediaTextual.h \
+		modello_logico/Rivista.h \
+		modello_logico/Film.h \
+		modello_logico/MediaDigital.h \
+		modello_logico/Canzone.h \
+		modello_logico/Album.h \
 		moc_predefs.h \
 		/usr/lib/qt6/libexec/moc
 	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/marco/Biblioteca/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -I/home/marco/Biblioteca -I/home/marco/Biblioteca -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/include/c++/12 -I/usr/include/x86_64-linux-gnu/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/x86_64-linux-gnu/12/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include interfaccia_grafica/AddWindow.h -o moc_AddWindow.cpp
@@ -440,11 +450,28 @@ moc_CardScrollArea.cpp: interfaccia_grafica/CardScrollArea.h \
 	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/marco/Biblioteca/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -I/home/marco/Biblioteca -I/home/marco/Biblioteca -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/include/c++/12 -I/usr/include/x86_64-linux-gnu/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/x86_64-linux-gnu/12/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include interfaccia_grafica/CardScrollArea.h -o moc_CardScrollArea.cpp
 
 moc_MainWindow.cpp: interfaccia_grafica/MainWindow.h \
+		interfaccia_grafica/SearchView.h \
+		interfaccia_grafica/CardScrollArea.h \
+		visitor/CardVisitor.h \
+		visitor/Visitor.h \
+		interfaccia_grafica/AddWindow.h \
+		visitor/DeriviedEditVisitor.h \
+		modello_logico/Media.h \
+		modello_logico/Libro.h \
+		modello_logico/MediaTextual.h \
+		modello_logico/Rivista.h \
+		modello_logico/Film.h \
+		modello_logico/MediaDigital.h \
+		modello_logico/Canzone.h \
+		modello_logico/Album.h \
 		moc_predefs.h \
 		/usr/lib/qt6/libexec/moc
 	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/marco/Biblioteca/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -I/home/marco/Biblioteca -I/home/marco/Biblioteca -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/include/c++/12 -I/usr/include/x86_64-linux-gnu/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/x86_64-linux-gnu/12/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include interfaccia_grafica/MainWindow.h -o moc_MainWindow.cpp
 
 moc_SearchView.cpp: interfaccia_grafica/SearchView.h \
+		interfaccia_grafica/CardScrollArea.h \
+		visitor/CardVisitor.h \
+		visitor/Visitor.h \
 		moc_predefs.h \
 		/usr/lib/qt6/libexec/moc
 	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/marco/Biblioteca/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -I/home/marco/Biblioteca -I/home/marco/Biblioteca -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/include/c++/12 -I/usr/include/x86_64-linux-gnu/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/x86_64-linux-gnu/12/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include interfaccia_grafica/SearchView.h -o moc_SearchView.cpp
@@ -511,7 +538,6 @@ StorageManager.o: gestioneMedia/StorageManager.cpp gestioneMedia/StorageManager.
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o StorageManager.o gestioneMedia/StorageManager.cpp
 
 AddWindow.o: interfaccia_grafica/AddWindow.cpp interfaccia_grafica/AddWindow.h \
-		visitor/EditVisitor.h \
 		visitor/DeriviedEditVisitor.h \
 		modello_logico/Media.h \
 		visitor/Visitor.h \
@@ -521,7 +547,9 @@ AddWindow.o: interfaccia_grafica/AddWindow.cpp interfaccia_grafica/AddWindow.h \
 		modello_logico/Film.h \
 		modello_logico/MediaDigital.h \
 		modello_logico/Canzone.h \
-		modello_logico/Album.h
+		modello_logico/Album.h \
+		visitor/EditVisitor.h \
+		gestioneMedia/StorageManager.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o AddWindow.o interfaccia_grafica/AddWindow.cpp
 
 CardScrollArea.o: interfaccia_grafica/CardScrollArea.cpp interfaccia_grafica/CardScrollArea.h \
@@ -534,12 +562,36 @@ CardScrollArea.o: interfaccia_grafica/CardScrollArea.cpp interfaccia_grafica/Car
 main.o: interfaccia_grafica/main.cpp gestioneMedia/StorageManager.h \
 		modello_logico/Media.h \
 		visitor/Visitor.h \
-		interfaccia_grafica/MainWindow.h
+		interfaccia_grafica/MainWindow.h \
+		interfaccia_grafica/SearchView.h \
+		interfaccia_grafica/CardScrollArea.h \
+		visitor/CardVisitor.h \
+		interfaccia_grafica/AddWindow.h \
+		visitor/DeriviedEditVisitor.h \
+		modello_logico/Libro.h \
+		modello_logico/MediaTextual.h \
+		modello_logico/Rivista.h \
+		modello_logico/Film.h \
+		modello_logico/MediaDigital.h \
+		modello_logico/Canzone.h \
+		modello_logico/Album.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o interfaccia_grafica/main.cpp
 
 MainWindow.o: interfaccia_grafica/MainWindow.cpp interfaccia_grafica/MainWindow.h \
 		interfaccia_grafica/SearchView.h \
-		interfaccia_grafica/AddWindow.h
+		interfaccia_grafica/CardScrollArea.h \
+		visitor/CardVisitor.h \
+		visitor/Visitor.h \
+		interfaccia_grafica/AddWindow.h \
+		visitor/DeriviedEditVisitor.h \
+		modello_logico/Media.h \
+		modello_logico/Libro.h \
+		modello_logico/MediaTextual.h \
+		modello_logico/Rivista.h \
+		modello_logico/Film.h \
+		modello_logico/MediaDigital.h \
+		modello_logico/Canzone.h \
+		modello_logico/Album.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o interfaccia_grafica/MainWindow.cpp
 
 SearchView.o: interfaccia_grafica/SearchView.cpp interfaccia_grafica/SearchView.h \
