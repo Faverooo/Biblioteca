@@ -1,7 +1,11 @@
 #include "DeriviedEditVisitor.h"
 
-
 #include <QLabel>
+#include <QFileDialog>
+#include <QFile>
+#include <QDir>
+#include <QMessageBox>
+#include <QCoreApplication>
 
 AbsEditWidget::AbsEditWidget(QWidget *parent) : QWidget(parent)
 {
@@ -18,6 +22,11 @@ AbsEditWidget::AbsEditWidget(QWidget *parent) : QWidget(parent)
     layout->addWidget(new QLabel("Percorso:", this));
     LEpercorso = new QLineEdit(this);
     layout->addWidget(LEpercorso);
+
+    selectImageButton = new QPushButton("Seleziona Immagine", this);
+    layout->addWidget(selectImageButton);
+
+    connect(selectImageButton, &QPushButton::clicked, this, &AbsEditWidget::openFileDialog);
 }
 
 void AbsEditWidget::setTitolo(const QString &titolo)
@@ -38,6 +47,33 @@ void AbsEditWidget::setPercorso(const QString &percorso)
 void AbsEditWidget::setID(const int newID)
 {
     id = newID;
+}
+
+void AbsEditWidget::openFileDialog()
+{
+    QString filePath = QFileDialog::getOpenFileName(this, "Seleziona Immagine", "", "Immagini (*.png *.jpg *.jpeg)");
+    if (!filePath.isEmpty())
+    {
+        QFile file(filePath);
+        if (file.exists())
+        {
+            QDir dir(QCoreApplication::applicationDirPath() + "/salvataggi/immagini");
+            if (!dir.exists())
+            {
+                dir.mkpath(".");
+            }
+            QString fileName = QFileInfo(filePath).fileName();
+            QString newFilePath = dir.filePath(fileName);
+            if (QFile::copy(filePath, newFilePath))
+            {
+                LEpercorso->setText(newFilePath);
+            }
+            else
+            {
+                QMessageBox::warning(this, "Errore", "Impossibile copiare il file.");
+            }
+        }
+    }
 }
 
 LibroEditWidget::LibroEditWidget(QWidget *parent) : AbsEditWidget(parent)
