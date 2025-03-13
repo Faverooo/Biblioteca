@@ -1,26 +1,17 @@
 #include "MainWindow.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QLineEdit>
 #include <QPushButton>
-#include <QCheckBox>
-#include <QComboBox>
 #include <QLabel>
-#include <QScrollArea>
-#include <QGroupBox>
-#include <QGridLayout>
 
-
-#include"SearchView.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
-    resize(1200, 800);
-
+    resize(1200, 800); // Larghezza: 1200, Altezza: 800
+    setMinimumSize(600, 400); // Imposta la dimensione minima
 
     stackedWidget = new QStackedWidget(this);
     QWidget *headerWidget = new QWidget(this);
     headerWidget->setStyleSheet("background-color:rgb(166, 250, 140); border: 2px solid rgb(3, 85, 34); border-radius: 10px;");
-    
 
     QHBoxLayout *headerLayout = new QHBoxLayout(headerWidget);
     QLabel *titleLabel = new QLabel("MyArchive", headerWidget);
@@ -45,9 +36,24 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     connect(exitButton, &QPushButton::clicked, this, &QMainWindow::close);
     
-    SearchView *searchView = new SearchView();
+    searchView = new SearchView();
     stackedWidget->addWidget(searchView);
-    
+
+    addWindow = new AddWindow();
+    stackedWidget->addWidget(addWindow);
+
+    connect(searchView, &SearchView::addButtonClicked, this, &MainWindow::showAddView);
+    connect(addWindow, &AddWindow::backButtonClicked, this, &MainWindow::showSearchView);
 }
 
 
+void MainWindow::showAddView() {
+    stackedWidget->setCurrentIndex(1); // Cambia l'indice in base alla posizione della vista di aggiunta nello stack
+    addWindow->resetComboBox();
+}
+
+void MainWindow::showSearchView() {
+    stackedWidget->setCurrentIndex(0); // Torna alla vista di ricerca
+    searchView->refresh(); // Aggiorna la vista di ricerca
+    
+}

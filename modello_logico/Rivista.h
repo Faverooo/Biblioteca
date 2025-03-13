@@ -6,12 +6,12 @@
 
 class Rivista: public MediaTextual{
 private:
-   int numero;
+    QString editore;
 public:
     Rivista();
-    Rivista(const QString& titolo, const QString& percorsoImg, int anno, int pagine, int numero, unsigned int id = 0);
-    int getNumero() const;
-    void setNumero(const int newAutore);
+    Rivista(const QString& titolo, const QString& percorsoImg, int anno, int pagine, QString& editore, unsigned int id = 0);
+    QString getEditore() const;
+    void setEditore(const QString& newEditore);
    
     void acceptVisitor(Visitor* visitor);
 };

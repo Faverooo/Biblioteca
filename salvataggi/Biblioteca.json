@@ -1,69 +1,116 @@
 [
     {
-        "tipo": "Libro",
-        "id": 1,
-        "titolo": "Il Signore degli Anelli",
-        "percorsoImg": "path/to/image.jpg",
         "anno": 1954,
-        "pagine": 1178,
-        "autore": "J.R.R. Tolkien"
-    },
-    {
-        "tipo": "Film",
-        "id": 2,
-        "titolo": "Inception",
-        "percorsoImg": "path/to/image.jpg",
-        "anno": 2010,
-        "size": 1500,
-        "durata": 148,
-        "regista": "Christopher Nolan",
-        "lingua": "English"
-    },
-    {
-        "tipo": "Libro",
-        "id": 3,
-        "titolo": "1984",
-        "percorsoImg": "path/to/image.jpg",
-        "anno": 1949,
-        "pagine": 328,
-        "autore": "George Orwell"
-    },
-    {
-        "tipo": "Film",
-        "id": 4,
-        "titolo": "The Matrix",
-        "percorsoImg": "path/to/image.jpg",
-        "anno": 1999,
-        "size": 1360,
-        "durata": 136,
-        "regista": "Lana Wachowski, Lilly Wachowski",
-        "lingua": "English"
-    },
-    {
-        "tipo": "Libro",
-        "id": 7,
-        "titolo": "Pride and Prejudice",
-        "percorsoImg": "path/to/image.jpg",
-        "anno": 1813,
-        "pagine": 279,
-        "autore": "Jane Austen"
-    },
-    {
-        "tipo": "Rivista",
-        "id": 11,
-        "titolo": "Time",
-        "percorsoImg": "path/to/image.jpg",
-        "anno": 2021,
-        "numero": 48
-    },
-    {
-        "tipo": "Album",
+        "autore": "J.R.R. Tolkien",
         "id": 1,
-        "titolo": "Greatest Hits",
-        "percorsoImg": "path/to/image.jpg",
-        "anno": 2020,
-        "size": 500,
-        "durata": 3600,
-        "archivio": [101, 102, 103, 104]
+        "pagine": 1178,
+        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
+        "tipo": "Libro",
+        "titolo": "Il Signore degli Anelli"
+    },
+    {
+        "anno": 2010,
+        "durata": 148,
+        "id": 2,
+        "lingua": "English",
+        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
+        "regista": "Christopher Nolan",
+        "size": 1500,
+        "tipo": "Film",
+        "titolo": "Inception"
+    },
+    {
+        "anno": 1949,
+        "autore": "George Orwell",
+        "id": 3,
+        "pagine": 328,
+        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
+        "tipo": "Libro",
+        "titolo": "1984"
+    },
+    {
+        "anno": 1999,
+        "durata": 136,
+        "id": 4,
+        "lingua": "English",
+        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
+        "regista": "Lana Wachowski, Lilly Wachowski",
+        "size": 1360,
+        "tipo": "Film",
+        "titolo": "The Matrix"
+    },
+    {
+        "anno": 2022,
+        "autore": "pippo",
+        "id": 1825452030,
+        "pagine": 222,
+        "percorsoImg": "/home/marco/Biblioteca_Mazzaretto/Biblioteca_Mazzaretto/IMG/la_divina_commedia2.png",
+        "tipo": "Libro",
+        "titolo": "Angy"
+    },
+    {
+        "anno": 2222,
+        "autore": "beppo",
+        "id": 1569915074,
+        "pagine": 2022,
+        "percorsoImg": "/home/marco/Biblioteca_Mazzaretto/Biblioteca_Mazzaretto/IMG/vanity_fair.png",
+        "tipo": "Libro",
+        "titolo": "Bepi"
+    },
+    {
+        "anno": 2002,
+        "autore": "Benz",
+        "id": 782800222,
+        "pagine": 22,
+        "percorsoImg": "/home/marco/Biblioteca_Mazzaretto/Biblioteca_Mazzaretto/IMG/harry_potter.png",
+        "tipo": "Libro",
+        "titolo": "Pippo"
+    },
+    {
+        "anno": 222,
+        "autore": "pip",
+        "id": 1188840298,
+        "pagine": 323,
+        "percorsoImg": "salvataggi/immagini/vinland_saga2.png",
+        "tipo": "Libro",
+        "titolo": "demo"
+    },
+    {
+        "anno": 442,
+        "autore": "cic",
+        "id": 767589493,
+        "pagine": 323,
+        "percorsoImg": "salvataggi/immagini/vinland_saga2_1.png",
+        "tipo": "Libro",
+        "titolo": "rfer"
+    },
+    {
+        "anno": 2323,
+        "editore": "gigio",
+        "id": 1467952225,
+        "pagine": 424,
+        "percorsoImg": "salvataggi/immagini/e_finita_la_pace.png",
+        "tipo": "Rivista",
+        "titolo": "prova"
+    },
+    {
+        "anno": 2022,
+        "editore": "ciccc",
+        "id": 1688830915,
+        "pagine": 204,
+        "percorsoImg": "salvataggi/immagini/e_finita_la_pace_1.png",
+        "tipo": "Rivista",
+        "titolo": "bepi"
+    },
+    {
+        "anno": 4044,
+        "durata": 200,
+        "id": 819747002,
+        "lingua": "Ita",
+        "percorsoImg": "salvataggi/immagini/ace_ventura.png",
+        "regista": "IOO",
+        "size": 4050,
+        "tipo": "Film",
+        "titolo": "Cicccce"
     }
 ]

@@ -4,33 +4,22 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QScrollArea>
-#include "Card.h"
+#include "../visitor/CardVisitor.h"
 
 class CardScrollArea : public QWidget {
     Q_OBJECT
 
 public:
-    explicit CardScrollArea(QWidget *parent = nullptr) : QWidget(parent) {
-        QVBoxLayout *cardLayout = new QVBoxLayout();
+    explicit CardScrollArea(QWidget *parent = nullptr);
+    void refreshCards();
 
-        // Aggiungi alcune card di esempio
-        for (int i = 0; i < 10; ++i) {
-            Card *card = new Card(QString("Title %1").arg(i + 1), QString("Description for card %1").arg(i + 1), this);
-            cardLayout->addWidget(card);
-        }
+private:
+    QVBoxLayout *cardLayout;
+    QWidget *contentWidget;
+    CardVisitor* cardVisitor;
 
-        QWidget *contentWidget = new QWidget(this);
-        contentWidget->setLayout(cardLayout);
-
-        QScrollArea *scrollArea = new QScrollArea(this);
-        scrollArea->setWidget(contentWidget);
-        scrollArea->setWidgetResizable(true);
-        scrollArea->setStyleSheet("background-color: white;");
-
-        QVBoxLayout *mainLayout = new QVBoxLayout(this);
-        mainLayout->addWidget(scrollArea);
-        setLayout(mainLayout);
-    }
+private slots:
+    void ActionOnRemoveButtonClicked(int id);
 };
 
 #endif // CARDSCROLLAREA_H
