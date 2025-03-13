@@ -148,6 +148,5 @@ void SearchView::setupUI()
 
 
 void SearchView::refresh() {
-    // Assuming cardScrollArea is a member variable of SearchView
     cardScrollArea->refreshCards();
 }

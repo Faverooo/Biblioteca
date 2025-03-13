@@ -71,14 +71,24 @@ void CardVisitor::visit(Rivista *rivista)
     // Layout per la foto
     QVBoxLayout *leftLayout = new QVBoxLayout();
     setDefaultAttributes(rivista);
+
+    imgLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    imgLabel->setAlignment(Qt::AlignCenter);
     leftLayout->addWidget(imgLabel);
 
     // Layout per gli attributi e i pulsanti
     QVBoxLayout *rightLayout = new QVBoxLayout();
     QLabel *pagine = new QLabel("Pagine: " + QString::number(rivista->getPagine()));
-    QLabel *editore = new QLabel("Editore: " +rivista->getEditore());
+    QLabel *editore = new QLabel("Editore: " + rivista->getEditore());
+
+    rightLayout->addWidget(titolo);
+    rightLayout->addWidget(anno);
+    rightLayout->addWidget(editore);
+    rightLayout->addWidget(pagine);
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
+    edit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    remove->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     buttonLayout->addWidget(edit);
     buttonLayout->addWidget(remove);
     rightLayout->addLayout(buttonLayout);
@@ -94,6 +104,8 @@ void CardVisitor::visit(Rivista *rivista)
     imgLabel->setStyleSheet("border: 1px solid #ccc; border-radius: 5px;");
     titolo->setStyleSheet("font-weight: bold; font-size: 16px; margin-bottom: 5px;");
     anno->setStyleSheet("color: #666; margin-bottom: 5px;");
+    pagine->setStyleSheet("color: #666; margin-bottom: 5px;");
+    editore->setStyleSheet("color: #666; margin-bottom: 5px;");
     edit->setStyleSheet("background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
     remove->setStyleSheet("background-color: #f44336; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
 }
@@ -123,8 +135,11 @@ void CardVisitor::visit(Film *film)
     rightLayout->addWidget(durata);
     rightLayout->addWidget(regista);
     rightLayout->addWidget(lingua);
-
+    rightLayout->addWidget(size);
+    
     QHBoxLayout *buttonLayout = new QHBoxLayout();
+    edit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    remove->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     buttonLayout->addWidget(edit);
     buttonLayout->addWidget(remove);
     rightLayout->addLayout(buttonLayout);
@@ -140,6 +155,10 @@ void CardVisitor::visit(Film *film)
     imgLabel->setStyleSheet("border: 1px solid #ccc; border-radius: 5px;");
     titolo->setStyleSheet("font-weight: bold; font-size: 16px; margin-bottom: 5px;");
     anno->setStyleSheet("color: #666; margin-bottom: 5px;");
+    durata->setStyleSheet("color: #666; margin-bottom: 5px;");
+    lingua->setStyleSheet("color: #666; margin-bottom: 5px;");
+    regista->setStyleSheet("color: #666; margin-bottom: 5px;");
+    size->setStyleSheet("color: #666; margin-bottom: 5px;");
     edit->setStyleSheet("background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
     remove->setStyleSheet("background-color: #f44336; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
 }
@@ -167,6 +186,7 @@ void CardVisitor::visit(Canzone *canzone)
     rightLayout->addWidget(anno);
     rightLayout->addWidget(durata);
     rightLayout->addWidget(artista);
+    rightLayout->addWidget(size);
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(edit);
@@ -184,6 +204,9 @@ void CardVisitor::visit(Canzone *canzone)
     imgLabel->setStyleSheet("border: 1px solid #ccc; border-radius: 5px;");
     titolo->setStyleSheet("font-weight: bold; font-size: 16px; margin-bottom: 5px;");
     anno->setStyleSheet("color: #666; margin-bottom: 5px;");
+    durata->setStyleSheet("color: #666; margin-bottom: 5px;");
+    artista->setStyleSheet("color: #666; margin-bottom: 5px;");
+    size->setStyleSheet("color: #666; margin-bottom: 5px;");
     edit->setStyleSheet("background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
     remove->setStyleSheet("background-color: #f44336; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
 }

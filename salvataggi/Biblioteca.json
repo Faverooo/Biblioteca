@@ -38,5 +38,79 @@
         "size": 1360,
         "tipo": "Film",
         "titolo": "The Matrix"
+    },
+    {
+        "anno": 2022,
+        "autore": "pippo",
+        "id": 1825452030,
+        "pagine": 222,
+        "percorsoImg": "/home/marco/Biblioteca_Mazzaretto/Biblioteca_Mazzaretto/IMG/la_divina_commedia2.png",
+        "tipo": "Libro",
+        "titolo": "Angy"
+    },
+    {
+        "anno": 2222,
+        "autore": "beppo",
+        "id": 1569915074,
+        "pagine": 2022,
+        "percorsoImg": "/home/marco/Biblioteca_Mazzaretto/Biblioteca_Mazzaretto/IMG/vanity_fair.png",
+        "tipo": "Libro",
+        "titolo": "Bepi"
+    },
+    {
+        "anno": 2002,
+        "autore": "Benz",
+        "id": 782800222,
+        "pagine": 22,
+        "percorsoImg": "/home/marco/Biblioteca_Mazzaretto/Biblioteca_Mazzaretto/IMG/harry_potter.png",
+        "tipo": "Libro",
+        "titolo": "Pippo"
+    },
+    {
+        "anno": 222,
+        "autore": "pip",
+        "id": 1188840298,
+        "pagine": 323,
+        "percorsoImg": "salvataggi/immagini/vinland_saga2.png",
+        "tipo": "Libro",
+        "titolo": "demo"
+    },
+    {
+        "anno": 442,
+        "autore": "cic",
+        "id": 767589493,
+        "pagine": 323,
+        "percorsoImg": "salvataggi/immagini/vinland_saga2_1.png",
+        "tipo": "Libro",
+        "titolo": "rfer"
+    },
+    {
+        "anno": 2323,
+        "editore": "gigio",
+        "id": 1467952225,
+        "pagine": 424,
+        "percorsoImg": "salvataggi/immagini/e_finita_la_pace.png",
+        "tipo": "Rivista",
+        "titolo": "prova"
+    },
+    {
+        "anno": 2022,
+        "editore": "ciccc",
+        "id": 1688830915,
+        "pagine": 204,
+        "percorsoImg": "salvataggi/immagini/e_finita_la_pace_1.png",
+        "tipo": "Rivista",
+        "titolo": "bepi"
+    },
+    {
+        "anno": 4044,
+        "durata": 200,
+        "id": 819747002,
+        "lingua": "Ita",
+        "percorsoImg": "salvataggi/immagini/ace_ventura.png",
+        "regista": "IOO",
+        "size": 4050,
+        "tipo": "Film",
+        "titolo": "Cicccce"
     }
 ]

@@ -67,7 +67,6 @@ SOURCES       = gestioneMedia/JsonVisitor.cpp \
 		modello_logico/MediaDigital.cpp \
 		modello_logico/MediaTextual.cpp \
 		modello_logico/Rivista.cpp \
-		testing_toRemove/test.cpp \
 		visitor/CardVisitor.cpp \
 		visitor/DeriviedEditVisitor.cpp \
 		visitor/EditVisitor.cpp moc_AddWindow.cpp \
@@ -91,7 +90,6 @@ OBJECTS       = JsonVisitor.o \
 		MediaDigital.o \
 		MediaTextual.o \
 		Rivista.o \
-		test.o \
 		CardVisitor.o \
 		DeriviedEditVisitor.o \
 		EditVisitor.o \
@@ -198,7 +196,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		modello_logico/MediaDigital.cpp \
 		modello_logico/MediaTextual.cpp \
 		modello_logico/Rivista.cpp \
-		testing_toRemove/test.cpp \
 		visitor/CardVisitor.cpp \
 		visitor/DeriviedEditVisitor.cpp \
 		visitor/EditVisitor.cpp
@@ -368,7 +365,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents gestioneMedia/JsonVisitor.h gestioneMedia/StorageManager.h interfaccia_grafica/AddWindow.h interfaccia_grafica/CardScrollArea.h interfaccia_grafica/MainWindow.h interfaccia_grafica/SearchView.h modello_logico/Album.h modello_logico/Canzone.h modello_logico/Film.h modello_logico/Libro.h modello_logico/Media.h modello_logico/MediaDigital.h modello_logico/MediaTextual.h modello_logico/Rivista.h visitor/CardVisitor.h visitor/DeriviedEditVisitor.h visitor/EditVisitor.h visitor/Visitor.h $(DISTDIR)/
-	$(COPY_FILE) --parents gestioneMedia/JsonVisitor.cpp gestioneMedia/StorageManager.cpp interfaccia_grafica/AddWindow.cpp interfaccia_grafica/CardScrollArea.cpp interfaccia_grafica/main.cpp interfaccia_grafica/MainWindow.cpp interfaccia_grafica/SearchView.cpp modello_logico/Album.cpp modello_logico/Canzone.cpp modello_logico/Film.cpp modello_logico/Libro.cpp modello_logico/Media.cpp modello_logico/MediaDigital.cpp modello_logico/MediaTextual.cpp modello_logico/Rivista.cpp testing_toRemove/test.cpp visitor/CardVisitor.cpp visitor/DeriviedEditVisitor.cpp visitor/EditVisitor.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents gestioneMedia/JsonVisitor.cpp gestioneMedia/StorageManager.cpp interfaccia_grafica/AddWindow.cpp interfaccia_grafica/CardScrollArea.cpp interfaccia_grafica/main.cpp interfaccia_grafica/MainWindow.cpp interfaccia_grafica/SearchView.cpp modello_logico/Album.cpp modello_logico/Canzone.cpp modello_logico/Film.cpp modello_logico/Libro.cpp modello_logico/Media.cpp modello_logico/MediaDigital.cpp modello_logico/MediaTextual.cpp modello_logico/Rivista.cpp visitor/CardVisitor.cpp visitor/DeriviedEditVisitor.cpp visitor/EditVisitor.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -619,9 +616,6 @@ Rivista.o: modello_logico/Rivista.cpp modello_logico/Rivista.h \
 		modello_logico/Media.h \
 		visitor/Visitor.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Rivista.o modello_logico/Rivista.cpp
-
-test.o: testing_toRemove/test.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o test.o testing_toRemove/test.cpp
 
 CardVisitor.o: visitor/CardVisitor.cpp visitor/CardVisitor.h \
 		visitor/Visitor.h \

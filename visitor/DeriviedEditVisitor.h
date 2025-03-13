@@ -31,7 +31,7 @@ protected:
     QVBoxLayout *layout;
     QLineEdit *LEtitolo;
     QLineEdit *LEanno;
-    QLabel *LEpercorso;
+    QLabel *LApercorso;
     QPushButton *selectImageButton;
     QString filePath;
     int id;
@@ -67,6 +67,42 @@ public:
 private:
     QLineEdit *LEeditore;
     QLineEdit *LEpagine;
+};
+
+
+class FilmEditWidget : public AbsEditWidget {
+    Q_OBJECT
+
+public:
+    explicit FilmEditWidget(QWidget *parent = nullptr);
+
+    void setSize(const QString &size);
+    void setDurata(const QString &durata);
+    void setRegista(const QString &regista);
+    void setLingua(const QString &lingua);
+    Media *getMedia();
+private:
+    QLineEdit *LEsize;
+    QLineEdit *LEdurata;
+    QLineEdit *LEregista;
+    QLineEdit *LElingua;
+};
+
+
+class CanzoneEditWidget : public AbsEditWidget {
+    Q_OBJECT
+
+public:
+    explicit CanzoneEditWidget(QWidget *parent = nullptr);
+
+    void setSize(const QString &size);
+    void setDurata(const QString &durata);
+    void setArtista(const QString &artista);
+    Media *getMedia();
+private:
+    QLineEdit *LEsize;
+    QLineEdit *LEdurata;
+    QLineEdit *LEartista;
 };
 
 #endif // DERIVIEDEDITVISITOR_H
