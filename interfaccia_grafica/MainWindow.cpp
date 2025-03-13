@@ -42,8 +42,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     addWindow = new AddWindow();
     stackedWidget->addWidget(addWindow);
 
+    editWindow = new EditWindow();
+    stackedWidget->addWidget(editWindow);
+
     connect(searchView, &SearchView::addButtonClicked, this, &MainWindow::showAddView);
     connect(addWindow, &AddWindow::backButtonClicked, this, &MainWindow::showSearchView);
+    connect(editWindow, &EditWindow::backButtonClicked, this, &MainWindow::showSearchView);
+    connect(searchView, &SearchView::editButtonClicked, this, &MainWindow::showEditView);
+
 }
 
 
@@ -56,4 +62,8 @@ void MainWindow::showSearchView() {
     stackedWidget->setCurrentIndex(0); // Torna alla vista di ricerca
     searchView->refresh(); // Aggiorna la vista di ricerca
     
+}
+void MainWindow::showEditView(int id) {
+    stackedWidget->setCurrentIndex(2); // Schermata di Edit
+    editWindow->showEdit(id);
 }

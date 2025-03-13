@@ -37,6 +37,10 @@ private:
 
 signals:
     void addButtonClicked();
+    void editButtonClicked(int id);
+
+private slots:
+    void ActionOnEditButtonClicked(int id);
 };
 
 #endif // SEARCHVIEW_H

@@ -19,7 +19,7 @@ class AbsEditWidget : public QWidget {
 
 public:
     explicit AbsEditWidget(QWidget *parent = nullptr);
-
+    virtual ~AbsEditWidget() = default;
     void setTitolo(const QString &titolo);
     void setAnno(const QString &anno);
     void setPercorso(const QString &percorso);

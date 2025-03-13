@@ -3,6 +3,7 @@
 
 #include "SearchView.h"
 #include "AddWindow.h"
+#include "EditWindow.h"
 
 #include <QMainWindow>
 #include <QStackedWidget>
@@ -16,11 +17,12 @@ public:
 private slots:
     void showAddView();
     void showSearchView();
-
+    void showEditView(int id);
 private:
     QStackedWidget *stackedWidget;
     SearchView *searchView;
     AddWindow *addWindow;
+    EditWindow *editWindow;
 };
 
 #endif // MAINWINDOW_H

@@ -1,9 +1,12 @@
 #include "EditVisitor.h"
 #include <QDebug>
 
+
+EditVisitor::EditVisitor() : editWidget(nullptr) {}
+
 void EditVisitor::visit(Libro *libro) {
-    if (editWidget)
-        delete editWidget;
+    if (editWidget!=nullptr){
+        delete editWidget;}
     editWidget = new LibroEditWidget();
     LibroEditWidget *libroEditWidget = qobject_cast<LibroEditWidget*>(editWidget);
     libroEditWidget->setTitolo(libro->getTitolo());
@@ -16,7 +19,7 @@ void EditVisitor::visit(Libro *libro) {
 }
 
 void EditVisitor::visit(Rivista *rivista) {
-    if (editWidget)
+    if (editWidget!=nullptr)
         delete editWidget;
     editWidget = new RivistaEditWidget();
     RivistaEditWidget *rivistaEditWidget = qobject_cast<RivistaEditWidget*>(editWidget);

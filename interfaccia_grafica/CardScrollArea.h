@@ -18,8 +18,12 @@ private:
     QWidget *contentWidget;
     CardVisitor* cardVisitor;
 
+signals:
+    void editButtonClicked(int id);
+    
 private slots:
     void ActionOnRemoveButtonClicked(int id);
+    void ActionOnEditButtonClicked(int id); //propagazione alla mainwindow dalla card
 };
 
 #endif // CARDSCROLLAREA_H

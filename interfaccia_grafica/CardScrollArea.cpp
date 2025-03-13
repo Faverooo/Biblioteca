@@ -23,6 +23,7 @@ CardScrollArea::CardScrollArea(QWidget *parent) : QWidget(parent) {
 
     // Collega il segnale al slot
     connect(cardVisitor, &CardVisitor::removeButtonClicked, this, &CardScrollArea::ActionOnRemoveButtonClicked);
+    connect(cardVisitor, &CardVisitor::editButtonClicked, this, &CardScrollArea::ActionOnEditButtonClicked);
 
 }
 
@@ -51,4 +52,8 @@ void CardScrollArea::ActionOnRemoveButtonClicked(int id) {
     StorageManager::instance().removeToStorage(id);
     // Fai il refresh delle card
     refreshCards();
+}
+
+void CardScrollArea::ActionOnEditButtonClicked(int id) {
+    emit editButtonClicked(id);
 }

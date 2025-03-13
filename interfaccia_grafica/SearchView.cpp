@@ -10,6 +10,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent)
     setupUI();
 
     connect(addButton, &QPushButton::clicked, this, &SearchView::addButtonClicked);
+    connect(cardScrollArea, &CardScrollArea::editButtonClicked, this, &SearchView::ActionOnEditButtonClicked);
 
 }
 
@@ -149,4 +150,8 @@ void SearchView::setupUI()
 
 void SearchView::refresh() {
     cardScrollArea->refreshCards();
+}
+
+void SearchView::ActionOnEditButtonClicked(int id) {
+    emit editButtonClicked(id);
 }
