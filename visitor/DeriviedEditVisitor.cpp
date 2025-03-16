@@ -44,6 +44,11 @@ void AbsEditWidget::setPercorso(const QString &percorso)
     filePath=percorso;
 }
 
+QString AbsEditWidget::getPercorso() const
+{
+    return filePath;
+}
+
 void AbsEditWidget::setID(const int newID)
 {
     id = newID;

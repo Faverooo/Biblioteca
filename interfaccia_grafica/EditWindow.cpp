@@ -61,15 +61,18 @@ void EditWindow::showEdit(int id){
 void EditWindow::save(){
     if (currentEditWidget)
     {
-        currentEditWidget->saveImg();
         Media *media = currentEditWidget->getMedia();
         if (media)
         {
             QList<Media*> *storage = StorageManager::instance().getStorage();
             for (int i = 0; i < storage->size(); ++i) {
                 if (storage->at(i)->getID() == media->getID()) {
-                    QFile::remove(QCoreApplication::applicationDirPath() + "/" + storage->at(i)->getPercorsoImg());
-                    delete storage->at(i);
+                    if(currentEditWidget->getPercorso() != (storage->at(i)->getPercorsoImg()))
+                    {
+                        currentEditWidget->saveImg();
+                        QFile::remove(QCoreApplication::applicationDirPath() + "/" + storage->at(i)->getPercorsoImg());
+                        delete storage->at(i);
+                    }
                     storage->replace(i, media);
                     StorageManager::instance().printToFile();
                     break;

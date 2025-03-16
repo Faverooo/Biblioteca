@@ -23,6 +23,7 @@ public:
     void setTitolo(const QString &titolo);
     void setAnno(const QString &anno);
     void setPercorso(const QString &percorso);
+    QString getPercorso() const;
     void setID(const int newID);
     void saveImg();
     virtual Media *getMedia() = 0;
