@@ -37,7 +37,7 @@ void CardScrollArea::refreshCards() {
 
     // Aggiungi nuove card
     
-    QList<Media*> mediaList = StorageManager::instance().getStorage();
+    QList<Media*> mediaList = *StorageManager::instance().getStorage();
     
     for (const auto& media : mediaList) {
         media->acceptVisitor(cardVisitor);

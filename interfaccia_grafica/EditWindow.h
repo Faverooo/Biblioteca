@@ -13,11 +13,10 @@ class EditWindow : public QWidget {
 public:
     explicit EditWindow(QWidget *parent = nullptr);
     void showEdit(int id);    
+    void save();
 signals:
     void backButtonClicked();
 
-private slots:
-    //void onSaveButtonClicked();
 private:
     QVBoxLayout *layout;
     QLabel *banner;

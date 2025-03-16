@@ -2,6 +2,8 @@
 #include "../visitor/EditVisitor.h"
 #include "../gestioneMedia/StorageManager.h"
 #include <QMessageBox>
+#include <QFile>
+#include <QCoreApplication>
 
 EditWindow::EditWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullptr)
 {
@@ -20,7 +22,7 @@ EditWindow::EditWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nul
 
     saveButton = new QPushButton("Salva", this);
     layout->addWidget(saveButton);
-    //connect(saveButton, &QPushButton::clicked, this, &EditWindow::onSaveButtonClicked);
+    connect(saveButton, &QPushButton::clicked, this, &EditWindow::save);
     setLayout(layout);
 
     currentEditWidget = nullptr;
@@ -30,9 +32,9 @@ EditWindow::EditWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nul
 
 void EditWindow::showEdit(int id){
 
-    QList<Media*> storage = StorageManager::instance().getStorage();
+    QList<Media*>* storage = StorageManager::instance().getStorage();
     Media * editMedia = nullptr;
-    for (Media* media : storage) {
+    for (Media* media : *storage) {
         if (media->getID() == id) {
             editMedia = media;
             break;
@@ -53,4 +55,35 @@ void EditWindow::showEdit(int id){
     }
     currentEditWidget = editVisitor.getCard();
     layout->addWidget(currentEditWidget);
+}
+
+
+void EditWindow::save(){
+    if (currentEditWidget)
+    {
+        currentEditWidget->saveImg();
+        Media *media = currentEditWidget->getMedia();
+        if (media)
+        {
+            QList<Media*> *storage = StorageManager::instance().getStorage();
+            for (int i = 0; i < storage->size(); ++i) {
+                if (storage->at(i)->getID() == media->getID()) {
+                    QFile::remove(QCoreApplication::applicationDirPath() + "/" + storage->at(i)->getPercorsoImg());
+                    delete storage->at(i);
+                    storage->replace(i, media);
+                    StorageManager::instance().printToFile();
+                    break;
+                }
+            }
+            emit backButtonClicked(); // Torna alla schermata di ricerca
+        }
+        else
+        {
+            QMessageBox::warning(this, "Errore", "Errore durante la creazione dell'oggetto media.");
+        }
+    }
+    else
+    {
+        QMessageBox::warning(this, "Errore", "Nessun widget di modifica selezionato.");
+    }
 }

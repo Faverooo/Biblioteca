@@ -18,7 +18,7 @@ public:
     void addToStorage(Media* media);
     void removeToStorage(int id);
     int generateID() const;
-    QList<Media*> getStorage() const;
+    QList<Media*>* getStorage();
     void setPath(const QString& newPath);
 };
 
