@@ -3,7 +3,7 @@
         "anno": 2010,
         "durata": 148,
         "id": 2,
-        "lingua": "English",
+        "lingua": "English, Italiano",
         "percorsoImg": "salvataggi/immagini/demoimg.jpg",
         "regista": "Christopher Nolan",
         "size": 1500,
@@ -35,7 +35,7 @@
         "autore": "Marco Faverooooo",
         "id": 202247581,
         "pagine": 12,
-        "percorsoImg": "/home/marco/Biblioteca_Mazzaretto/IMG/harry_potter.png",
+        "percorsoImg": "/home/marco/Biblioteca_Mazzaretto/IMG/cook_inc.png",
         "tipo": "Libro",
         "titolo": "Angy"
     },
@@ -47,5 +47,23 @@
         "percorsoImg": "salvataggi/immagini/onepiece_1.png",
         "tipo": "Libro",
         "titolo": "Ciao"
+    },
+    {
+        "anno": 29,
+        "autore": "io",
+        "id": 1424588387,
+        "pagine": 10,
+        "percorsoImg": "/home/marco/Biblioteca_Mazzaretto/IMG/via_pal2.png",
+        "tipo": "Libro",
+        "titolo": "demo"
+    },
+    {
+        "anno": 2000,
+        "editore": "IO",
+        "id": 860983796,
+        "pagine": 200,
+        "percorsoImg": "salvataggi/immagini/shrek_1.png",
+        "tipo": "Rivista",
+        "titolo": "Pippo"
     }
 ]

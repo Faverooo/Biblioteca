@@ -70,6 +70,7 @@ void EditWindow::save(){
                     if(currentEditWidget->getPercorso() != (storage->at(i)->getPercorsoImg()))
                     {
                         currentEditWidget->saveImg();
+                        media = currentEditWidget->getMedia(); //da risalvare con l'immagine aggiornata
                         QFile::remove(QCoreApplication::applicationDirPath() + "/" + storage->at(i)->getPercorsoImg());
                         delete storage->at(i);
                     }
