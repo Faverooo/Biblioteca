@@ -8,6 +8,18 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QFile>
+#include <QCoreApplication>
+#include<QRandomGenerator>
+
+QList<Media*>* StorageManager::getStorage(){
+    return &storage;
+}
+
+StorageManager& StorageManager::instance() {
+    static StorageManager instance;
+    return instance;
+}
+
 
 void StorageManager::fromJOToStorage(const QJsonObject &json)
 {
@@ -42,10 +54,10 @@ void StorageManager::fromJOToStorage(const QJsonObject &json)
                     }
                     else
                     {
-                        if (json.contains("numero") && json["numero"].isDouble())
+                        if (json.contains("editore") && json["editore"].isString())
                         {
-                            int numero = json["numero"].toInt();
-                            ptr = new Rivista(titolo, percorsoImg, anno, pagine, numero, id);
+                            QString editore = json["editore"].toString();
+                            ptr = new Rivista(titolo, percorsoImg, anno, pagine, editore, id);
                         }
                     }
                 }
@@ -98,7 +110,7 @@ void StorageManager::fromJOToStorage(const QJsonObject &json)
     }
 }
 
-void StorageManager::fromFiletoStorage(const QString &path)
+void StorageManager::fromFiletoStorage()
 {
     storage.clear();
 
@@ -134,7 +146,7 @@ void StorageManager::fromFiletoStorage(const QString &path)
     }
 }
 
-void StorageManager::printToFile(const QString &path)
+void StorageManager::printToFile()
 {
     QFile file(path);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -162,6 +174,7 @@ void StorageManager::printToFile(const QString &path)
 void StorageManager::addToStorage(Media *media)
 {
     storage.push_back(media);
+    printToFile();
 }
 
 void StorageManager::removeToStorage(int id)
@@ -170,9 +183,38 @@ void StorageManager::removeToStorage(int id)
     {
         if ((*it)->getID() == id)
         {
+            QString fullPath = QCoreApplication::applicationDirPath() + "/" + (*it)->getPercorsoImg();
+            QFile::remove(fullPath);
             delete *it;
             storage.erase(it);
+            printToFile();
             return;
         }
     }
+    
+}
+
+
+int StorageManager::generateID() const
+{
+    int id;
+    bool unique;
+    do
+    {
+        id = QRandomGenerator::global()->bounded(1, std::numeric_limits<int>::max());
+        unique = true;
+        for (const Media *media : storage)
+        {
+            if (media->getID() == id)
+            {
+                unique = false;
+                break;
+            }
+        }
+    } while (!unique);
+    return id;
+}
+
+void StorageManager::setPath(const QString& newPath) {
+    path = newPath;
 }

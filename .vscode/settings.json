@@ -12,6 +12,12 @@
         "string": "cpp",
         "unordered_map": "cpp",
         "vector": "cpp",
-        "system_error": "cpp"
+        "system_error": "cpp",
+        "qwidget": "cpp",
+        "qmainwindow": "cpp",
+        "qcoreapplication": "cpp",
+        "qvboxlayout": "cpp",
+        "new": "cpp",
+        "qpushbutton": "cpp"
     }
 }

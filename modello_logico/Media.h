@@ -15,12 +15,15 @@ public:
     Media();
     Media(const QString& titolo, const QString& percorsoImg, int anno, int id = 0);
     virtual ~Media();
+
+    //id univoco
     int getID() const;
     void setID(const int newID);
 
     QString getTitolo() const;
     void setTitolo(const QString& newTitolo);
 
+    //percorso che deve essere relativo
     QString getPercorsoImg() const;
     void setPercorsoImg(const QString& newPercorsoImg);
 

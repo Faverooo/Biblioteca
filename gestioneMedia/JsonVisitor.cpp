@@ -18,7 +18,7 @@ void JsonVisitor::visit(Rivista *rivista)
     json = QJsonObject();
     json["tipo"] = "Rivista";
     toJsonMT(rivista);
-    json["numero"] = rivista->getNumero();
+    json["editore"] = rivista->getEditore();
 }
 
 void JsonVisitor::visit(Film *film)
