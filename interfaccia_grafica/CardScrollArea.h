@@ -11,9 +11,10 @@ class CardScrollArea : public QWidget {
 
 public:
     explicit CardScrollArea(QWidget *parent = nullptr);
-    void refreshCards();
+    void refreshCards(const QString& filterType);
 
 private:
+    QString lastFilter;
     QVBoxLayout *cardLayout;
     QWidget *contentWidget;
     CardVisitor* cardVisitor;

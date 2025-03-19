@@ -4,31 +4,11 @@
         "durata": 148,
         "id": 2,
         "lingua": "English, Italiano",
-        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
+        "percorsoImg": "salvataggi/immagini/la_divina_commedia2.png",
         "regista": "Christopher Nolan",
         "size": 1500,
         "tipo": "Film",
         "titolo": "Inception"
-    },
-    {
-        "anno": 1949,
-        "autore": "George Orwell",
-        "id": 3,
-        "pagine": 328,
-        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
-        "tipo": "Libro",
-        "titolo": "1984"
-    },
-    {
-        "anno": 1999,
-        "durata": 136,
-        "id": 4,
-        "lingua": "English",
-        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
-        "regista": "Lana Wachowski, Lilly Wachowski",
-        "size": 1360,
-        "tipo": "Film",
-        "titolo": "The Matrix"
     },
     {
         "anno": 2004,

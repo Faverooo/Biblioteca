@@ -41,6 +41,7 @@ signals:
 
 private slots:
     void ActionOnEditButtonClicked(int id);
+    void onSelectorChanged();
 };
 
 #endif // SEARCHVIEW_H
