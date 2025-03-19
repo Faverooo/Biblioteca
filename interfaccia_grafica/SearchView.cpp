@@ -12,6 +12,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent)
     connect(addButton, &QPushButton::clicked, this, &SearchView::addButtonClicked);
     connect(cardScrollArea, &CardScrollArea::editButtonClicked, this, &SearchView::ActionOnEditButtonClicked);
     connect(selector, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &SearchView::onSelectorChanged);
+    connect(resetButton, &QPushButton::clicked, this, &SearchView::refresh);
 }
 
 void SearchView::setupUI()
