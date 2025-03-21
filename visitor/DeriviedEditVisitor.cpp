@@ -164,11 +164,11 @@ Media *RivistaEditWidget::getMedia()
 
 FilmEditWidget::FilmEditWidget(QWidget *parent) : AbsEditWidget(parent)
 {
-    layout->addWidget(new QLabel("Dimensione:", this));
+    layout->addWidget(new QLabel("Dimensione (MB):", this));
     LEsize = new QLineEdit(this);
     layout->addWidget(LEsize);
 
-    layout->addWidget(new QLabel("Durata:", this));
+    layout->addWidget(new QLabel("Durata (min):", this));
     LEdurata = new QLineEdit(this);
     layout->addWidget(LEdurata);
 
@@ -219,11 +219,11 @@ Media *FilmEditWidget::getMedia()
 
 CanzoneEditWidget::CanzoneEditWidget(QWidget *parent) : AbsEditWidget(parent)
 {
-    layout->addWidget(new QLabel("Dimensione:", this));
+    layout->addWidget(new QLabel("Dimensione (MB):", this));
     LEsize = new QLineEdit(this);
     layout->addWidget(LEsize);
 
-    layout->addWidget(new QLabel("Durata:", this));
+    layout->addWidget(new QLabel("Durata (sec):", this));
     LEdurata = new QLineEdit(this);
     layout->addWidget(LEdurata);
 
