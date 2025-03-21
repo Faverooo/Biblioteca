@@ -18,6 +18,7 @@ class SearchView : public QWidget {
 public:
     explicit SearchView(QWidget *parent = nullptr);
     void refresh();
+    void onSearch();
 
 private:
     void setupUI();

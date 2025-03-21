@@ -13,7 +13,7 @@ CardScrollArea::CardScrollArea(QWidget *parent) : QWidget(parent)
 
     // Aggiungi alcune card di esempio
     lastFilter = "TUTTO";
-    refreshCards(lastFilter);
+    refreshCards();
 
     contentWidget = new QWidget(this);
     contentWidget->setLayout(cardLayout);
@@ -32,7 +32,7 @@ CardScrollArea::CardScrollArea(QWidget *parent) : QWidget(parent)
     connect(cardVisitor, &CardVisitor::editButtonClicked, this, &CardScrollArea::ActionOnEditButtonClicked);
 }
 
-void CardScrollArea::refreshCards(const QString &filterType)
+void CardScrollArea::refreshCards()
 {
     // Rimuovi tutte le card esistenti
     QLayoutItem *item;
@@ -42,15 +42,28 @@ void CardScrollArea::refreshCards(const QString &filterType)
         delete item;
     }
     // Aggiungi nuove card
-    lastFilter = filterType;
     QList<Media *> mediaList = *StorageManager::instance().getStorage();
     for (const auto &media : mediaList)
     {
-        if (filterType == "TUTTO" ||
-            (filterType == "Libri" && dynamic_cast<Libro*>(media)) ||
-            (filterType == "Riviste" && dynamic_cast<Rivista*>(media)) ||
-            (filterType == "Film" && dynamic_cast<Film*>(media)) ||
-            (filterType == "Canzoni" && dynamic_cast<Canzone*>(media))
+        if ((lastFilter == "TUTTO" ||
+            (lastFilter == "Libri" && dynamic_cast<Libro*>(media)) ||
+            (lastFilter == "Riviste" && dynamic_cast<Rivista*>(media)) ||
+            (lastFilter == "Film" && dynamic_cast<Film*>(media)) ||
+            (lastFilter == "Canzoni" && dynamic_cast<Canzone*>(media))
+            ) &&
+            (
+                searchText.isEmpty() ||
+                (
+                    (searchByTitle && media->getTitolo().contains(searchText, Qt::CaseInsensitive))
+                    || (searchByYear && QString::number(media->getAnno()).contains(searchText, Qt::CaseInsensitive))
+                    || (searchByAuthor && ((dynamic_cast<Libro*>(media) && (dynamic_cast<Libro*>(media)->getAutore().contains(searchText, Qt::CaseInsensitive)))
+                                            || (dynamic_cast<Rivista*>(media) && (dynamic_cast<Rivista*>(media)->getEditore().contains(searchText, Qt::CaseInsensitive)))
+                                            || (dynamic_cast<Film*>(media) && (dynamic_cast<Film*>(media)->getRegista().contains(searchText, Qt::CaseInsensitive)))
+                                            || (dynamic_cast<Canzone*>(media) && (dynamic_cast<Canzone*>(media)->getArtista().contains(searchText, Qt::CaseInsensitive)))
+                                            )
+                        )
+                )
+            )
         )
         {
             // Mostra il media
@@ -59,6 +72,22 @@ void CardScrollArea::refreshCards(const QString &filterType)
             cardLayout->addWidget(card);
         }
     }
+
+}
+
+void CardScrollArea::refreshView(const QString &filterType)
+{
+    lastFilter = filterType;
+    refreshCards();
+}
+
+void CardScrollArea::refreshSearch(const QString &key, bool newSearchByTitle, bool newSearchByYear, bool newSearchByAuthor)
+{
+    searchText = key;
+    searchByTitle = newSearchByTitle;
+    searchByYear = newSearchByYear;
+    searchByAuthor = newSearchByAuthor;
+    refreshCards();
 }
 
 void CardScrollArea::ActionOnRemoveButtonClicked(int id)
@@ -67,7 +96,7 @@ void CardScrollArea::ActionOnRemoveButtonClicked(int id)
     // Elimina l'elemento dallo StorageManager
     StorageManager::instance().removeToStorage(id);
     // Fai il refresh delle card
-    refreshCards(lastFilter);
+    refreshCards();
 }
 
 void CardScrollArea::ActionOnEditButtonClicked(int id)

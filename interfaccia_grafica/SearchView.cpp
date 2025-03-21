@@ -13,6 +13,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent)
     connect(cardScrollArea, &CardScrollArea::editButtonClicked, this, &SearchView::ActionOnEditButtonClicked);
     connect(selector, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &SearchView::onSelectorChanged);
     connect(resetButton, &QPushButton::clicked, this, &SearchView::refresh);
+    connect(searchButton, &QPushButton::clicked, this, &SearchView::onSearch);
 }
 
 void SearchView::setupUI()
@@ -151,11 +152,24 @@ void SearchView::setupUI()
 
 void SearchView::refresh() {
     selector->setCurrentIndex(0);
-    cardScrollArea->refreshCards(selector->currentText());
+    cardScrollArea->refreshView(selector->currentText());
     titleCheckBox->setChecked(false);
     yearCheckBox->setChecked(false);
     authorCheckBox->setChecked(false);
+    searchBar->clear();
+    cardScrollArea->refreshSearch(searchBar->text(), titleCheckBox->isChecked(), yearCheckBox->isChecked(), authorCheckBox->isChecked());
 }
+
+void SearchView::onSearch(){
+    QString searchText = searchBar->text();
+    bool searchByTitle = titleCheckBox->isChecked();
+    bool searchByYear = yearCheckBox->isChecked();
+    bool searchByAuthor = authorCheckBox->isChecked();
+    
+    cardScrollArea->refreshSearch(searchText, searchByTitle, searchByYear, searchByAuthor);
+}
+
+
 
 void SearchView::ActionOnEditButtonClicked(int id) {
     emit editButtonClicked(id);
@@ -163,5 +177,5 @@ void SearchView::ActionOnEditButtonClicked(int id) {
 
 void SearchView::onSelectorChanged() {
     QString filterType = selector->currentText();
-    cardScrollArea->refreshCards(filterType);
+    cardScrollArea->refreshView(filterType);
 }

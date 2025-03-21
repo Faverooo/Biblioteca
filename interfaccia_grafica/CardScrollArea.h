@@ -6,25 +6,32 @@
 #include <QScrollArea>
 #include "../visitor/CardVisitor.h"
 
-class CardScrollArea : public QWidget {
+class CardScrollArea : public QWidget
+{
     Q_OBJECT
 
 public:
     explicit CardScrollArea(QWidget *parent = nullptr);
-    void refreshCards(const QString& filterType);
+    void refreshCards();
+    void refreshView(const QString &filterType);
+    void refreshSearch(const QString &key, bool newSearchByTitle, bool newSearchByYear, bool newSearchByAuthor);
 
 private:
+    QString searchText;
+    bool searchByTitle;
+    bool searchByYear;
+    bool searchByAuthor;
     QString lastFilter;
     QVBoxLayout *cardLayout;
     QWidget *contentWidget;
-    CardVisitor* cardVisitor;
+    CardVisitor *cardVisitor;
 
 signals:
     void editButtonClicked(int id);
-    
+
 private slots:
     void ActionOnRemoveButtonClicked(int id);
-    void ActionOnEditButtonClicked(int id); //propagazione alla mainwindow dalla card
+    void ActionOnEditButtonClicked(int id); // propagazione alla mainwindow dalla card
 };
 
 #endif // CARDSCROLLAREA_H

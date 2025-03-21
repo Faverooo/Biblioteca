@@ -11,12 +11,22 @@
         "titolo": "Inception"
     },
     {
-        "anno": 2004,
+        "anno": 20000,
         "autore": "Marco Faverooooo",
         "id": 202247581,
         "pagine": 12,
         "percorsoImg": "/home/marco/Biblioteca_Mazzaretto/IMG/cook_inc.png",
         "tipo": "Libro",
         "titolo": "Angy"
+    },
+    {
+        "anno": 2004,
+        "artista": "IO",
+        "durata": 100,
+        "id": 654571516,
+        "percorsoImg": "salvataggi/immagini/vinland_saga.png",
+        "size": 200,
+        "tipo": "Canzone",
+        "titolo": "Mitu"
     }
 ]
