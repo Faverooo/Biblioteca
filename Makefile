@@ -575,7 +575,14 @@ CardScrollArea.o: interfaccia_grafica/CardScrollArea.cpp interfaccia_grafica/Car
 		visitor/CardVisitor.h \
 		visitor/Visitor.h \
 		gestioneMedia/StorageManager.h \
-		modello_logico/Media.h
+		modello_logico/Media.h \
+		modello_logico/Libro.h \
+		modello_logico/MediaTextual.h \
+		modello_logico/Rivista.h \
+		modello_logico/Film.h \
+		modello_logico/MediaDigital.h \
+		modello_logico/Canzone.h \
+		modello_logico/Album.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CardScrollArea.o interfaccia_grafica/CardScrollArea.cpp
 
 EditWindow.o: interfaccia_grafica/EditWindow.cpp interfaccia_grafica/EditWindow.h \

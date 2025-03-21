@@ -4,34 +4,14 @@
         "durata": 148,
         "id": 2,
         "lingua": "English, Italiano",
-        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
+        "percorsoImg": "salvataggi/immagini/la_divina_commedia2.png",
         "regista": "Christopher Nolan",
         "size": 1500,
         "tipo": "Film",
         "titolo": "Inception"
     },
     {
-        "anno": 1949,
-        "autore": "George Orwell",
-        "id": 3,
-        "pagine": 328,
-        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
-        "tipo": "Libro",
-        "titolo": "1984"
-    },
-    {
-        "anno": 1999,
-        "durata": 136,
-        "id": 4,
-        "lingua": "English",
-        "percorsoImg": "salvataggi/immagini/demoimg.jpg",
-        "regista": "Lana Wachowski, Lilly Wachowski",
-        "size": 1360,
-        "tipo": "Film",
-        "titolo": "The Matrix"
-    },
-    {
-        "anno": 2004,
+        "anno": 20000,
         "autore": "Marco Faverooooo",
         "id": 202247581,
         "pagine": 12,
@@ -40,30 +20,13 @@
         "titolo": "Angy"
     },
     {
-        "anno": 2000,
-        "autore": "BOH",
-        "id": 1052592267,
-        "pagine": 200,
-        "percorsoImg": "salvataggi/immagini/onepiece_1.png",
-        "tipo": "Libro",
-        "titolo": "Ciao"
-    },
-    {
-        "anno": 29,
-        "autore": "io",
-        "id": 1424588387,
-        "pagine": 10,
-        "percorsoImg": "/home/marco/Biblioteca_Mazzaretto/IMG/via_pal2.png",
-        "tipo": "Libro",
-        "titolo": "demo"
-    },
-    {
-        "anno": 2000,
-        "editore": "IO",
-        "id": 860983796,
-        "pagine": 200,
-        "percorsoImg": "salvataggi/immagini/shrek_1.png",
-        "tipo": "Rivista",
-        "titolo": "Pippo"
+        "anno": 2004,
+        "artista": "IO",
+        "durata": 100,
+        "id": 654571516,
+        "percorsoImg": "salvataggi/immagini/vinland_saga.png",
+        "size": 200,
+        "tipo": "Canzone",
+        "titolo": "Mitu"
     }
 ]
