@@ -6,6 +6,8 @@
 #include "../modello_logico/Canzone.h"
 #include "../modello_logico/Album.h"
 
+#include<QMessageBox>
+
 CardScrollArea::CardScrollArea(QWidget *parent) : QWidget(parent)
 {
     cardVisitor = new CardVisitor;
@@ -92,11 +94,17 @@ void CardScrollArea::refreshSearch(const QString &key, bool newSearchByTitle, bo
 
 void CardScrollArea::ActionOnRemoveButtonClicked(int id)
 {
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Conferma eliminazione",
+                                  "Sei sicuro di voler eliminare questo media?",
+                                  QMessageBox::Yes | QMessageBox::No);
 
-    // Elimina l'elemento dallo StorageManager
-    StorageManager::instance().removeToStorage(id);
-    // Fai il refresh delle card
-    refreshCards();
+    if (reply == QMessageBox::Yes) {
+        // Elimina l'elemento dallo StorageManager
+        StorageManager::instance().removeToStorage(id);
+        // Fai il refresh delle card
+        refreshCards();
+    }
 }
 
 void CardScrollArea::ActionOnEditButtonClicked(int id)

@@ -1,32 +1,59 @@
 [
     {
-        "anno": 2010,
-        "durata": 148,
-        "id": 2,
-        "lingua": "English, Italiano",
-        "percorsoImg": "salvataggi/immagini/la_divina_commedia2.png",
-        "regista": "Christopher Nolan",
-        "size": 1500,
-        "tipo": "Film",
-        "titolo": "Inception"
+        "anno": 1990,
+        "autore": "marco",
+        "id": 1412719196,
+        "pagine": 200,
+        "percorsoImg": "salvataggi/immagini/isola_tesoro.png",
+        "tipo": "Libro",
+        "titolo": "Isola tesoro"
     },
     {
-        "anno": 20000,
-        "autore": "Marco Faverooooo",
-        "id": 202247581,
-        "pagine": 12,
-        "percorsoImg": "/home/marco/Biblioteca_Mazzaretto/IMG/cook_inc.png",
-        "tipo": "Libro",
-        "titolo": "Angy"
+        "anno": 2025,
+        "editore": "Rizzardi",
+        "id": 1963062480,
+        "pagine": 143,
+        "percorsoImg": "salvataggi/immagini/focus.png",
+        "tipo": "Rivista",
+        "titolo": "Focus 1"
     },
     {
         "anno": 2004,
-        "artista": "IO",
-        "durata": 100,
-        "id": 654571516,
-        "percorsoImg": "salvataggi/immagini/vinland_saga.png",
-        "size": 200,
+        "durata": 200,
+        "id": 1729226628,
+        "lingua": "italiano, inglese",
+        "percorsoImg": "salvataggi/immagini/harry_potter.png",
+        "regista": "Nolan",
+        "size": 2011,
+        "tipo": "Film",
+        "titolo": "Harry Potter"
+    },
+    {
+        "anno": 1990,
+        "artista": "Pink Floyd",
+        "durata": 200,
+        "id": 910956012,
+        "percorsoImg": "salvataggi/immagini/dark_side.png",
+        "size": 333,
         "tipo": "Canzone",
-        "titolo": "Mitu"
+        "titolo": "dark side"
+    },
+    {
+        "anno": 1955,
+        "autore": "boh",
+        "id": 1424004136,
+        "pagine": 452,
+        "percorsoImg": "salvataggi/immagini/e_finita_la_pace.png",
+        "tipo": "Libro",
+        "titolo": "E' finita la pace"
+    },
+    {
+        "anno": 3232,
+        "editore": "gigi",
+        "id": 1942171182,
+        "pagine": 123,
+        "percorsoImg": "salvataggi/immagini/dark_side_1.png",
+        "tipo": "Rivista",
+        "titolo": "prova32"
     }
 ]
