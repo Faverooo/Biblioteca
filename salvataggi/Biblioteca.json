@@ -46,5 +46,14 @@
         "percorsoImg": "salvataggi/immagini/e_finita_la_pace.png",
         "tipo": "Libro",
         "titolo": "E' finita la pace"
+    },
+    {
+        "anno": 3232,
+        "editore": "gigi",
+        "id": 1942171182,
+        "pagine": 123,
+        "percorsoImg": "salvataggi/immagini/dark_side_1.png",
+        "tipo": "Rivista",
+        "titolo": "prova32"
     }
 ]

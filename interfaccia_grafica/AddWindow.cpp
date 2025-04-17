@@ -5,6 +5,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QMessageBox>
+#include <QShortcut>
 
 AddWindow::AddWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullptr)
 {
@@ -30,9 +31,13 @@ AddWindow::AddWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullp
     layout->addWidget(comboBox);
     connect(comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &AddWindow::onComboBoxChanged);
 
-    saveButton = new QPushButton("Salva", this);
+    saveButton = new QPushButton("Salva (ctrl+s)", this);
     layout->addWidget(saveButton);
     connect(saveButton, &QPushButton::clicked, this, &AddWindow::onSaveButtonClicked);
+
+    //Shortcut oltre al pulsante di salvataggio
+    QShortcut *saveShortcut = new QShortcut(QKeySequence("Ctrl+S"), this);
+    connect(saveShortcut, &QShortcut::activated, this, &AddWindow::onSaveButtonClicked);
 
     setLayout(layout);
 }

@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QCoreApplication>
+#include <QShortcut>
 
 EditWindow::EditWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullptr)
 {
@@ -20,10 +21,14 @@ EditWindow::EditWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nul
 
     layout->addWidget(banner);
 
-    saveButton = new QPushButton("Salva", this);
+    saveButton = new QPushButton("Salva (ctrl+s)", this);
     layout->addWidget(saveButton);
     connect(saveButton, &QPushButton::clicked, this, &EditWindow::save);
     setLayout(layout);
+
+    //Shortcut oltre al pulsante di salvataggio
+    QShortcut *saveShortcut = new QShortcut(QKeySequence("Ctrl+S"), this);
+    connect(saveShortcut, &QShortcut::activated, this, &EditWindow::save);
 
     currentEditWidget = nullptr;
 }

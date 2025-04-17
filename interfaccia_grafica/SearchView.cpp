@@ -13,7 +13,16 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent)
     connect(cardScrollArea, &CardScrollArea::editButtonClicked, this, &SearchView::ActionOnEditButtonClicked);
     connect(selector, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &SearchView::onSelectorChanged);
     connect(resetButton, &QPushButton::clicked, this, &SearchView::refresh);
-    connect(searchButton, &QPushButton::clicked, this, &SearchView::onSearch);
+    
+    // Per un pulsante
+    //connect(searchButton, &QPushButton::clicked, this, &SearchView::onSearch);
+
+    // Connessione per la ricerca in tempo reale
+    connect(searchBar, &QLineEdit::textChanged, this, &SearchView::onSearch);
+    connect(titleCheckBox, &QCheckBox::stateChanged, this, &SearchView::onSearch);
+    connect(yearCheckBox, &QCheckBox::stateChanged, this, &SearchView::onSearch);
+    connect(authorCheckBox, &QCheckBox::stateChanged, this, &SearchView::onSearch);
+
 }
 
 void SearchView::setupUI()
@@ -25,10 +34,10 @@ void SearchView::setupUI()
     QVBoxLayout *sideBarLayout = new QVBoxLayout();
     searchBar = new QLineEdit(this);
     searchBar->setPlaceholderText("CERCA:");
-    searchButton = new QPushButton(this);
-    searchButton->setText("O"); // Icona lente d'ingrandimento
+    //searchButton = new QPushButton(this);
+    //searchButton->setText("O"); // Icona lente d'ingrandimento
     sideBarLayout->addWidget(searchBar);
-    sideBarLayout->addWidget(searchButton);
+    //sideBarLayout->addWidget(searchButton);
     sideBarLayout->addWidget(new QLabel("PER:"));
     //filtri
     titleCheckBox = new QCheckBox("Titolo", this);
