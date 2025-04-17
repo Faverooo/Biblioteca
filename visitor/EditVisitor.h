@@ -10,6 +10,7 @@ private:
     AbsEditWidget* editWidget;
 
 public:
+    EditVisitor();
     void visit(Libro *libro);
     void visit(Rivista *rivista);
     void visit(Film *film);

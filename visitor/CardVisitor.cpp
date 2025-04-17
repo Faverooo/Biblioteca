@@ -273,8 +273,8 @@ void CardVisitor::setDefaultAttributes(Media *media)
 void CardVisitor::handleEditButtonClicked(int id)
 {
     // Emitti il segnale con l'ID
-qWarning("Edit button clicked, id: %d", id);
-    //emit editButtonClicked(id);
+    //qWarning("Edit button clicked, id: %d", id);
+    emit editButtonClicked(id);
 }
 
 void CardVisitor::handleRemoveButtonClicked(int id)

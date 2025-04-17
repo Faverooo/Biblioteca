@@ -41,6 +41,12 @@ void AbsEditWidget::setAnno(const QString &anno)
 void AbsEditWidget::setPercorso(const QString &percorso)
 {
     LApercorso->setText(percorso);
+    filePath=percorso;
+}
+
+QString AbsEditWidget::getPercorso() const
+{
+    return filePath;
 }
 
 void AbsEditWidget::setID(const int newID)

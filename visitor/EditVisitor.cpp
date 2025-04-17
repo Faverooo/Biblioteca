@@ -1,9 +1,12 @@
 #include "EditVisitor.h"
 #include <QDebug>
 
+
+EditVisitor::EditVisitor() : editWidget(nullptr) {}
+
 void EditVisitor::visit(Libro *libro) {
-    if (editWidget)
-        delete editWidget;
+    if (editWidget!=nullptr){
+        delete editWidget;}
     editWidget = new LibroEditWidget();
     LibroEditWidget *libroEditWidget = qobject_cast<LibroEditWidget*>(editWidget);
     libroEditWidget->setTitolo(libro->getTitolo());
@@ -16,7 +19,7 @@ void EditVisitor::visit(Libro *libro) {
 }
 
 void EditVisitor::visit(Rivista *rivista) {
-    if (editWidget)
+    if (editWidget!=nullptr)
         delete editWidget;
     editWidget = new RivistaEditWidget();
     RivistaEditWidget *rivistaEditWidget = qobject_cast<RivistaEditWidget*>(editWidget);
@@ -29,11 +32,32 @@ void EditVisitor::visit(Rivista *rivista) {
 }
 
 void EditVisitor::visit(Film *film) {
-    // Implementation goes here
+    if (editWidget!=nullptr)
+        delete editWidget;
+    editWidget = new FilmEditWidget();
+    FilmEditWidget *filmEditWidget = qobject_cast<FilmEditWidget*>(editWidget);
+    filmEditWidget->setTitolo(film->getTitolo());
+    filmEditWidget->setAnno(QString::number(film->getAnno()));
+    filmEditWidget->setSize(QString::number(film->getSize()));
+    filmEditWidget->setDurata(QString::number(film->getDurata()));
+    filmEditWidget->setPercorso(film->getPercorsoImg());
+    filmEditWidget->setID(film->getID());
+    filmEditWidget->setRegista(film->getRegista());
+    filmEditWidget->setLingua(film->getLingua());
 }
 
 void EditVisitor::visit(Canzone *canzone) {
-    // Implementation goes here
+    if (editWidget!=nullptr)
+        delete editWidget;
+    editWidget = new CanzoneEditWidget();
+    CanzoneEditWidget *canzoneEditWidget = qobject_cast<CanzoneEditWidget*>(editWidget);
+    canzoneEditWidget->setTitolo(canzone->getTitolo());
+    canzoneEditWidget->setAnno(QString::number(canzone->getAnno()));
+    canzoneEditWidget->setSize(QString::number(canzone->getSize()));
+    canzoneEditWidget->setDurata(QString::number(canzone->getDurata()));
+    canzoneEditWidget->setPercorso(canzone->getPercorsoImg());
+    canzoneEditWidget->setID(canzone->getID());
+    canzoneEditWidget->setArtista(canzone->getArtista());
 }
 
 void EditVisitor::visit(Album *album) {

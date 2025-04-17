@@ -18,6 +18,7 @@ class SearchView : public QWidget {
 public:
     explicit SearchView(QWidget *parent = nullptr);
     void refresh();
+    void onSearch();
 
 private:
     void setupUI();
@@ -37,6 +38,11 @@ private:
 
 signals:
     void addButtonClicked();
+    void editButtonClicked(int id);
+
+private slots:
+    void ActionOnEditButtonClicked(int id);
+    void onSelectorChanged();
 };
 
 #endif // SEARCHVIEW_H

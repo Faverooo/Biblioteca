@@ -8,10 +8,11 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QFile>
+#include <QCoreApplication>
 #include<QRandomGenerator>
 
-QList<Media*> StorageManager::getStorage() const{
-    return storage;
+QList<Media*>* StorageManager::getStorage(){
+    return &storage;
 }
 
 StorageManager& StorageManager::instance() {
@@ -182,6 +183,8 @@ void StorageManager::removeToStorage(int id)
     {
         if ((*it)->getID() == id)
         {
+            QString fullPath = QCoreApplication::applicationDirPath() + "/" + (*it)->getPercorsoImg();
+            QFile::remove(fullPath);
             delete *it;
             storage.erase(it);
             printToFile();
