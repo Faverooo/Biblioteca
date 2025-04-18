@@ -38,7 +38,7 @@ void CardVisitor::visit(Libro *libro)
     rightLayout->addWidget(anno);
     rightLayout->addWidget(autore);
     rightLayout->addWidget(pagine);
-
+    rightLayout->addStretch();
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     edit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     remove->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -85,6 +85,7 @@ void CardVisitor::visit(Rivista *rivista)
     rightLayout->addWidget(anno);
     rightLayout->addWidget(editore);
     rightLayout->addWidget(pagine);
+    rightLayout->addStretch();
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     edit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -136,7 +137,8 @@ void CardVisitor::visit(Film *film)
     rightLayout->addWidget(regista);
     rightLayout->addWidget(lingua);
     rightLayout->addWidget(size);
-    
+    rightLayout->addStretch();
+
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     edit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     remove->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -187,6 +189,7 @@ void CardVisitor::visit(Canzone *canzone)
     rightLayout->addWidget(durata);
     rightLayout->addWidget(artista);
     rightLayout->addWidget(size);
+    rightLayout->addStretch();
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(edit);
@@ -226,7 +229,11 @@ void CardVisitor::visit(Album *album)
 
     // Layout per gli attributi e i pulsanti
     QVBoxLayout *rightLayout = new QVBoxLayout();
+    rightLayout->addWidget(titolo);
+    rightLayout->addWidget(anno);
+    
     // Aggiungi altri widget specifici per Album
+    rightLayout->addStretch();
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(edit);
@@ -273,7 +280,6 @@ void CardVisitor::setDefaultAttributes(Media *media)
 void CardVisitor::handleEditButtonClicked(int id)
 {
     // Emitti il segnale con l'ID
-    //qWarning("Edit button clicked, id: %d", id);
     emit editButtonClicked(id);
 }
 

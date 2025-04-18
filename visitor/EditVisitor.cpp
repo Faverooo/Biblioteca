@@ -61,7 +61,16 @@ void EditVisitor::visit(Canzone *canzone) {
 }
 
 void EditVisitor::visit(Album *album) {
-    // Implementation goes here
+    if (editWidget!=nullptr)
+        delete editWidget;
+    editWidget = new AlbumEditWidget();
+    AlbumEditWidget *albumEditWidget = qobject_cast<AlbumEditWidget*>(editWidget);
+    albumEditWidget->setTitolo(album->getTitolo());
+    albumEditWidget->setAnno(QString::number(album->getAnno()));
+    albumEditWidget->setPercorso(album->getPercorsoImg());
+    albumEditWidget->setID(album->getID());
+    albumEditWidget->setArchivio(album->getArchivio());
+
 }
 
 

@@ -28,6 +28,7 @@ AddWindow::AddWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullp
     comboBox->addItem("Rivista");
     comboBox->addItem("Film");
     comboBox->addItem("Canzone");
+    comboBox->addItem("Cartella");
     layout->addWidget(comboBox);
     connect(comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &AddWindow::onComboBoxChanged);
 
@@ -35,7 +36,7 @@ AddWindow::AddWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullp
     layout->addWidget(saveButton);
     connect(saveButton, &QPushButton::clicked, this, &AddWindow::onSaveButtonClicked);
 
-    //Shortcut oltre al pulsante di salvataggio
+    // Shortcut oltre al pulsante di salvataggio
     QShortcut *saveShortcut = new QShortcut(QKeySequence("Ctrl+S"), this);
     connect(saveShortcut, &QShortcut::activated, this, &AddWindow::onSaveButtonClicked);
 
@@ -107,6 +108,15 @@ void AddWindow::onComboBoxChanged(int index)
             canzoneEditWidget->setDurata("");
             canzoneEditWidget->setArtista("");
             canzoneEditWidget->setID(StorageManager::instance().generateID());
+        }
+        break;
+    case 5: // Cartella
+        currentEditWidget = new AlbumEditWidget(this);
+        if (auto albumEditWidget = qobject_cast<AlbumEditWidget *>(currentEditWidget))
+        {
+            albumEditWidget->setTitolo("");
+            albumEditWidget->setAnno("");
+            albumEditWidget->setID(StorageManager::instance().generateID());
         }
         break;
     default:

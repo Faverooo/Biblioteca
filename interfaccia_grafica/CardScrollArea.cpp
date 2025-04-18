@@ -51,7 +51,8 @@ void CardScrollArea::refreshCards()
             (lastFilter == "Libri" && dynamic_cast<Libro*>(media)) ||
             (lastFilter == "Riviste" && dynamic_cast<Rivista*>(media)) ||
             (lastFilter == "Film" && dynamic_cast<Film*>(media)) ||
-            (lastFilter == "Canzoni" && dynamic_cast<Canzone*>(media))
+            (lastFilter == "Canzoni" && dynamic_cast<Canzone*>(media)) ||
+            (lastFilter == "Album" && dynamic_cast<Album*>(media))
             ) &&
             (
                 searchText.isEmpty() ||

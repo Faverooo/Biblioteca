@@ -261,3 +261,35 @@ Media *CanzoneEditWidget::getMedia()
     canzone->setID(id);
     return canzone;
 }
+
+
+
+AlbumEditWidget::AlbumEditWidget(QWidget *parent) : AbsEditWidget(parent) {
+    manageSongsButton = new QPushButton("Gestisci Canzoni", this);
+    layout->addWidget(manageSongsButton);
+
+    connect(manageSongsButton, &QPushButton::clicked, this, &AlbumEditWidget::openSongSelectionDialog);
+}
+
+void AlbumEditWidget::openSongSelectionDialog() {
+    SongSelectionDialog dialog(archivio, this);
+    dialog.exec();
+}
+
+void AlbumEditWidget::setArchivio(const QList<int> &newArchivio)
+{
+    archivio = newArchivio;
+}
+
+Media *AlbumEditWidget::getMedia()
+{
+    if (LEtitolo->text().isEmpty() || LEanno->text().isEmpty() || filePath.isEmpty() )
+        return nullptr;
+    Album *album = new Album();
+    album->setTitolo(LEtitolo->text());
+    album->setAnno(LEanno->text().toInt());
+    album->setPercorsoImg(filePath);
+    album->setID(id);
+    album->setArchivio(archivio);
+    return album;
+}

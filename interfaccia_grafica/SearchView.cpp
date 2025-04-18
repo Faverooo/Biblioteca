@@ -14,7 +14,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent)
     connect(selector, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &SearchView::onSelectorChanged);
     connect(resetButton, &QPushButton::clicked, this, &SearchView::refresh);
     
-    // Per un pulsante
+    // Ricerca con un pulsante
     //connect(searchButton, &QPushButton::clicked, this, &SearchView::onSearch);
 
     // Connessione per la ricerca in tempo reale
@@ -34,6 +34,9 @@ void SearchView::setupUI()
     QVBoxLayout *sideBarLayout = new QVBoxLayout();
     searchBar = new QLineEdit(this);
     searchBar->setPlaceholderText("CERCA:");
+
+    //E' possibile fare la ricerca solo quando il bottone é premuto
+
     //searchButton = new QPushButton(this);
     //searchButton->setText("O"); // Icona lente d'ingrandimento
     sideBarLayout->addWidget(searchBar);

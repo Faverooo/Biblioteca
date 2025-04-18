@@ -42,7 +42,7 @@ void JsonVisitor::visit(Album *album)
 {
     json = QJsonObject();
     json["tipo"] = "Album";
-    toJsonMD(album);
+    toJsonM(album);
 
     QJsonArray jsonArray;
     for (int id : album->getArchivio())

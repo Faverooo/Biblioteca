@@ -13,8 +13,10 @@
 #include "../modello_logico/Canzone.h"
 #include "../modello_logico/Album.h"
 
+#include "../interfaccia_grafica/SongSelectionDialog.h"
 
-class AbsEditWidget : public QWidget {
+class AbsEditWidget : public QWidget
+{
     Q_OBJECT
 
 public:
@@ -41,7 +43,8 @@ private slots:
     void openFileDialog();
 };
 
-class LibroEditWidget : public AbsEditWidget {
+class LibroEditWidget : public AbsEditWidget
+{
     Q_OBJECT
 
 public:
@@ -56,7 +59,8 @@ private:
     QLineEdit *LEpagine;
 };
 
-class RivistaEditWidget : public AbsEditWidget {
+class RivistaEditWidget : public AbsEditWidget
+{
     Q_OBJECT
 
 public:
@@ -65,13 +69,14 @@ public:
     void setEditore(const QString &newEditore);
     void setPagine(const QString &pagine);
     Media *getMedia();
+
 private:
     QLineEdit *LEeditore;
     QLineEdit *LEpagine;
 };
 
-
-class FilmEditWidget : public AbsEditWidget {
+class FilmEditWidget : public AbsEditWidget
+{
     Q_OBJECT
 
 public:
@@ -82,6 +87,7 @@ public:
     void setRegista(const QString &regista);
     void setLingua(const QString &lingua);
     Media *getMedia();
+
 private:
     QLineEdit *LEsize;
     QLineEdit *LEdurata;
@@ -89,8 +95,8 @@ private:
     QLineEdit *LElingua;
 };
 
-
-class CanzoneEditWidget : public AbsEditWidget {
+class CanzoneEditWidget : public AbsEditWidget
+{
     Q_OBJECT
 
 public:
@@ -100,10 +106,29 @@ public:
     void setDurata(const QString &durata);
     void setArtista(const QString &artista);
     Media *getMedia();
+
 private:
     QLineEdit *LEsize;
     QLineEdit *LEdurata;
     QLineEdit *LEartista;
 };
+
+class AlbumEditWidget : public AbsEditWidget
+{
+    Q_OBJECT
+
+public:
+    explicit AlbumEditWidget(QWidget *parent = nullptr);
+    void setArchivio(const QList<int> &newArchivio);
+    Media *getMedia();
+
+private slots:
+    void openSongSelectionDialog();
+
+private:
+    QList<int> archivio; // ID delle canzoni nell'album
+    QPushButton *manageSongsButton;
+};
+
 
 #endif // DERIVIEDEDITVISITOR_H
