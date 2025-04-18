@@ -28,10 +28,12 @@ private:
 
 signals:
     void editButtonClicked(int id);
+    void viewAlbumButtonClicked(int id);
 
 private slots:
     void ActionOnRemoveButtonClicked(int id);
     void ActionOnEditButtonClicked(int id); // propagazione alla mainwindow dalla card
+    void ActionOnViewAlbumButtonClicked(int id); // propagazione alla mainwindow dalla card
 };
 
 #endif // CARDSCROLLAREA_H

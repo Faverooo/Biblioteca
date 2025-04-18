@@ -59,11 +59,21 @@
     {
         "anno": 2,
         "archivio": [
-            910956012
+            52086776
         ],
         "id": 311884719,
         "percorsoImg": "salvataggi/immagini/vanity_fair2.png",
         "tipo": "Album",
         "titolo": "rew"
+    },
+    {
+        "anno": 32,
+        "artista": "marcojj",
+        "durata": 34,
+        "id": 52086776,
+        "percorsoImg": "salvataggi/immagini/via_pal.png",
+        "size": 222,
+        "tipo": "Canzone",
+        "titolo": "prova"
     }
 ]

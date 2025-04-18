@@ -55,6 +55,7 @@ OBJECTS_DIR   = ./
 SOURCES       = gestioneMedia/JsonVisitor.cpp \
 		gestioneMedia/StorageManager.cpp \
 		interfaccia_grafica/AddWindow.cpp \
+		interfaccia_grafica/AlbumView.cpp \
 		interfaccia_grafica/CardScrollArea.cpp \
 		interfaccia_grafica/EditWindow.cpp \
 		interfaccia_grafica/main.cpp \
@@ -72,6 +73,7 @@ SOURCES       = gestioneMedia/JsonVisitor.cpp \
 		visitor/CardVisitor.cpp \
 		visitor/DeriviedEditVisitor.cpp \
 		visitor/EditVisitor.cpp moc_AddWindow.cpp \
+		moc_AlbumView.cpp \
 		moc_CardScrollArea.cpp \
 		moc_EditWindow.cpp \
 		moc_MainWindow.cpp \
@@ -82,6 +84,7 @@ SOURCES       = gestioneMedia/JsonVisitor.cpp \
 OBJECTS       = JsonVisitor.o \
 		StorageManager.o \
 		AddWindow.o \
+		AlbumView.o \
 		CardScrollArea.o \
 		EditWindow.o \
 		main.o \
@@ -100,6 +103,7 @@ OBJECTS       = JsonVisitor.o \
 		DeriviedEditVisitor.o \
 		EditVisitor.o \
 		moc_AddWindow.o \
+		moc_AlbumView.o \
 		moc_CardScrollArea.o \
 		moc_EditWindow.o \
 		moc_MainWindow.o \
@@ -175,6 +179,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		Biblioteca.pro gestioneMedia/JsonVisitor.h \
 		gestioneMedia/StorageManager.h \
 		interfaccia_grafica/AddWindow.h \
+		interfaccia_grafica/AlbumView.h \
 		interfaccia_grafica/CardScrollArea.h \
 		interfaccia_grafica/EditWindow.h \
 		interfaccia_grafica/MainWindow.h \
@@ -194,6 +199,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/spec_pre.prf \
 		visitor/Visitor.h gestioneMedia/JsonVisitor.cpp \
 		gestioneMedia/StorageManager.cpp \
 		interfaccia_grafica/AddWindow.cpp \
+		interfaccia_grafica/AlbumView.cpp \
 		interfaccia_grafica/CardScrollArea.cpp \
 		interfaccia_grafica/EditWindow.cpp \
 		interfaccia_grafica/main.cpp \
@@ -376,8 +382,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents gestioneMedia/JsonVisitor.h gestioneMedia/StorageManager.h interfaccia_grafica/AddWindow.h interfaccia_grafica/CardScrollArea.h interfaccia_grafica/EditWindow.h interfaccia_grafica/MainWindow.h interfaccia_grafica/SearchView.h interfaccia_grafica/SongSelectionDialog.h modello_logico/Album.h modello_logico/Canzone.h modello_logico/Film.h modello_logico/Libro.h modello_logico/Media.h modello_logico/MediaDigital.h modello_logico/MediaTextual.h modello_logico/Rivista.h visitor/CardVisitor.h visitor/DeriviedEditVisitor.h visitor/EditVisitor.h visitor/Visitor.h $(DISTDIR)/
-	$(COPY_FILE) --parents gestioneMedia/JsonVisitor.cpp gestioneMedia/StorageManager.cpp interfaccia_grafica/AddWindow.cpp interfaccia_grafica/CardScrollArea.cpp interfaccia_grafica/EditWindow.cpp interfaccia_grafica/main.cpp interfaccia_grafica/MainWindow.cpp interfaccia_grafica/SearchView.cpp interfaccia_grafica/SongSelectionDialog.cpp modello_logico/Album.cpp modello_logico/Canzone.cpp modello_logico/Film.cpp modello_logico/Libro.cpp modello_logico/Media.cpp modello_logico/MediaDigital.cpp modello_logico/MediaTextual.cpp modello_logico/Rivista.cpp visitor/CardVisitor.cpp visitor/DeriviedEditVisitor.cpp visitor/EditVisitor.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents gestioneMedia/JsonVisitor.h gestioneMedia/StorageManager.h interfaccia_grafica/AddWindow.h interfaccia_grafica/AlbumView.h interfaccia_grafica/CardScrollArea.h interfaccia_grafica/EditWindow.h interfaccia_grafica/MainWindow.h interfaccia_grafica/SearchView.h interfaccia_grafica/SongSelectionDialog.h modello_logico/Album.h modello_logico/Canzone.h modello_logico/Film.h modello_logico/Libro.h modello_logico/Media.h modello_logico/MediaDigital.h modello_logico/MediaTextual.h modello_logico/Rivista.h visitor/CardVisitor.h visitor/DeriviedEditVisitor.h visitor/EditVisitor.h visitor/Visitor.h $(DISTDIR)/
+	$(COPY_FILE) --parents gestioneMedia/JsonVisitor.cpp gestioneMedia/StorageManager.cpp interfaccia_grafica/AddWindow.cpp interfaccia_grafica/AlbumView.cpp interfaccia_grafica/CardScrollArea.cpp interfaccia_grafica/EditWindow.cpp interfaccia_grafica/main.cpp interfaccia_grafica/MainWindow.cpp interfaccia_grafica/SearchView.cpp interfaccia_grafica/SongSelectionDialog.cpp modello_logico/Album.cpp modello_logico/Canzone.cpp modello_logico/Film.cpp modello_logico/Libro.cpp modello_logico/Media.cpp modello_logico/MediaDigital.cpp modello_logico/MediaTextual.cpp modello_logico/Rivista.cpp visitor/CardVisitor.cpp visitor/DeriviedEditVisitor.cpp visitor/EditVisitor.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -409,9 +415,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -Wall -Wextra -fPIC -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt6/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_AddWindow.cpp moc_CardScrollArea.cpp moc_EditWindow.cpp moc_MainWindow.cpp moc_SearchView.cpp moc_SongSelectionDialog.cpp moc_CardVisitor.cpp moc_DeriviedEditVisitor.cpp
+compiler_moc_header_make_all: moc_AddWindow.cpp moc_AlbumView.cpp moc_CardScrollArea.cpp moc_EditWindow.cpp moc_MainWindow.cpp moc_SearchView.cpp moc_SongSelectionDialog.cpp moc_CardVisitor.cpp moc_DeriviedEditVisitor.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_AddWindow.cpp moc_CardScrollArea.cpp moc_EditWindow.cpp moc_MainWindow.cpp moc_SearchView.cpp moc_SongSelectionDialog.cpp moc_CardVisitor.cpp moc_DeriviedEditVisitor.cpp
+	-$(DEL_FILE) moc_AddWindow.cpp moc_AlbumView.cpp moc_CardScrollArea.cpp moc_EditWindow.cpp moc_MainWindow.cpp moc_SearchView.cpp moc_SongSelectionDialog.cpp moc_CardVisitor.cpp moc_DeriviedEditVisitor.cpp
 moc_AddWindow.cpp: interfaccia_grafica/AddWindow.h \
 		visitor/DeriviedEditVisitor.h \
 		modello_logico/Media.h \
@@ -428,6 +434,15 @@ moc_AddWindow.cpp: interfaccia_grafica/AddWindow.h \
 		moc_predefs.h \
 		/usr/lib/qt6/libexec/moc
 	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/marco/Biblioteca/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -I/home/marco/Biblioteca -I/home/marco/Biblioteca -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/include/c++/12 -I/usr/include/x86_64-linux-gnu/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/x86_64-linux-gnu/12/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include interfaccia_grafica/AddWindow.h -o moc_AddWindow.cpp
+
+moc_AlbumView.cpp: interfaccia_grafica/AlbumView.h \
+		modello_logico/Canzone.h \
+		modello_logico/MediaDigital.h \
+		modello_logico/Media.h \
+		visitor/Visitor.h \
+		moc_predefs.h \
+		/usr/lib/qt6/libexec/moc
+	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/marco/Biblioteca/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -I/home/marco/Biblioteca -I/home/marco/Biblioteca -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/include/c++/12 -I/usr/include/x86_64-linux-gnu/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/x86_64-linux-gnu/12/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include interfaccia_grafica/AlbumView.h -o moc_AlbumView.cpp
 
 moc_CardScrollArea.cpp: interfaccia_grafica/CardScrollArea.h \
 		visitor/CardVisitor.h \
@@ -471,6 +486,7 @@ moc_MainWindow.cpp: interfaccia_grafica/MainWindow.h \
 		interfaccia_grafica/SongSelectionDialog.h \
 		gestioneMedia/StorageManager.h \
 		interfaccia_grafica/EditWindow.h \
+		interfaccia_grafica/AlbumView.h \
 		moc_predefs.h \
 		/usr/lib/qt6/libexec/moc
 	/usr/lib/qt6/libexec/moc $(DEFINES) --include /home/marco/Biblioteca/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -I/home/marco/Biblioteca -I/home/marco/Biblioteca -I/usr/include/x86_64-linux-gnu/qt6 -I/usr/include/x86_64-linux-gnu/qt6/QtWidgets -I/usr/include/x86_64-linux-gnu/qt6/QtGui -I/usr/include/x86_64-linux-gnu/qt6/QtCore -I/usr/include/c++/12 -I/usr/include/x86_64-linux-gnu/c++/12 -I/usr/include/c++/12/backward -I/usr/lib/gcc/x86_64-linux-gnu/12/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include interfaccia_grafica/MainWindow.h -o moc_MainWindow.cpp
@@ -572,6 +588,15 @@ AddWindow.o: interfaccia_grafica/AddWindow.cpp interfaccia_grafica/AddWindow.h \
 		visitor/EditVisitor.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o AddWindow.o interfaccia_grafica/AddWindow.cpp
 
+AlbumView.o: interfaccia_grafica/AlbumView.cpp interfaccia_grafica/AlbumView.h \
+		modello_logico/Canzone.h \
+		modello_logico/MediaDigital.h \
+		modello_logico/Media.h \
+		visitor/Visitor.h \
+		gestioneMedia/StorageManager.h \
+		modello_logico/Album.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o AlbumView.o interfaccia_grafica/AlbumView.cpp
+
 CardScrollArea.o: interfaccia_grafica/CardScrollArea.cpp interfaccia_grafica/CardScrollArea.h \
 		visitor/CardVisitor.h \
 		visitor/Visitor.h \
@@ -619,7 +644,8 @@ main.o: interfaccia_grafica/main.cpp gestioneMedia/StorageManager.h \
 		modello_logico/Canzone.h \
 		modello_logico/Album.h \
 		interfaccia_grafica/SongSelectionDialog.h \
-		interfaccia_grafica/EditWindow.h
+		interfaccia_grafica/EditWindow.h \
+		interfaccia_grafica/AlbumView.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o interfaccia_grafica/main.cpp
 
 MainWindow.o: interfaccia_grafica/MainWindow.cpp interfaccia_grafica/MainWindow.h \
@@ -639,7 +665,8 @@ MainWindow.o: interfaccia_grafica/MainWindow.cpp interfaccia_grafica/MainWindow.
 		modello_logico/Album.h \
 		interfaccia_grafica/SongSelectionDialog.h \
 		gestioneMedia/StorageManager.h \
-		interfaccia_grafica/EditWindow.h
+		interfaccia_grafica/EditWindow.h \
+		interfaccia_grafica/AlbumView.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o interfaccia_grafica/MainWindow.cpp
 
 SearchView.o: interfaccia_grafica/SearchView.cpp interfaccia_grafica/SearchView.h \
@@ -742,6 +769,9 @@ EditVisitor.o: visitor/EditVisitor.cpp visitor/EditVisitor.h \
 
 moc_AddWindow.o: moc_AddWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_AddWindow.o moc_AddWindow.cpp
+
+moc_AlbumView.o: moc_AlbumView.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_AlbumView.o moc_AlbumView.cpp
 
 moc_CardScrollArea.o: moc_CardScrollArea.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_CardScrollArea.o moc_CardScrollArea.cpp

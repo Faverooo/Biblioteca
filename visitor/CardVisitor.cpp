@@ -233,6 +233,12 @@ void CardVisitor::visit(Album *album)
     rightLayout->addWidget(anno);
     
     // Aggiungi altri widget specifici per Album
+
+    QPushButton* visualizzaAlbum = new QPushButton("Vedi Contenuto", card);
+    rightLayout->addWidget(visualizzaAlbum);
+    connect(visualizzaAlbum, &QPushButton::clicked, [this, album]()
+    { handleViewAlbumButtonClicked(album->getID()); });
+
     rightLayout->addStretch();
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
@@ -251,6 +257,7 @@ void CardVisitor::visit(Album *album)
     imgLabel->setStyleSheet("border: 1px solid #ccc; border-radius: 5px;");
     titolo->setStyleSheet("font-weight: bold; font-size: 16px; margin-bottom: 5px;");
     anno->setStyleSheet("color: #666; margin-bottom: 5px;");
+    visualizzaAlbum->setStyleSheet("background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
     edit->setStyleSheet("background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
     remove->setStyleSheet("background-color: #f44336; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
 }
@@ -288,6 +295,13 @@ void CardVisitor::handleRemoveButtonClicked(int id)
     // Emitti il segnale con l'ID
     emit removeButtonClicked(id);
 }
+
+void CardVisitor::handleViewAlbumButtonClicked(int id)
+{
+    // Emitti il segnale con l'ID
+    emit viewAlbumButtonClicked(id);
+}
+
 
 QWidget *CardVisitor::getCard()
 {

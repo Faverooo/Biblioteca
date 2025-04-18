@@ -45,25 +45,35 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     editWindow = new EditWindow();
     stackedWidget->addWidget(editWindow);
 
+    albumView = new AlbumView();
+    stackedWidget->addWidget(albumView);
+
     connect(searchView, &SearchView::addButtonClicked, this, &MainWindow::showAddView);
     connect(addWindow, &AddWindow::backButtonClicked, this, &MainWindow::showSearchView);
     connect(editWindow, &EditWindow::backButtonClicked, this, &MainWindow::showSearchView);
+    connect(albumView, &AlbumView::backButtonClicked, this, &MainWindow::showSearchView);
     connect(searchView, &SearchView::editButtonClicked, this, &MainWindow::showEditView);
+    connect(searchView, &SearchView::viewAlbumButtonClicked, this, &MainWindow::showAlbum);
 
 }
 
+void MainWindow::showSearchView() {
+    stackedWidget->setCurrentIndex(0); // Torna alla vista di ricerca
+    searchView->refresh(); // Aggiorna la vista di ricerca
+}
 
 void MainWindow::showAddView() {
     stackedWidget->setCurrentIndex(1); // Cambia l'indice in base alla posizione della vista di aggiunta nello stack
     addWindow->resetComboBox();
 }
 
-void MainWindow::showSearchView() {
-    stackedWidget->setCurrentIndex(0); // Torna alla vista di ricerca
-    searchView->refresh(); // Aggiorna la vista di ricerca
-    
-}
+
 void MainWindow::showEditView(int id) {
     stackedWidget->setCurrentIndex(2); // Schermata di Edit
     editWindow->showEdit(id);
+}
+
+void MainWindow::showAlbum(int id) {
+    stackedWidget->setCurrentIndex(3); // Schermata di Edit
+    albumView->show(id);
 }

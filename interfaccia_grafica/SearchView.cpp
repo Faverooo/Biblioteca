@@ -11,6 +11,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent)
 
     connect(addButton, &QPushButton::clicked, this, &SearchView::addButtonClicked);
     connect(cardScrollArea, &CardScrollArea::editButtonClicked, this, &SearchView::ActionOnEditButtonClicked);
+    connect(cardScrollArea, &CardScrollArea::viewAlbumButtonClicked, this, &SearchView::ActionOnViewAlbumButtonClicked);
     connect(selector, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &SearchView::onSelectorChanged);
     connect(resetButton, &QPushButton::clicked, this, &SearchView::refresh);
     
@@ -185,6 +186,10 @@ void SearchView::onSearch(){
 
 void SearchView::ActionOnEditButtonClicked(int id) {
     emit editButtonClicked(id);
+}
+
+void SearchView::ActionOnViewAlbumButtonClicked(int id) {
+    emit viewAlbumButtonClicked(id);
 }
 
 void SearchView::onSelectorChanged() {
