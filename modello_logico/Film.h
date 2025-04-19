@@ -16,6 +16,7 @@ public:
     QString getLingua() const;
     void setLingua(const QString& newLingua);
    
+    QStringList getFields() const; 
     void acceptVisitor(Visitor* visitor);    
 };
 

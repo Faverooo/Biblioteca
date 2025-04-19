@@ -30,6 +30,7 @@ public:
     int getAnno() const;
     void setAnno(const int newAnno);
 
+    virtual QStringList getFields() const = 0;
     virtual void acceptVisitor(Visitor* visitor) = 0;
 };
 

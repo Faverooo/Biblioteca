@@ -14,6 +14,9 @@ void Libro::setAutore(const QString& newAutore) {
     autore = newAutore;
 }
 
+QStringList Libro::getFields() const {
+    return { getTitolo(), QString::number(getAnno()), getAutore(), QString::number(getPagine())};
+}
 
 void Libro::acceptVisitor(Visitor* visitor) {
     visitor->visit(this);

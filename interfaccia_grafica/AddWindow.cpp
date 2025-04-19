@@ -12,16 +12,17 @@ AddWindow::AddWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullp
 
     layout = new QVBoxLayout(this);
 
+    
+    banner = new QLabel("AGGIUNTA WIDGET", this);
+    banner->setAlignment(Qt::AlignCenter);
+    banner->setStyleSheet("font-size: 24px; font-weight: bold; color: black; background-color:rgb(225, 227, 222); border: 2px solid lightgreen; border-radius: 10px; padding: 10px; font-family: 'Arial', sans-serif;");
+    
+    layout->addWidget(banner);
+    
     backButton = new QPushButton("Indietro", this);
     layout->addWidget(backButton);
     connect(backButton, &QPushButton::clicked, this, &AddWindow::backButtonClicked);
-
-    banner = new QLabel("AGGIUNTA WIDGET", this);
-    banner->setAlignment(Qt::AlignCenter);
-    banner->setStyleSheet("font-size: 24px; font-weight: bold; color: blue;");
-
-    layout->addWidget(banner);
-
+    
     comboBox = new QComboBox(this);
     comboBox->addItem("Seleziona tipo");
     comboBox->addItem("Libro");
@@ -31,7 +32,7 @@ AddWindow::AddWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullp
     comboBox->addItem("Cartella");
     layout->addWidget(comboBox);
     connect(comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &AddWindow::onComboBoxChanged);
-
+    layout->addStretch();
     saveButton = new QPushButton("Salva (ctrl+s)", this);
     layout->addWidget(saveButton);
     connect(saveButton, &QPushButton::clicked, this, &AddWindow::onSaveButtonClicked);
@@ -41,6 +42,8 @@ AddWindow::AddWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullp
     connect(saveShortcut, &QShortcut::activated, this, &AddWindow::onSaveButtonClicked);
 
     setLayout(layout);
+    saveButton->setStyleSheet("background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
+    backButton->setStyleSheet("background-color: #f44336; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
 }
 
 void AddWindow::resetComboBox()
@@ -125,6 +128,7 @@ void AddWindow::onComboBoxChanged(int index)
 
     if (currentEditWidget)
     {
+        // layout->insertWidget(layout->count() - 2, currentEditWidget); // Inserisce sopra il pulsante "Salva"
         layout->addWidget(currentEditWidget);
     }
 }

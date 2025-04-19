@@ -46,8 +46,19 @@ void CardScrollArea::refreshCards()
     }
     // Aggiungi nuove card
     QList<Media *> mediaList = *StorageManager::instance().getStorage();
+    bool match = false;
+    QStringList fields;
     for (const auto &media : mediaList)
     {
+        fields = media->getFields();
+        match = false;
+        for (const QString &field : fields) {
+            if (field.contains(searchText, Qt::CaseInsensitive)) {
+                match = true;
+                break;
+            }
+        }
+
         if ((lastFilter == "TUTTO" ||
             (lastFilter == "Libri" && dynamic_cast<Libro*>(media)) ||
             (lastFilter == "Riviste" && dynamic_cast<Rivista*>(media)) ||
@@ -57,6 +68,7 @@ void CardScrollArea::refreshCards()
             ) &&
             (
                 searchText.isEmpty() ||
+                (!searchByTitle && !searchByYear && !searchByAuthor && match) ||
                 (
                     (searchByTitle && media->getTitolo().contains(searchText, Qt::CaseInsensitive))
                     || (searchByYear && QString::number(media->getAnno()).contains(searchText, Qt::CaseInsensitive))

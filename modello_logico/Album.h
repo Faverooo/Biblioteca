@@ -16,7 +16,7 @@ public:
     // void addToArchivio(int id);
     // void removeFromArchivio(int id);
 
-   
+    QStringList getFields() const; 
     void acceptVisitor(Visitor* visitor);    
 };
 

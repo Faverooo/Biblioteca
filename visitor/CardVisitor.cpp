@@ -221,7 +221,23 @@ void CardVisitor::visit(Album *album)
 
     // Layout per la foto
     QVBoxLayout *leftLayout = new QVBoxLayout();
-    setDefaultAttributes(album);
+    imgLabel = new QLabel(card);
+    QDir dir(QCoreApplication::applicationDirPath());
+    QString imgPath = dir.filePath(album->getPercorsoImg());
+    QPixmap pixmap(imgPath);
+    imgLabel->setPixmap(pixmap.scaled(QSize(540,540), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+    // attributi di base di album
+    titolo = new QLabel("Nome Playlist: " + album->getTitolo(), card);
+    anno = new QLabel("Anno: " + QString::number(album->getAnno()), card);
+    edit = new QPushButton("MODIFICA", card);
+    remove = new QPushButton("RIMUOVI", card);
+
+    // Collega i segnali dei pulsanti agli slot con l'ID dell'oggetto
+    connect(edit, &QPushButton::clicked, [this, album]()
+            { handleEditButtonClicked(album->getID()); });
+    connect(remove, &QPushButton::clicked, [this, album]()
+            { handleRemoveButtonClicked(album->getID()); });
 
     imgLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     imgLabel->setAlignment(Qt::AlignCenter);

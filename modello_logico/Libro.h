@@ -13,7 +13,8 @@ public:
     QString getAutore() const;
     void setAutore(const QString& newAutore);
    
-    void acceptVisitor(Visitor* visitor);    
+    void acceptVisitor(Visitor* visitor);   
+    QStringList getFields() const; 
 };
 
 
