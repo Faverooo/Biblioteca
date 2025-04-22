@@ -278,7 +278,7 @@ void CardVisitor::visit(Album *album)
     remove->setStyleSheet("background-color: #f44336; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
 }
 
-void CardVisitor::setDefaultAttributes(Media *media)
+void CardVisitor::setDefaultAttributes(Media *media) //funzione ausiliaria comune
 {
     // carica foto
     imgLabel = new QLabel(card);

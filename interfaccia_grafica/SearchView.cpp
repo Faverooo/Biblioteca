@@ -4,10 +4,15 @@
 #include <QListWidget>
 #include <QScrollArea>
 #include <QWidget>
+#include <QShortcut>
 
 SearchView::SearchView(QWidget *parent) : QWidget(parent)
 {
     setupUI();
+
+    // Shortcut Ctrl+A per addButtonClicked
+    QShortcut *shortcut = new QShortcut(QKeySequence("Ctrl+A"), this);
+    connect(shortcut, &QShortcut::activated, this, &SearchView::addButtonClicked);
 
     connect(addButton, &QPushButton::clicked, this, &SearchView::addButtonClicked);
     connect(cardScrollArea, &CardScrollArea::editButtonClicked, this, &SearchView::ActionOnEditButtonClicked);
@@ -163,7 +168,7 @@ void SearchView::setupUI()
 }
 
 
-void SearchView::refresh() {
+void SearchView::refresh() { //setta tutto a default
     selector->setCurrentIndex(0);
     cardScrollArea->refreshView(selector->currentText());
     titleCheckBox->setChecked(false);
@@ -173,7 +178,7 @@ void SearchView::refresh() {
     cardScrollArea->refreshSearch(searchBar->text(), titleCheckBox->isChecked(), yearCheckBox->isChecked(), authorCheckBox->isChecked());
 }
 
-void SearchView::onSearch(){
+void SearchView::onSearch(){ //ricerca
     QString searchText = searchBar->text();
     bool searchByTitle = titleCheckBox->isChecked();
     bool searchByYear = yearCheckBox->isChecked();
@@ -182,7 +187,10 @@ void SearchView::onSearch(){
     cardScrollArea->refreshSearch(searchText, searchByTitle, searchByYear, searchByAuthor);
 }
 
-
+void SearchView::onSelectorChanged() { //cambio vista
+    QString filterType = selector->currentText();
+    cardScrollArea->refreshView(filterType);
+}
 
 void SearchView::ActionOnEditButtonClicked(int id) {
     emit editButtonClicked(id);
@@ -190,9 +198,4 @@ void SearchView::ActionOnEditButtonClicked(int id) {
 
 void SearchView::ActionOnViewAlbumButtonClicked(int id) {
     emit viewAlbumButtonClicked(id);
-}
-
-void SearchView::onSelectorChanged() {
-    QString filterType = selector->currentText();
-    cardScrollArea->refreshView(filterType);
 }

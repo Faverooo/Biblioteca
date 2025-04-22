@@ -22,7 +22,7 @@ private:
     QVBoxLayout *scrollLayout; //le card sono qui dentro
 
 
-    QWidget *createCard(Canzone *canzone);
+    QWidget *createCard(Canzone *canzone); //per creare le card da visualizzare nella albumview
 signals:
     void backButtonClicked();
 };

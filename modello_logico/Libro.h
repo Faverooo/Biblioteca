@@ -14,7 +14,7 @@ public:
     void setAutore(const QString& newAutore);
    
     void acceptVisitor(Visitor* visitor);   
-    QStringList getFields() const; 
+    QString getFields() const; 
 };
 
 

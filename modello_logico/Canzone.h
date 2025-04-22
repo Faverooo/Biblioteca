@@ -13,7 +13,7 @@ public:
     QString getArtista() const;
     void setArtista(const QString& newArtista);
 
-    QStringList getFields() const; 
+    QString getFields() const; 
     void acceptVisitor(Visitor* visitor);    
 };
 

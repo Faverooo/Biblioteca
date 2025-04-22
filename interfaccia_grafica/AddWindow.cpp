@@ -23,6 +23,10 @@ AddWindow::AddWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullp
     layout->addWidget(backButton);
     connect(backButton, &QPushButton::clicked, this, &AddWindow::backButtonClicked);
     
+    saveButton = new QPushButton("Salva (ctrl+s)", this);
+    layout->addWidget(saveButton);
+    connect(saveButton, &QPushButton::clicked, this, &AddWindow::onSaveButtonClicked);
+    
     comboBox = new QComboBox(this);
     comboBox->addItem("Seleziona tipo");
     comboBox->addItem("Libro");
@@ -33,9 +37,6 @@ AddWindow::AddWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullp
     layout->addWidget(comboBox);
     connect(comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &AddWindow::onComboBoxChanged);
     layout->addStretch();
-    saveButton = new QPushButton("Salva (ctrl+s)", this);
-    layout->addWidget(saveButton);
-    connect(saveButton, &QPushButton::clicked, this, &AddWindow::onSaveButtonClicked);
 
     // Shortcut oltre al pulsante di salvataggio
     QShortcut *saveShortcut = new QShortcut(QKeySequence("Ctrl+S"), this);
@@ -53,13 +54,14 @@ void AddWindow::resetComboBox()
 
 void AddWindow::onComboBoxChanged(int index)
 {
-    if (currentEditWidget)
+    if (currentEditWidget) //se un widget é caricato lo elimina
     {
         layout->removeWidget(currentEditWidget);
         delete currentEditWidget;
         currentEditWidget = nullptr;
     }
 
+    //a seconda dell'indice carica un widget diverso a seconda del media scelto
     switch (index)
     {
     case 1: // Libro
@@ -113,7 +115,7 @@ void AddWindow::onComboBoxChanged(int index)
             canzoneEditWidget->setID(StorageManager::instance().generateID());
         }
         break;
-    case 5: // Cartella
+    case 5: // Playlist
         currentEditWidget = new AlbumEditWidget(this);
         if (auto albumEditWidget = qobject_cast<AlbumEditWidget *>(currentEditWidget))
         {
@@ -128,7 +130,7 @@ void AddWindow::onComboBoxChanged(int index)
 
     if (currentEditWidget)
     {
-        // layout->insertWidget(layout->count() - 2, currentEditWidget); // Inserisce sopra il pulsante "Salva"
+        // layout->insertWidget(layout->count() - 2, currentEditWidget); // Inserisce sopra il pulsante "Salva", salva in basso
         layout->addWidget(currentEditWidget);
     }
 }
@@ -137,7 +139,7 @@ void AddWindow::onSaveButtonClicked()
 {
     if (currentEditWidget)
     {
-        currentEditWidget->saveImg();
+        currentEditWidget->saveImg(); //gestisce in maniera inteligente l'eliminazione/aggiunta di foto con stesso nome, refresh ecc...
         Media *media = currentEditWidget->getMedia();
         if (media)
         {

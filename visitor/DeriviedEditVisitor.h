@@ -15,7 +15,7 @@
 
 #include "../interfaccia_grafica/SongSelectionDialog.h"
 
-class AbsEditWidget : public QWidget
+class AbsEditWidget : public QWidget //Widget astratto che rappresenta la modifica/aggiunta di widget e dei relativi campi
 {
     Q_OBJECT
 
@@ -40,8 +40,11 @@ protected:
     int id;
 
 private slots:
-    void openFileDialog();
+    void openFileDialog(); //per scegliere l'immagine
 };
+
+
+//CREAZIONE DEI WIDGET PER OGNI TIPO DI MEDIA 
 
 class LibroEditWidget : public AbsEditWidget
 {
@@ -123,7 +126,7 @@ public:
     Media *getMedia();
 
 private slots:
-    void openSongSelectionDialog();
+    void openSongSelectionDialog(); //per la scelta delle canzoni da mettere nell'album
 
 private:
     QList<int> archivio; // ID delle canzoni nell'album

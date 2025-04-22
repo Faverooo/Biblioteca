@@ -47,18 +47,19 @@ void CardScrollArea::refreshCards()
     // Aggiungi nuove card
     QList<Media *> mediaList = *StorageManager::instance().getStorage();
     bool match = false;
-    QStringList fields;
+    QString fields;
     for (const auto &media : mediaList)
     {
         fields = media->getFields();
-        match = false;
-        for (const QString &field : fields) {
-            if (field.contains(searchText, Qt::CaseInsensitive)) {
-                match = true;
-                break;
+        QStringList searchWords = searchText.split(' ', Qt::SkipEmptyParts);
+        match = true;
+        for (const QString &word : searchWords) {
+            if (!fields.contains(word, Qt::CaseInsensitive)) {
+            match = false;
+            break;
             }
         }
-
+        
         if ((lastFilter == "TUTTO" ||
             (lastFilter == "Libri" && dynamic_cast<Libro*>(media)) ||
             (lastFilter == "Riviste" && dynamic_cast<Rivista*>(media)) ||
@@ -90,6 +91,9 @@ void CardScrollArea::refreshCards()
     }
 
 }
+
+
+//salvano i filtri in maniera tale da "incrociare" filtri e visualizzazione solo di un tipo di media
 
 void CardScrollArea::refreshView(const QString &filterType)
 {

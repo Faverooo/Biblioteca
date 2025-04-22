@@ -14,8 +14,9 @@ void Rivista::setEditore(const QString& newEditore) {
     editore = newEditore;
 }
 
-QStringList Rivista::getFields() const {
-    return { getTitolo(), QString::number(getAnno()), getEditore(), QString::number(getPagine())};
+QString Rivista::getFields() const {
+    QString allFields = getTitolo() + " " + QString::number(getAnno()) + " " + getEditore() + " " + QString::number(getPagine());
+    return allFields;
 }
 
 void Rivista::acceptVisitor(Visitor* visitor) {

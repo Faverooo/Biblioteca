@@ -65,36 +65,5 @@
         "percorsoImg": "salvataggi/immagini/vanity_fair2.png",
         "tipo": "Album",
         "titolo": "rew"
-    },
-    {
-        "anno": 32,
-        "artista": "marcojj",
-        "durata": 34,
-        "id": 52086776,
-        "percorsoImg": "salvataggi/immagini/via_pal.png",
-        "size": 222,
-        "tipo": "Canzone",
-        "titolo": "prova"
-    },
-    {
-        "anno": 55,
-        "artista": "ioo",
-        "durata": 78,
-        "id": 454665634,
-        "percorsoImg": "salvataggi/immagini/la_divina_commedia2.png",
-        "size": 4,
-        "tipo": "Canzone",
-        "titolo": "NO"
-    },
-    {
-        "anno": 46,
-        "archivio": [
-            910956012,
-            52086776
-        ],
-        "id": 332996000,
-        "percorsoImg": "salvataggi/immagini/skyscraper.png",
-        "tipo": "Album",
-        "titolo": "raccc"
     }
 ]

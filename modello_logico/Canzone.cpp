@@ -13,8 +13,9 @@ void Canzone::setArtista(const QString& newArtista) {
     artista = newArtista;
 }
 
-QStringList Canzone::getFields() const {
-    return { getTitolo(), QString::number(getAnno()), artista, QString::number(getDurata()),QString::number(getSize()) };
+QString Canzone::getFields() const {
+    QString allFields = getTitolo() + " " + QString::number(getAnno()) + " " + artista + " " + QString::number(getDurata()) + " " + QString::number(getSize());
+    return allFields;
 }
 
 void Canzone::acceptVisitor(Visitor* visitor) {

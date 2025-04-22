@@ -42,6 +42,7 @@ EditWindow::EditWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nul
 
 void EditWindow::showEdit(int id){
 
+    //carica il media giusto
     QList<Media*>* storage = StorageManager::instance().getStorage();
     Media * editMedia = nullptr;
     for (Media* media : *storage) {
@@ -56,6 +57,7 @@ void EditWindow::showEdit(int id){
         emit backButtonClicked();
         return;
     }
+    //carica il widget
     EditVisitor editVisitor;
     editMedia->acceptVisitor(&editVisitor);
     if (currentEditWidget!=nullptr) {
@@ -76,6 +78,7 @@ void EditWindow::save(){
         {
             QList<Media*> *storage = StorageManager::instance().getStorage();
             for (int i = 0; i < storage->size(); ++i) {
+                //controlla se serve risalvare l'immagine o é la stessa
                 if (storage->at(i)->getID() == media->getID()) {
                     if(currentEditWidget->getPercorso() != (storage->at(i)->getPercorsoImg()))
                     {

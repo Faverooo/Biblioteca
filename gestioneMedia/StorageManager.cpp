@@ -129,6 +129,7 @@ void StorageManager::fromFiletoStorage()
         return;
     }
 
+    //dopo aver ottenuto un array lo "spezza e salva tutto in memoria"
     QJsonArray jsonArray = doc.array();
     for (const QJsonValue &value : jsonArray)
     {
@@ -153,6 +154,7 @@ void StorageManager::printToFile()
         return;
     }
 
+    //genera un array in json da scrivere nel file
     QJsonArray jsonArray;
     for (Media *media : storage)
     {
@@ -176,14 +178,39 @@ void StorageManager::addToStorage(Media *media)
 
 void StorageManager::removeToStorage(int id)
 {
+    // Trova attraverso l'id e rimuove dalla memoria l'oggetto associato
     for (auto it = storage.begin(); it != storage.end(); ++it)
     {
         if ((*it)->getID() == id)
         {
+            // Se l'oggetto è una canzone, rimuovi le sue occorrenze dagli album
+            Canzone *canzone = dynamic_cast<Canzone *>(*it);
+            if (canzone)
+            {
+                for (Media *media : storage)
+                {
+                    Album *album = dynamic_cast<Album *>(media);
+                    if (album)
+                    {
+                        QList<int> archivio = album->getArchivio();
+                        if (archivio.contains(id))
+                        {
+                            archivio.removeAll(id);
+                            album->setArchivio(archivio); // Aggiorna l'archivio dell'album
+                        }
+                    }
+                }
+            }
+
+            // Rimuovi il file associato
             QString fullPath = QCoreApplication::applicationDirPath() + "/" + (*it)->getPercorsoImg();
             QFile::remove(fullPath);
+
+            // Elimina l'oggetto e rimuovilo dallo storage
             delete *it;
             storage.erase(it);
+
+            // Salva le modifiche sul file
             printToFile();
             return;
         }

@@ -15,8 +15,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     QHBoxLayout *headerLayout = new QHBoxLayout(headerWidget);
     QLabel *titleLabel = new QLabel("MyArchive", headerWidget);
+    titleLabel->setStyleSheet("font-size: 24px; font-weight: bold; color: rgb(3, 85, 34); border: 0px; padding: 5px;");
+    titleLabel->setAlignment(Qt::AlignCenter);
     QPushButton *exitButton = new QPushButton("Exit", headerWidget);
-    titleLabel->setStyleSheet("border: 0px;");
     exitButton->setStyleSheet("padding: 10px;");
 
     headerLayout->addWidget(titleLabel);

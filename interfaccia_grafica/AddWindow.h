@@ -13,14 +13,14 @@ class AddWindow : public QWidget {
 
 public:
     explicit AddWindow(QWidget *parent = nullptr);
-    void resetComboBox();
+    void resetComboBox(); //resetta il widget di scelta
     
 signals:
-    void backButtonClicked();
+    void backButtonClicked(); //per tornare alla schermata precedente
 
 private slots:
-    void onComboBoxChanged(int index);
-    void onSaveButtonClicked();
+    void onComboBoxChanged(int index); //carica il nuovo widget per il riempimento dell'oggetto
+    void onSaveButtonClicked(); //salvataggio
 
 private:
     QVBoxLayout *layout;

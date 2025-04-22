@@ -4,6 +4,8 @@
 
 EditVisitor::EditVisitor() : editWidget(nullptr) {}
 
+//UTILIZZANO LE CLASSI CREATE IN DeriviedEditVisitor E NE SETTANO GLI ATTRIBUTI PER LA MODIFICA
+
 void EditVisitor::visit(Libro *libro) {
     if (editWidget!=nullptr){
         delete editWidget;}

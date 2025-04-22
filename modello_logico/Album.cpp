@@ -25,8 +25,9 @@ void Album::setArchivio(const QList<int>& nuovoArchivio) {
 //     archivio.removeAll(id);
 // }
 
-QStringList Album::getFields() const {
-    return { getTitolo(), QString::number(getAnno()) };
+QString Album::getFields() const {
+    QString allFields = getTitolo() + " " + QString::number(getAnno());
+    return allFields;
 }
 
 void Album::acceptVisitor(Visitor* visitor) {

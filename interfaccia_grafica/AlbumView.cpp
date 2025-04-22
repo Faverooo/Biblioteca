@@ -14,6 +14,7 @@ AlbumView::AlbumView(QWidget *parent) : QWidget(parent) {
     // Pulsante di back
     backButton = new QPushButton("Back", this);
     backButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    backButton->setStyleSheet("background-color: #f44336; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
     connect(backButton, &QPushButton::clicked, this, &AlbumView::backButtonClicked);
     mainLayout->addWidget(backButton, 0, Qt::AlignLeft);
 

@@ -12,8 +12,8 @@ class EditWindow : public QWidget {
 
 public:
     explicit EditWindow(QWidget *parent = nullptr);
-    void showEdit(int id);    
-    void save();
+    void showEdit(int id); //carica i dati corrispondenti al media selezionato
+    void save(); //salva gli aggiornamenti
 signals:
     void backButtonClicked();
 
