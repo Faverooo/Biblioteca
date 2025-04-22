@@ -13,8 +13,10 @@
 #include "../modello_logico/Canzone.h"
 #include "../modello_logico/Album.h"
 
+#include "../interfaccia_grafica/SongSelectionDialog.h"
 
-class AbsEditWidget : public QWidget {
+class AbsEditWidget : public QWidget //Widget astratto che rappresenta la modifica/aggiunta di widget e dei relativi campi
+{
     Q_OBJECT
 
 public:
@@ -38,10 +40,14 @@ protected:
     int id;
 
 private slots:
-    void openFileDialog();
+    void openFileDialog(); //per scegliere l'immagine
 };
 
-class LibroEditWidget : public AbsEditWidget {
+
+//CREAZIONE DEI WIDGET PER OGNI TIPO DI MEDIA 
+
+class LibroEditWidget : public AbsEditWidget
+{
     Q_OBJECT
 
 public:
@@ -56,7 +62,8 @@ private:
     QLineEdit *LEpagine;
 };
 
-class RivistaEditWidget : public AbsEditWidget {
+class RivistaEditWidget : public AbsEditWidget
+{
     Q_OBJECT
 
 public:
@@ -65,13 +72,14 @@ public:
     void setEditore(const QString &newEditore);
     void setPagine(const QString &pagine);
     Media *getMedia();
+
 private:
     QLineEdit *LEeditore;
     QLineEdit *LEpagine;
 };
 
-
-class FilmEditWidget : public AbsEditWidget {
+class FilmEditWidget : public AbsEditWidget
+{
     Q_OBJECT
 
 public:
@@ -82,6 +90,7 @@ public:
     void setRegista(const QString &regista);
     void setLingua(const QString &lingua);
     Media *getMedia();
+
 private:
     QLineEdit *LEsize;
     QLineEdit *LEdurata;
@@ -89,8 +98,8 @@ private:
     QLineEdit *LElingua;
 };
 
-
-class CanzoneEditWidget : public AbsEditWidget {
+class CanzoneEditWidget : public AbsEditWidget
+{
     Q_OBJECT
 
 public:
@@ -100,10 +109,29 @@ public:
     void setDurata(const QString &durata);
     void setArtista(const QString &artista);
     Media *getMedia();
+
 private:
     QLineEdit *LEsize;
     QLineEdit *LEdurata;
     QLineEdit *LEartista;
 };
+
+class AlbumEditWidget : public AbsEditWidget
+{
+    Q_OBJECT
+
+public:
+    explicit AlbumEditWidget(QWidget *parent = nullptr);
+    void setArchivio(const QList<int> &newArchivio);
+    Media *getMedia();
+
+private slots:
+    void openSongSelectionDialog(); //per la scelta delle canzoni da mettere nell'album
+
+private:
+    QList<int> archivio; // ID delle canzoni nell'album
+    QPushButton *manageSongsButton;
+};
+
 
 #endif // DERIVIEDEDITVISITOR_H

@@ -13,6 +13,10 @@ void Canzone::setArtista(const QString& newArtista) {
     artista = newArtista;
 }
 
+QString Canzone::getFields() const {
+    QString allFields = getTitolo() + " " + QString::number(getAnno()) + " " + artista + " " + QString::number(getDurata()) + " " + QString::number(getSize());
+    return allFields;
+}
 
 void Canzone::acceptVisitor(Visitor* visitor) {
     visitor->visit(this);

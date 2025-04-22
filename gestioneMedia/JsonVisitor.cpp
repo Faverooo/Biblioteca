@@ -5,6 +5,9 @@
 #include "../modello_logico/Canzone.h"
 #include "../modello_logico/Album.h"
 
+
+// VISITOR
+
 void JsonVisitor::visit(Libro *libro)
 {
     json = QJsonObject();
@@ -42,7 +45,7 @@ void JsonVisitor::visit(Album *album)
 {
     json = QJsonObject();
     json["tipo"] = "Album";
-    toJsonMD(album);
+    toJsonM(album);
 
     QJsonArray jsonArray;
     for (int id : album->getArchivio())
@@ -51,6 +54,8 @@ void JsonVisitor::visit(Album *album)
     }
     json["archivio"] = jsonArray;
 }
+
+// ROUTINE DI SUPPORTO
 
 void JsonVisitor::toJsonM(Media *m)
 {

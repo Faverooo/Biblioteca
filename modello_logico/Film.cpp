@@ -21,6 +21,11 @@ void Film::setLingua(const QString& newLingua) {
     lingua = newLingua;
 }
 
+QString Film::getFields() const {
+    QString allFields = getTitolo() + " " + QString::number(getAnno()) + " " + regista + " " + lingua + " " + QString::number(getDurata()) + " " + QString::number(getSize());
+    return allFields;
+}
+
 void Film::acceptVisitor(Visitor* visitor) {
     visitor->visit(this);
 }

@@ -9,17 +9,18 @@
 #include <QJsonDocument>
 #include <QFile>
 #include <QCoreApplication>
-#include<QRandomGenerator>
+#include <QRandomGenerator>
 
-QList<Media*>* StorageManager::getStorage(){
+QList<Media *> *StorageManager::getStorage()
+{
     return &storage;
 }
 
-StorageManager& StorageManager::instance() {
+StorageManager &StorageManager::instance()
+{
     static StorageManager instance;
     return instance;
 }
-
 
 void StorageManager::fromJOToStorage(const QJsonObject &json)
 {
@@ -62,46 +63,43 @@ void StorageManager::fromJOToStorage(const QJsonObject &json)
                     }
                 }
             }
-            else
+            else if (json["tipo"].toString() == "Film" || json["tipo"].toString() == "Canzone")
             {
-                if (json["tipo"].toString() == "Film" || json["tipo"].toString() == "Canzone" || json["tipo"].toString() == "Album")
+                if (json.contains("size") && json["size"].isDouble() && json.contains("durata") && json["durata"].isDouble())
                 {
-                    if (json.contains("size") && json["size"].isDouble() && json.contains("durata") && json["durata"].isDouble())
-                    {
-                        unsigned int size = json["size"].toInt();
-                        unsigned int durata = json["durata"].toInt();
+                    unsigned int size = json["size"].toInt();
+                    unsigned int durata = json["durata"].toInt();
 
-                        if (json["tipo"].toString() == "Film")
+                    if (json["tipo"].toString() == "Film")
+                    {
+                        if (json.contains("regista") && json["regista"].isString() && json.contains("lingua") && json["lingua"].isString())
                         {
-                            if (json.contains("regista") && json["regista"].isString() && json.contains("lingua") && json["lingua"].isString())
-                            {
-                                QString regista = json["regista"].toString();
-                                QString lingua = json["lingua"].toString();
-                                ptr = new Film(titolo, percorsoImg, anno, size, durata, regista, lingua, id);
-                            }
-                        }
-                        else if (json["tipo"].toString() == "Canzone")
-                        {
-                            if (json.contains("artista") && json["artista"].isString())
-                            {
-                                QString artista = json["artista"].toString();
-                                ptr = new Canzone(titolo, percorsoImg, anno, size, durata, artista, id);
-                            }
-                        }
-                        else
-                        {
-                            if (json.contains("archivio") && json["archivio"].isArray())
-                            {
-                                QJsonArray jsonArray = json["archivio"].toArray();
-                                QList<int> archivio;
-                                for (const QJsonValue &value : jsonArray)
-                                {
-                                    archivio.append(value.toInt());
-                                }
-                                ptr = new Album(titolo, percorsoImg, anno, size, durata, archivio, id);
-                            }
+                            QString regista = json["regista"].toString();
+                            QString lingua = json["lingua"].toString();
+                            ptr = new Film(titolo, percorsoImg, anno, size, durata, regista, lingua, id);
                         }
                     }
+                    else if (json["tipo"].toString() == "Canzone")
+                    {
+                        if (json.contains("artista") && json["artista"].isString())
+                        {
+                            QString artista = json["artista"].toString();
+                            ptr = new Canzone(titolo, percorsoImg, anno, size, durata, artista, id);
+                        }
+                    }
+                }
+            }
+            else if (json["tipo"].toString() == "Album")
+            {
+                if (json.contains("archivio") && json["archivio"].isArray())
+                {
+                    QJsonArray jsonArray = json["archivio"].toArray();
+                    QList<int> archivio;
+                    for (const QJsonValue &value : jsonArray)
+                    {
+                        archivio.append(value.toInt());
+                    }
+                    ptr = new Album(titolo, percorsoImg, anno, archivio, id);
                 }
             }
         }
@@ -131,6 +129,7 @@ void StorageManager::fromFiletoStorage()
         return;
     }
 
+    //dopo aver ottenuto un array lo "spezza e salva tutto in memoria"
     QJsonArray jsonArray = doc.array();
     for (const QJsonValue &value : jsonArray)
     {
@@ -155,6 +154,7 @@ void StorageManager::printToFile()
         return;
     }
 
+    //genera un array in json da scrivere nel file
     QJsonArray jsonArray;
     for (Media *media : storage)
     {
@@ -170,7 +170,6 @@ void StorageManager::printToFile()
     file.close();
 }
 
-
 void StorageManager::addToStorage(Media *media)
 {
     storage.push_back(media);
@@ -179,21 +178,44 @@ void StorageManager::addToStorage(Media *media)
 
 void StorageManager::removeToStorage(int id)
 {
+    // Trova attraverso l'id e rimuove dalla memoria l'oggetto associato
     for (auto it = storage.begin(); it != storage.end(); ++it)
     {
         if ((*it)->getID() == id)
         {
+            // Se l'oggetto è una canzone, rimuovi le sue occorrenze dagli album
+            Canzone *canzone = dynamic_cast<Canzone *>(*it);
+            if (canzone)
+            {
+                for (Media *media : storage)
+                {
+                    Album *album = dynamic_cast<Album *>(media);
+                    if (album)
+                    {
+                        QList<int> archivio = album->getArchivio();
+                        if (archivio.contains(id))
+                        {
+                            archivio.removeAll(id);
+                            album->setArchivio(archivio); // Aggiorna l'archivio dell'album
+                        }
+                    }
+                }
+            }
+
+            // Rimuovi il file associato
             QString fullPath = QCoreApplication::applicationDirPath() + "/" + (*it)->getPercorsoImg();
             QFile::remove(fullPath);
+
+            // Elimina l'oggetto e rimuovilo dallo storage
             delete *it;
             storage.erase(it);
+
+            // Salva le modifiche sul file
             printToFile();
             return;
         }
     }
-    
 }
-
 
 int StorageManager::generateID() const
 {
@@ -215,6 +237,7 @@ int StorageManager::generateID() const
     return id;
 }
 
-void StorageManager::setPath(const QString& newPath) {
+void StorageManager::setPath(const QString &newPath)
+{
     path = newPath;
 }

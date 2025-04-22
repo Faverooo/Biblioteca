@@ -38,7 +38,7 @@ void CardVisitor::visit(Libro *libro)
     rightLayout->addWidget(anno);
     rightLayout->addWidget(autore);
     rightLayout->addWidget(pagine);
-
+    rightLayout->addStretch();
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     edit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     remove->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -85,6 +85,7 @@ void CardVisitor::visit(Rivista *rivista)
     rightLayout->addWidget(anno);
     rightLayout->addWidget(editore);
     rightLayout->addWidget(pagine);
+    rightLayout->addStretch();
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     edit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -136,7 +137,8 @@ void CardVisitor::visit(Film *film)
     rightLayout->addWidget(regista);
     rightLayout->addWidget(lingua);
     rightLayout->addWidget(size);
-    
+    rightLayout->addStretch();
+
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     edit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     remove->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -187,6 +189,7 @@ void CardVisitor::visit(Canzone *canzone)
     rightLayout->addWidget(durata);
     rightLayout->addWidget(artista);
     rightLayout->addWidget(size);
+    rightLayout->addStretch();
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(edit);
@@ -218,7 +221,23 @@ void CardVisitor::visit(Album *album)
 
     // Layout per la foto
     QVBoxLayout *leftLayout = new QVBoxLayout();
-    setDefaultAttributes(album);
+    imgLabel = new QLabel(card);
+    QDir dir(QCoreApplication::applicationDirPath());
+    QString imgPath = dir.filePath(album->getPercorsoImg());
+    QPixmap pixmap(imgPath);
+    imgLabel->setPixmap(pixmap.scaled(QSize(540,540), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+    // attributi di base di album
+    titolo = new QLabel("Nome Playlist: " + album->getTitolo(), card);
+    anno = new QLabel("Anno: " + QString::number(album->getAnno()), card);
+    edit = new QPushButton("MODIFICA", card);
+    remove = new QPushButton("RIMUOVI", card);
+
+    // Collega i segnali dei pulsanti agli slot con l'ID dell'oggetto
+    connect(edit, &QPushButton::clicked, [this, album]()
+            { handleEditButtonClicked(album->getID()); });
+    connect(remove, &QPushButton::clicked, [this, album]()
+            { handleRemoveButtonClicked(album->getID()); });
 
     imgLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     imgLabel->setAlignment(Qt::AlignCenter);
@@ -226,7 +245,17 @@ void CardVisitor::visit(Album *album)
 
     // Layout per gli attributi e i pulsanti
     QVBoxLayout *rightLayout = new QVBoxLayout();
+    rightLayout->addWidget(titolo);
+    rightLayout->addWidget(anno);
+    
     // Aggiungi altri widget specifici per Album
+
+    QPushButton* visualizzaAlbum = new QPushButton("Vedi Contenuto", card);
+    rightLayout->addWidget(visualizzaAlbum);
+    connect(visualizzaAlbum, &QPushButton::clicked, [this, album]()
+    { handleViewAlbumButtonClicked(album->getID()); });
+
+    rightLayout->addStretch();
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(edit);
@@ -244,11 +273,12 @@ void CardVisitor::visit(Album *album)
     imgLabel->setStyleSheet("border: 1px solid #ccc; border-radius: 5px;");
     titolo->setStyleSheet("font-weight: bold; font-size: 16px; margin-bottom: 5px;");
     anno->setStyleSheet("color: #666; margin-bottom: 5px;");
+    visualizzaAlbum->setStyleSheet("background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
     edit->setStyleSheet("background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
     remove->setStyleSheet("background-color: #f44336; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
 }
 
-void CardVisitor::setDefaultAttributes(Media *media)
+void CardVisitor::setDefaultAttributes(Media *media) //funzione ausiliaria comune
 {
     // carica foto
     imgLabel = new QLabel(card);
@@ -273,7 +303,6 @@ void CardVisitor::setDefaultAttributes(Media *media)
 void CardVisitor::handleEditButtonClicked(int id)
 {
     // Emitti il segnale con l'ID
-    //qWarning("Edit button clicked, id: %d", id);
     emit editButtonClicked(id);
 }
 
@@ -282,6 +311,13 @@ void CardVisitor::handleRemoveButtonClicked(int id)
     // Emitti il segnale con l'ID
     emit removeButtonClicked(id);
 }
+
+void CardVisitor::handleViewAlbumButtonClicked(int id)
+{
+    // Emitti il segnale con l'ID
+    emit viewAlbumButtonClicked(id);
+}
+
 
 QWidget *CardVisitor::getCard()
 {

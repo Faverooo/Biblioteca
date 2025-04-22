@@ -18,6 +18,7 @@
         "qcoreapplication": "cpp",
         "qvboxlayout": "cpp",
         "new": "cpp",
-        "qpushbutton": "cpp"
+        "qpushbutton": "cpp",
+        "qhboxlayout": "cpp"
     }
 }

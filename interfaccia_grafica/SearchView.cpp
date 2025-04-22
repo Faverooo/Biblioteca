@@ -4,17 +4,23 @@
 #include <QListWidget>
 #include <QScrollArea>
 #include <QWidget>
+#include <QShortcut>
 
 SearchView::SearchView(QWidget *parent) : QWidget(parent)
 {
     setupUI();
 
+    // Shortcut Ctrl+A per addButtonClicked
+    QShortcut *shortcut = new QShortcut(QKeySequence("Ctrl+A"), this);
+    connect(shortcut, &QShortcut::activated, this, &SearchView::addButtonClicked);
+
     connect(addButton, &QPushButton::clicked, this, &SearchView::addButtonClicked);
     connect(cardScrollArea, &CardScrollArea::editButtonClicked, this, &SearchView::ActionOnEditButtonClicked);
+    connect(cardScrollArea, &CardScrollArea::viewAlbumButtonClicked, this, &SearchView::ActionOnViewAlbumButtonClicked);
     connect(selector, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &SearchView::onSelectorChanged);
     connect(resetButton, &QPushButton::clicked, this, &SearchView::refresh);
     
-    // Per un pulsante
+    // Ricerca con un pulsante
     //connect(searchButton, &QPushButton::clicked, this, &SearchView::onSearch);
 
     // Connessione per la ricerca in tempo reale
@@ -34,6 +40,9 @@ void SearchView::setupUI()
     QVBoxLayout *sideBarLayout = new QVBoxLayout();
     searchBar = new QLineEdit(this);
     searchBar->setPlaceholderText("CERCA:");
+
+    //E' possibile fare la ricerca solo quando il bottone é premuto
+
     //searchButton = new QPushButton(this);
     //searchButton->setText("O"); // Icona lente d'ingrandimento
     sideBarLayout->addWidget(searchBar);
@@ -159,7 +168,7 @@ void SearchView::setupUI()
 }
 
 
-void SearchView::refresh() {
+void SearchView::refresh() { //setta tutto a default
     selector->setCurrentIndex(0);
     cardScrollArea->refreshView(selector->currentText());
     titleCheckBox->setChecked(false);
@@ -169,7 +178,7 @@ void SearchView::refresh() {
     cardScrollArea->refreshSearch(searchBar->text(), titleCheckBox->isChecked(), yearCheckBox->isChecked(), authorCheckBox->isChecked());
 }
 
-void SearchView::onSearch(){
+void SearchView::onSearch(){ //ricerca
     QString searchText = searchBar->text();
     bool searchByTitle = titleCheckBox->isChecked();
     bool searchByYear = yearCheckBox->isChecked();
@@ -178,13 +187,15 @@ void SearchView::onSearch(){
     cardScrollArea->refreshSearch(searchText, searchByTitle, searchByYear, searchByAuthor);
 }
 
-
+void SearchView::onSelectorChanged() { //cambio vista
+    QString filterType = selector->currentText();
+    cardScrollArea->refreshView(filterType);
+}
 
 void SearchView::ActionOnEditButtonClicked(int id) {
     emit editButtonClicked(id);
 }
 
-void SearchView::onSelectorChanged() {
-    QString filterType = selector->currentText();
-    cardScrollArea->refreshView(filterType);
+void SearchView::ActionOnViewAlbumButtonClicked(int id) {
+    emit viewAlbumButtonClicked(id);
 }

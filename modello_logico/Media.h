@@ -30,6 +30,7 @@ public:
     int getAnno() const;
     void setAnno(const int newAnno);
 
+    virtual QString getFields() const = 0; //unica stringa con tutti i dati del media, serve per fare la ricerca
     virtual void acceptVisitor(Visitor* visitor) = 0;
 };
 

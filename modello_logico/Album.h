@@ -1,22 +1,22 @@
 #ifndef ALBUM_H
 #define ALBUM_H
 
-#include"MediaDigital.h"
+#include"Media.h"
 
-
-class Album: public MediaDigital{
+class Album: public Media{
 private:
    QList<int> archivio;
 public:
     Album();
-    Album(const QString& titolo, const QString& percorsoImg, int anno, unsigned int size, unsigned int durata, QList<int> archivio, unsigned int id = 0);
+    Album(const QString& titolo, const QString& percorsoImg, int anno, QList<int> archivio, unsigned int id = 0);
     
     //interi univoci (ID) che possono essere salvati in json, equivalente di puntatori
     QList<int> getArchivio() const;
-    void addToArchivio(int id);
-    void removeFromArchivio(int id);
+    void setArchivio(const QList<int>& nuovoArchivio);
+    // void addToArchivio(int id);
+    // void removeFromArchivio(int id);
 
-   
+    QString getFields() const; 
     void acceptVisitor(Visitor* visitor);    
 };
 

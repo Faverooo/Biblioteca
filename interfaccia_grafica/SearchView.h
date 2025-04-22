@@ -39,9 +39,11 @@ private:
 signals:
     void addButtonClicked();
     void editButtonClicked(int id);
+    void viewAlbumButtonClicked(int id);
 
 private slots:
     void ActionOnEditButtonClicked(int id);
+    void ActionOnViewAlbumButtonClicked(int id);
     void onSelectorChanged();
 };
 

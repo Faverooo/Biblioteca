@@ -11,19 +11,20 @@ EditWindow::EditWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nul
 
     layout = new QVBoxLayout(this);
 
+    
+    banner = new QLabel("MODIFICA WIDGET", this);
+    banner->setAlignment(Qt::AlignCenter);
+    banner->setStyleSheet("font-size: 24px; font-weight: bold; color: black; background-color:rgb(225, 227, 222); border: 2px solid lightgreen; border-radius: 10px; padding: 10px; font-family: 'Arial', sans-serif;");
+    
+    layout->addWidget(banner);
+    
     backButton = new QPushButton("Indietro", this);
     layout->addWidget(backButton);
     connect(backButton, &QPushButton::clicked, this, &EditWindow::backButtonClicked);
-
-    banner = new QLabel("MODIFICA WIDGET", this);
-    banner->setAlignment(Qt::AlignCenter);
-    banner->setStyleSheet("font-size: 24px; font-weight: bold; color: blue;");
-
-    layout->addWidget(banner);
-
     saveButton = new QPushButton("Salva (ctrl+s)", this);
     layout->addWidget(saveButton);
     connect(saveButton, &QPushButton::clicked, this, &EditWindow::save);
+    layout->addStretch();
     setLayout(layout);
 
     //Shortcut oltre al pulsante di salvataggio
@@ -31,12 +32,17 @@ EditWindow::EditWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nul
     connect(saveShortcut, &QShortcut::activated, this, &EditWindow::save);
 
     currentEditWidget = nullptr;
+
+    saveButton->setStyleSheet("background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
+    backButton->setStyleSheet("background-color: #f44336; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
+
 }
 
 
 
 void EditWindow::showEdit(int id){
 
+    //carica il media giusto
     QList<Media*>* storage = StorageManager::instance().getStorage();
     Media * editMedia = nullptr;
     for (Media* media : *storage) {
@@ -51,6 +57,7 @@ void EditWindow::showEdit(int id){
         emit backButtonClicked();
         return;
     }
+    //carica il widget
     EditVisitor editVisitor;
     editMedia->acceptVisitor(&editVisitor);
     if (currentEditWidget!=nullptr) {
@@ -71,6 +78,7 @@ void EditWindow::save(){
         {
             QList<Media*> *storage = StorageManager::instance().getStorage();
             for (int i = 0; i < storage->size(); ++i) {
+                //controlla se serve risalvare l'immagine o é la stessa
                 if (storage->at(i)->getID() == media->getID()) {
                     if(currentEditWidget->getPercorso() != (storage->at(i)->getPercorsoImg()))
                     {

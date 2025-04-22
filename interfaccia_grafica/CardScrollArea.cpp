@@ -32,6 +32,7 @@ CardScrollArea::CardScrollArea(QWidget *parent) : QWidget(parent)
     // Collega il segnale al slot
     connect(cardVisitor, &CardVisitor::removeButtonClicked, this, &CardScrollArea::ActionOnRemoveButtonClicked);
     connect(cardVisitor, &CardVisitor::editButtonClicked, this, &CardScrollArea::ActionOnEditButtonClicked);
+    connect(cardVisitor, &CardVisitor::viewAlbumButtonClicked, this, &CardScrollArea::ActionOnViewAlbumButtonClicked);
 }
 
 void CardScrollArea::refreshCards()
@@ -45,16 +46,30 @@ void CardScrollArea::refreshCards()
     }
     // Aggiungi nuove card
     QList<Media *> mediaList = *StorageManager::instance().getStorage();
+    bool match = false;
+    QString fields;
     for (const auto &media : mediaList)
     {
+        fields = media->getFields();
+        QStringList searchWords = searchText.split(' ', Qt::SkipEmptyParts);
+        match = true;
+        for (const QString &word : searchWords) {
+            if (!fields.contains(word, Qt::CaseInsensitive)) {
+            match = false;
+            break;
+            }
+        }
+        
         if ((lastFilter == "TUTTO" ||
             (lastFilter == "Libri" && dynamic_cast<Libro*>(media)) ||
             (lastFilter == "Riviste" && dynamic_cast<Rivista*>(media)) ||
             (lastFilter == "Film" && dynamic_cast<Film*>(media)) ||
-            (lastFilter == "Canzoni" && dynamic_cast<Canzone*>(media))
+            (lastFilter == "Canzoni" && dynamic_cast<Canzone*>(media)) ||
+            (lastFilter == "Album" && dynamic_cast<Album*>(media))
             ) &&
             (
                 searchText.isEmpty() ||
+                (!searchByTitle && !searchByYear && !searchByAuthor && match) ||
                 (
                     (searchByTitle && media->getTitolo().contains(searchText, Qt::CaseInsensitive))
                     || (searchByYear && QString::number(media->getAnno()).contains(searchText, Qt::CaseInsensitive))
@@ -76,6 +91,9 @@ void CardScrollArea::refreshCards()
     }
 
 }
+
+
+//salvano i filtri in maniera tale da "incrociare" filtri e visualizzazione solo di un tipo di media
 
 void CardScrollArea::refreshView(const QString &filterType)
 {
@@ -110,4 +128,8 @@ void CardScrollArea::ActionOnRemoveButtonClicked(int id)
 void CardScrollArea::ActionOnEditButtonClicked(int id)
 {
     emit editButtonClicked(id);
+}
+void CardScrollArea::ActionOnViewAlbumButtonClicked(int id)
+{
+    emit viewAlbumButtonClicked(id);
 }

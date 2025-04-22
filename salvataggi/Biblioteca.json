@@ -55,5 +55,15 @@
         "percorsoImg": "salvataggi/immagini/dark_side_1.png",
         "tipo": "Rivista",
         "titolo": "prova32"
+    },
+    {
+        "anno": 2,
+        "archivio": [
+            52086776
+        ],
+        "id": 311884719,
+        "percorsoImg": "salvataggi/immagini/vanity_fair2.png",
+        "tipo": "Album",
+        "titolo": "rew"
     }
 ]

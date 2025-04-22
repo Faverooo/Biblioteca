@@ -56,19 +56,24 @@ void AbsEditWidget::setID(const int newID)
 
 void AbsEditWidget::saveImg()
 {
+    // Controlla se il percorso del file non è vuoto
     if (!filePath.isEmpty())
     {
         QFile file(filePath);
+        // Verifica se il file esiste
         if (file.exists())
         {
+            // Crea la directory di destinazione se non esiste
             QDir dir(QCoreApplication::applicationDirPath() + "/salvataggi/immagini");
             if (!dir.exists())
             {
                 dir.mkpath(".");
             }
+            // Ottiene il nome del file e costruisce il nuovo percorso
             QString fileName = QFileInfo(filePath).fileName();
             QString newFilePath = dir.filePath(fileName);
             int counter = 1;
+            // Gestisce i conflitti di nomi aggiungendo un suffisso numerico
             while (QFile::exists(newFilePath))
             {
                 QString baseName = QFileInfo(fileName).completeBaseName();
@@ -76,10 +81,12 @@ void AbsEditWidget::saveImg()
                 newFilePath = dir.filePath(QString("%1_%2.%3").arg(baseName).arg(counter).arg(extension));
                 counter++;
             }
+            // Copia il file nella nuova posizione e gestisce eventuali errori
             if (!QFile::copy(filePath, newFilePath))
             {
                 QMessageBox::warning(this, "Errore", "Impossibile copiare il file.");
             }
+            // Aggiorna il percorso del file con il nuovo percorso relativo
             filePath = QString("salvataggi/immagini/%1").arg(QFileInfo(newFilePath).fileName());
         }
     }
@@ -260,4 +267,36 @@ Media *CanzoneEditWidget::getMedia()
     canzone->setArtista(LEartista->text());
     canzone->setID(id);
     return canzone;
+}
+
+
+
+AlbumEditWidget::AlbumEditWidget(QWidget *parent) : AbsEditWidget(parent) {
+    manageSongsButton = new QPushButton("Gestisci Canzoni", this);
+    layout->addWidget(manageSongsButton);
+
+    connect(manageSongsButton, &QPushButton::clicked, this, &AlbumEditWidget::openSongSelectionDialog);
+}
+
+void AlbumEditWidget::openSongSelectionDialog() { //apre e modifica l'archivio del nuovo media tramite riferimento
+    SongSelectionDialog dialog(archivio, this);
+    dialog.exec();
+}
+
+void AlbumEditWidget::setArchivio(const QList<int> &newArchivio)
+{
+    archivio = newArchivio;
+}
+
+Media *AlbumEditWidget::getMedia() //media aggiornato
+{
+    if (LEtitolo->text().isEmpty() || LEanno->text().isEmpty() || filePath.isEmpty() )
+        return nullptr;
+    Album *album = new Album();
+    album->setTitolo(LEtitolo->text());
+    album->setAnno(LEanno->text().toInt());
+    album->setPercorsoImg(filePath);
+    album->setID(id);
+    album->setArchivio(archivio);
+    return album;
 }

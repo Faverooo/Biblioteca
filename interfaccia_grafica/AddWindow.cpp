@@ -12,34 +12,39 @@ AddWindow::AddWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullp
 
     layout = new QVBoxLayout(this);
 
+    
+    banner = new QLabel("AGGIUNTA WIDGET", this);
+    banner->setAlignment(Qt::AlignCenter);
+    banner->setStyleSheet("font-size: 24px; font-weight: bold; color: black; background-color:rgb(225, 227, 222); border: 2px solid lightgreen; border-radius: 10px; padding: 10px; font-family: 'Arial', sans-serif;");
+    
+    layout->addWidget(banner);
+    
     backButton = new QPushButton("Indietro", this);
     layout->addWidget(backButton);
     connect(backButton, &QPushButton::clicked, this, &AddWindow::backButtonClicked);
-
-    banner = new QLabel("AGGIUNTA WIDGET", this);
-    banner->setAlignment(Qt::AlignCenter);
-    banner->setStyleSheet("font-size: 24px; font-weight: bold; color: blue;");
-
-    layout->addWidget(banner);
-
+    
+    saveButton = new QPushButton("Salva (ctrl+s)", this);
+    layout->addWidget(saveButton);
+    connect(saveButton, &QPushButton::clicked, this, &AddWindow::onSaveButtonClicked);
+    
     comboBox = new QComboBox(this);
     comboBox->addItem("Seleziona tipo");
     comboBox->addItem("Libro");
     comboBox->addItem("Rivista");
     comboBox->addItem("Film");
     comboBox->addItem("Canzone");
+    comboBox->addItem("Cartella");
     layout->addWidget(comboBox);
     connect(comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &AddWindow::onComboBoxChanged);
+    layout->addStretch();
 
-    saveButton = new QPushButton("Salva (ctrl+s)", this);
-    layout->addWidget(saveButton);
-    connect(saveButton, &QPushButton::clicked, this, &AddWindow::onSaveButtonClicked);
-
-    //Shortcut oltre al pulsante di salvataggio
+    // Shortcut oltre al pulsante di salvataggio
     QShortcut *saveShortcut = new QShortcut(QKeySequence("Ctrl+S"), this);
     connect(saveShortcut, &QShortcut::activated, this, &AddWindow::onSaveButtonClicked);
 
     setLayout(layout);
+    saveButton->setStyleSheet("background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
+    backButton->setStyleSheet("background-color: #f44336; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
 }
 
 void AddWindow::resetComboBox()
@@ -49,13 +54,14 @@ void AddWindow::resetComboBox()
 
 void AddWindow::onComboBoxChanged(int index)
 {
-    if (currentEditWidget)
+    if (currentEditWidget) //se un widget é caricato lo elimina
     {
         layout->removeWidget(currentEditWidget);
         delete currentEditWidget;
         currentEditWidget = nullptr;
     }
 
+    //a seconda dell'indice carica un widget diverso a seconda del media scelto
     switch (index)
     {
     case 1: // Libro
@@ -109,12 +115,22 @@ void AddWindow::onComboBoxChanged(int index)
             canzoneEditWidget->setID(StorageManager::instance().generateID());
         }
         break;
+    case 5: // Playlist
+        currentEditWidget = new AlbumEditWidget(this);
+        if (auto albumEditWidget = qobject_cast<AlbumEditWidget *>(currentEditWidget))
+        {
+            albumEditWidget->setTitolo("");
+            albumEditWidget->setAnno("");
+            albumEditWidget->setID(StorageManager::instance().generateID());
+        }
+        break;
     default:
         break;
     }
 
     if (currentEditWidget)
     {
+        // layout->insertWidget(layout->count() - 2, currentEditWidget); // Inserisce sopra il pulsante "Salva", salva in basso
         layout->addWidget(currentEditWidget);
     }
 }
@@ -123,7 +139,7 @@ void AddWindow::onSaveButtonClicked()
 {
     if (currentEditWidget)
     {
-        currentEditWidget->saveImg();
+        currentEditWidget->saveImg(); //gestisce in maniera inteligente l'eliminazione/aggiunta di foto con stesso nome, refresh ecc...
         Media *media = currentEditWidget->getMedia();
         if (media)
         {

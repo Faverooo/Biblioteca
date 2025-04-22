@@ -39,11 +39,12 @@ signals:
     //segnale associato al id della card chiamante
     void editButtonClicked(int id);
     void removeButtonClicked(int id);
-
+    void viewAlbumButtonClicked(int id);
 private slots:
     //slots che associano la pressione al bottone e genera un segnale
     void handleEditButtonClicked(int id);
     void handleRemoveButtonClicked(int id);
+    void handleViewAlbumButtonClicked(int id);
 };
 
 #endif // CARDVISITOR_H

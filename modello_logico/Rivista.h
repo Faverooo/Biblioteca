@@ -13,6 +13,7 @@ public:
     QString getEditore() const;
     void setEditore(const QString& newEditore);
    
+    QString getFields() const; 
     void acceptVisitor(Visitor* visitor);
 };
 
