@@ -80,11 +80,13 @@ void EditWindow::save(){
             for (int i = 0; i < storage->size(); ++i) {
                 //controlla se serve risalvare l'immagine o é la stessa
                 if (storage->at(i)->getID() == media->getID()) {
-                    if(currentEditWidget->getPercorso() != (storage->at(i)->getPercorsoImg()))
+                    if(currentEditWidget->getPercorso() != (storage->at(i)->getPercorsoImg())) //nel caso in cui currentwidget non é stato modificato il percorso sará ancora relativo
                     {
                         currentEditWidget->saveImg();
                         media = currentEditWidget->getMedia(); //da risalvare con l'immagine aggiornata
-                        QFile::remove(QCoreApplication::applicationDirPath() + "/" + storage->at(i)->getPercorsoImg());
+                        if (storage->at(i)->getPercorsoImg() != media->getPercorsoImg()) { //nel caso in cui il media attuale fosse nullo, viene aggiornato con lo stesso nome
+                            QFile::remove(QCoreApplication::applicationDirPath() + "/" + storage->at(i)->getPercorsoImg());
+                        }
                         delete storage->at(i);
                     }
                     storage->replace(i, media);

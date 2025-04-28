@@ -285,6 +285,13 @@ void CardVisitor::setDefaultAttributes(Media *media) //funzione ausiliaria comun
     QDir dir(QCoreApplication::applicationDirPath());
     QString imgPath = dir.filePath(media->getPercorsoImg());
     QPixmap pixmap(imgPath);
+
+    if (pixmap.isNull()) {
+        // Set a default placeholder image if the image is missing or invalid
+        QDir dir(QCoreApplication::applicationDirPath() + "/salvataggi/immagini");
+        pixmap = QPixmap(dir.filePath("placeholder.png")); // Ensure placeholder.png exists in the specified directory
+    }
+
     imgLabel->setPixmap(pixmap.scaled(QSize(540,540), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     // attributi di base di media

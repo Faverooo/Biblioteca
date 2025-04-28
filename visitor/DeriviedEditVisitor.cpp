@@ -18,7 +18,7 @@ AbsEditWidget::AbsEditWidget(QWidget *parent) : QWidget(parent)
     LEanno = new QLineEdit(this);
     layout->addWidget(LEanno);
 
-    layout->addWidget(new QLabel("Percorso:", this));
+    layout->addWidget(new QLabel("Percorso immagine:", this));
     LApercorso = new QLabel(this);
     layout->addWidget(LApercorso);
 
