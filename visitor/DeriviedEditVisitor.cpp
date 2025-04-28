@@ -18,7 +18,7 @@ AbsEditWidget::AbsEditWidget(QWidget *parent) : QWidget(parent)
     LEanno = new QLineEdit(this);
     layout->addWidget(LEanno);
 
-    layout->addWidget(new QLabel("Percorso immagine:", this));
+    layout->addWidget(new QLabel("Percorso immagine (facoltativo):", this));
     LApercorso = new QLabel(this);
     layout->addWidget(LApercorso);
 
@@ -121,7 +121,7 @@ void LibroEditWidget::setPagine(const QString &pagine)
 
 Media *LibroEditWidget::getMedia()
 {
-    if (LEtitolo->text().isEmpty() || LEanno->text().isEmpty() || filePath.isEmpty() || LEautore->text().isEmpty() || LEpagine->text().isEmpty())
+    if (LEtitolo->text().isEmpty() || LEanno->text().isEmpty() || LEautore->text().isEmpty() || LEpagine->text().isEmpty())
         return nullptr;
     Libro *libro = new Libro();
     libro->setTitolo(LEtitolo->text());
@@ -156,7 +156,7 @@ void RivistaEditWidget::setPagine(const QString &pagine)
 
 Media *RivistaEditWidget::getMedia()
 {
-    if (LEtitolo->text().isEmpty() || LEanno->text().isEmpty() || filePath.isEmpty() || LEeditore->text().isEmpty() || LEpagine->text().isEmpty())
+    if (LEtitolo->text().isEmpty() || LEanno->text().isEmpty() || LEeditore->text().isEmpty() || LEpagine->text().isEmpty())
         return nullptr;
     Rivista *rivista = new Rivista();
     rivista->setTitolo(LEtitolo->text());
@@ -210,7 +210,7 @@ void FilmEditWidget::setLingua(const QString &lingua)
 
 Media *FilmEditWidget::getMedia()
 {
-    if (LEtitolo->text().isEmpty() || LEanno->text().isEmpty() || filePath.isEmpty() || LEsize->text().isEmpty() || LEdurata->text().isEmpty() || LEregista->text().isEmpty() || LElingua->text().isEmpty())
+    if (LEtitolo->text().isEmpty() || LEanno->text().isEmpty() || LEsize->text().isEmpty() || LEdurata->text().isEmpty() || LEregista->text().isEmpty() || LElingua->text().isEmpty())
         return nullptr;
     Film *film = new Film();
     film->setTitolo(LEtitolo->text());
@@ -256,7 +256,7 @@ void CanzoneEditWidget::setArtista(const QString &artista)
 
 Media *CanzoneEditWidget::getMedia()
 {
-    if (LEtitolo->text().isEmpty() || LEanno->text().isEmpty() || filePath.isEmpty() || LEsize->text().isEmpty() || LEdurata->text().isEmpty() || LEartista->text().isEmpty())
+    if (LEtitolo->text().isEmpty() || LEanno->text().isEmpty()  || LEsize->text().isEmpty() || LEdurata->text().isEmpty() || LEartista->text().isEmpty())
         return nullptr;
     Canzone *canzone = new Canzone();
     canzone->setTitolo(LEtitolo->text());
@@ -290,7 +290,7 @@ void AlbumEditWidget::setArchivio(const QList<int> &newArchivio)
 
 Media *AlbumEditWidget::getMedia() //media aggiornato
 {
-    if (LEtitolo->text().isEmpty() || LEanno->text().isEmpty() || filePath.isEmpty() )
+    if (LEtitolo->text().isEmpty() || LEanno->text().isEmpty() )
         return nullptr;
     Album *album = new Album();
     album->setTitolo(LEtitolo->text());

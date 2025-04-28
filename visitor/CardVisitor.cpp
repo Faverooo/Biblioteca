@@ -288,7 +288,7 @@ void CardVisitor::setDefaultAttributes(Media *media) //funzione ausiliaria comun
 
     if (pixmap.isNull()) {
         // Set a default placeholder image if the image is missing or invalid
-        QDir dir(QCoreApplication::applicationDirPath() + "/salvataggi/immagini");
+        QDir dir(QCoreApplication::applicationDirPath() + "/salvataggi");
         pixmap = QPixmap(dir.filePath("placeholder.png")); // Ensure placeholder.png exists in the specified directory
     }
 
