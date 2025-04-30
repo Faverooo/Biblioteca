@@ -52,18 +52,28 @@
         "editore": "gigi",
         "id": 1942171182,
         "pagine": 123,
-        "percorsoImg": "salvataggi/immagini/dark_side_1.png",
+        "percorsoImg": "salvataggi/immagini/biblioteca.png",
         "tipo": "Rivista",
         "titolo": "prova32"
     },
     {
         "anno": 2,
         "archivio": [
-            52086776
+            52086776,
+            910956012
         ],
         "id": 311884719,
         "percorsoImg": "salvataggi/immagini/vanity_fair2.png",
         "tipo": "Album",
         "titolo": "rew"
+    },
+    {
+        "anno": 32,
+        "autore": "io",
+        "id": 1558484619,
+        "pagine": 200,
+        "percorsoImg": "salvataggi/immagini/vanity_fair.png",
+        "tipo": "Libro",
+        "titolo": "prova"
     }
 ]
