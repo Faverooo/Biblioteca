@@ -9,7 +9,7 @@ private:
    QString autore;
 public:
     Libro();
-    Libro(const QString& titolo, const QString& percorsoImg, int anno, int pagine, QString& autore, unsigned int id = 0);
+    Libro(const QString& titolo, const QString& percorsoImg, int anno, int pagine, const QString& autore, unsigned int id = 0);
     QString getAutore() const;
     void setAutore(const QString& newAutore);
    

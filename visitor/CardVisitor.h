@@ -22,7 +22,7 @@ private:
     QPushButton* remove;
 
 public:
-    CardVisitor(QObject* parent = nullptr);
+    explicit CardVisitor(QObject* parent = nullptr);
     virtual void visit(Libro *libro);
     virtual void visit(Rivista *rivista);
     virtual void visit(Film *film);
@@ -33,7 +33,7 @@ public:
     QWidget* getCard();
 
     //set atributi per ogni media nella card
-    void setDefaultAttributes(Media* media);
+    void setDefaultAttributes(const Media* media);
 
 signals:
     //segnale associato al id della card chiamante

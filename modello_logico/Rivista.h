@@ -9,7 +9,7 @@ private:
     QString editore;
 public:
     Rivista();
-    Rivista(const QString& titolo, const QString& percorsoImg, int anno, int pagine, QString& editore, unsigned int id = 0);
+    Rivista(const QString& titolo, const QString& percorsoImg, int anno, int pagine, const QString& editore, unsigned int id = 0);
     QString getEditore() const;
     void setEditore(const QString& newEditore);
    

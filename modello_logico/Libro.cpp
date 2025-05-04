@@ -1,9 +1,9 @@
 #include"Libro.h"
 
 
-Libro::Libro(): MediaTextual(){}
+Libro::Libro() = default;
 
-Libro::Libro(const QString& titolo, const QString& percorsoImg, int anno, int pagine, QString& autore, unsigned int id)
+Libro::Libro(const QString& titolo, const QString& percorsoImg, int anno, int pagine, const QString& autore, unsigned int id)
     : MediaTextual(titolo, percorsoImg, anno, pagine, id), autore(autore) {}
 
 QString Libro::getAutore() const {

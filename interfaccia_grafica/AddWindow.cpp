@@ -39,7 +39,7 @@ AddWindow::AddWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullp
     layout->addStretch();
 
     // Shortcut oltre al pulsante di salvataggio
-    QShortcut *saveShortcut = new QShortcut(QKeySequence("Ctrl+S"), this);
+    const QShortcut *saveShortcut = new QShortcut(QKeySequence("Ctrl+S"), this);
     connect(saveShortcut, &QShortcut::activated, this, &AddWindow::onSaveButtonClicked);
 
     setLayout(layout);

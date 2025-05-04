@@ -1,9 +1,9 @@
 #include"Rivista.h"
 
 
-Rivista::Rivista(): MediaTextual(){}
+Rivista::Rivista() = default;
 
-Rivista::Rivista(const QString& titolo, const QString& percorsoImg, int anno, int pagine, QString& editore, unsigned int id)
+Rivista::Rivista(const QString& titolo, const QString& percorsoImg, int anno, int pagine, const QString& editore, unsigned int id)
     : MediaTextual(titolo, percorsoImg, anno, pagine, id), editore(editore) {}
 
 QString Rivista::getEditore() const {

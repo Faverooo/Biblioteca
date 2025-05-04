@@ -19,9 +19,9 @@ public:
     void visit(Album *album);
 
     //metodi chiamati dai visitor
-    void toJsonM(Media* m);
-    void toJsonMT(MediaTextual* mt);
-    void toJsonMD(MediaDigital* md);
+    void toJsonM(const Media* m);
+    void toJsonMT(const MediaTextual* mt);
+    void toJsonMD(const MediaDigital* md);
 
     //getter
     QJsonObject getJsonObj() const;
