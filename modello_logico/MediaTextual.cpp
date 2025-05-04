@@ -1,6 +1,6 @@
 #include"MediaTextual.h"
 
-MediaTextual::MediaTextual(){}
+MediaTextual::MediaTextual() = default;
 
 MediaTextual::MediaTextual(const QString& titolo, const QString& percorsoImg, int anno, int pagine, unsigned int id)
     : Media(titolo, percorsoImg, anno, id), pagine(pagine) {}

@@ -31,7 +31,7 @@ AlbumView::AlbumView(QWidget *parent) : QWidget(parent) {
     setLayout(mainLayout);
 }
 
-void AlbumView::show(int id) {
+void AlbumView::showID(int id) {
     // Rimuovi tutte le card presenti
     QLayoutItem *item;
     while ((item = scrollLayout->takeAt(0)) != nullptr) {
@@ -40,8 +40,8 @@ void AlbumView::show(int id) {
     }
 
     // Ottieni lo storage
-    QList<Media*> *storage = StorageManager::instance().getStorage();
-    Album *album = nullptr;
+    const QList<Media*> *storage = StorageManager::instance().getStorage();
+    const Album *album = nullptr;
 
     // Trova l'album con l'ID specificato
     for (Media *media : *storage) {
@@ -74,7 +74,7 @@ void AlbumView::show(int id) {
     }
 }
 
-QWidget* AlbumView::createCard(Canzone* canzone) {
+QWidget* AlbumView::createCard(const Canzone* canzone) {
     QWidget* card = new QWidget();
     QHBoxLayout *mainLayout = new QHBoxLayout(card);
 

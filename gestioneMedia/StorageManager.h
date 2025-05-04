@@ -5,7 +5,7 @@
 
 class StorageManager{
 private:
-    StorageManager() {} // Costruttore privato
+    StorageManager() = default; // Costruttore privato
     StorageManager(const StorageManager&) = delete; // Disabilita il costruttore di copia
     StorageManager& operator=(const StorageManager&) = delete; // Disabilita l'operatore di assegnazione
     QString path;
@@ -14,7 +14,7 @@ public:
     static StorageManager& instance(); //una sola istanza per tutto il programma
     void fromJOToStorage(const QJsonObject& json);
     void fromFiletoStorage(); //da json a memoria, chiama fromJOTToStorage per ogni oggetto
-    void printToFile(); //stampa sul file
+    void printToFile() const; //stampa sul file
     void addToStorage(Media* media);
     void removeToStorage(int id);
     int generateID() const;

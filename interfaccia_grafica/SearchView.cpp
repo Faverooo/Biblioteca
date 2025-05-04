@@ -11,7 +11,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent)
     setupUI();
 
     // Shortcut Ctrl+A per addButtonClicked
-    QShortcut *shortcut = new QShortcut(QKeySequence("Ctrl+A"), this);
+    const QShortcut *shortcut = new QShortcut(QKeySequence("Ctrl+A"), this);
     connect(shortcut, &QShortcut::activated, this, &SearchView::addButtonClicked);
 
     connect(addButton, &QPushButton::clicked, this, &SearchView::addButtonClicked);

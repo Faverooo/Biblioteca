@@ -1,11 +1,11 @@
 #include"Media.h"
 
-Media::Media(){}
+Media::Media() = default;
 
 Media::Media(const QString& titolo, const QString& percorsoImg, int anno, int id)
     : titolo(titolo), percorsoImg(percorsoImg), anno(anno), id(id) {}
 
-Media::~Media(){}
+Media::~Media() = default;
 
 int Media::getID() const {
     return id;

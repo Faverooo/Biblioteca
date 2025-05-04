@@ -14,7 +14,7 @@ class AlbumView : public QWidget
 
 public:
     explicit AlbumView(QWidget *parent = nullptr);
-    void show(int id);
+    void showID(int id);
 private:
     QPushButton *backButton;
     QScrollArea *scrollArea;
@@ -22,7 +22,7 @@ private:
     QVBoxLayout *scrollLayout; //le card sono qui dentro
 
 
-    QWidget *createCard(Canzone *canzone); //per creare le card da visualizzare nella albumview
+    QWidget *createCard(const Canzone *canzone); //per creare le card da visualizzare nella albumview
 signals:
     void backButtonClicked();
 };

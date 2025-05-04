@@ -18,7 +18,7 @@ QList<Media *> *StorageManager::getStorage()
 
 StorageManager &StorageManager::instance()
 {
-    static StorageManager instance;
+    static StorageManager instance; //la prima volta lo crea, poi restituisce sempre lo stesso
     return instance;
 }
 
@@ -145,7 +145,7 @@ void StorageManager::fromFiletoStorage()
     }
 }
 
-void StorageManager::printToFile()
+void StorageManager::printToFile() const
 {
     QFile file(path);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -184,7 +184,7 @@ void StorageManager::removeToStorage(int id)
         if ((*it)->getID() == id)
         {
             // Se l'oggetto è una canzone, rimuovi le sue occorrenze dagli album
-            Canzone *canzone = dynamic_cast<Canzone *>(*it);
+            const Canzone *canzone = dynamic_cast<Canzone *>(*it);
             if (canzone)
             {
                 for (Media *media : storage)

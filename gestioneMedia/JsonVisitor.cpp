@@ -57,7 +57,7 @@ void JsonVisitor::visit(Album *album)
 
 // ROUTINE DI SUPPORTO
 
-void JsonVisitor::toJsonM(Media *m)
+void JsonVisitor::toJsonM(const Media *m)
 {
     json["id"] = static_cast<int>(m->getID());
     json["titolo"] = m->getTitolo();
@@ -65,13 +65,13 @@ void JsonVisitor::toJsonM(Media *m)
     json["anno"] = m->getAnno();
 }
 
-void JsonVisitor::toJsonMT(MediaTextual *mt)
+void JsonVisitor::toJsonMT(const MediaTextual *mt)
 {
     toJsonM(mt);
     json["pagine"] = mt->getPagine();
 }
 
-void JsonVisitor::toJsonMD(MediaDigital *md)
+void JsonVisitor::toJsonMD(const MediaDigital *md)
 {
     toJsonM(md);
     json["size"] = static_cast<int>(md->getSize());

@@ -28,7 +28,7 @@ EditWindow::EditWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nul
     setLayout(layout);
 
     //Shortcut oltre al pulsante di salvataggio
-    QShortcut *saveShortcut = new QShortcut(QKeySequence("Ctrl+S"), this);
+    const QShortcut *saveShortcut = new QShortcut(QKeySequence("Ctrl+S"), this);
     connect(saveShortcut, &QShortcut::activated, this, &EditWindow::save);
 
     currentEditWidget = nullptr;
@@ -43,7 +43,7 @@ EditWindow::EditWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nul
 void EditWindow::showEdit(int id){
 
     //carica il media giusto
-    QList<Media*>* storage = StorageManager::instance().getStorage();
+    const QList<Media*>* storage = StorageManager::instance().getStorage();
     Media * editMedia = nullptr;
     for (Media* media : *storage) {
         if (media->getID() == id) {

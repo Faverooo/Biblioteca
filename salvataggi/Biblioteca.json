@@ -4,7 +4,7 @@
         "autore": "marco",
         "id": 1412719196,
         "pagine": 200,
-        "percorsoImg": "salvataggi/immagini/isola_tesoro.png",
+        "percorsoImg": "",
         "tipo": "Libro",
         "titolo": "Isola tesoro"
     },
@@ -72,7 +72,7 @@
         "autore": "io",
         "id": 1558484619,
         "pagine": 200,
-        "percorsoImg": "salvataggi/immagini/vanity_fair.png",
+        "percorsoImg": "salvataggi/immagini/la_divina_commedia.png",
         "tipo": "Libro",
         "titolo": "prova"
     }

@@ -19,10 +19,10 @@ SongSelectionDialog::SongSelectionDialog(QList<int> &albumArchivio, QWidget *par
 }
 
 void SongSelectionDialog::populateSongList() {
-    QList<Media*> *storage = StorageManager::instance().getStorage();
+    const QList<Media*> *storage = StorageManager::instance().getStorage();
 
     for (Media *media : *storage) {
-        Canzone *canzone = dynamic_cast<Canzone*>(media);
+        const Canzone *canzone = dynamic_cast<Canzone*>(media);
         if (canzone) {
             QPushButton *addRemoveButton = new QPushButton(this);
 

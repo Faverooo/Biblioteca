@@ -1,7 +1,7 @@
 #include"Album.h"
 #include<QJsonArray>
 
-Album::Album(): Media(){}
+Album::Album() = default;
 
 Album::Album(const QString& titolo, const QString& percorsoImg, int anno, QList<int> archivio, unsigned int id)
     : Media (titolo, percorsoImg, anno, id), archivio(archivio) {}

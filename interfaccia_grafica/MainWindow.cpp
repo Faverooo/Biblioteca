@@ -76,5 +76,5 @@ void MainWindow::showEditView(int id) {
 
 void MainWindow::showAlbum(int id) {
     stackedWidget->setCurrentIndex(3); // Schermata di Edit
-    albumView->show(id);
+    albumView->showID(id);
 }

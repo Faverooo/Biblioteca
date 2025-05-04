@@ -1,6 +1,6 @@
 #include"Canzone.h"
 
-Canzone::Canzone(): MediaDigital(){}
+Canzone::Canzone() = default;
 
 Canzone::Canzone(const QString& titolo, const QString& percorsoImg, int anno, unsigned int size, unsigned int durata, QString artista, unsigned int id)
     : MediaDigital(titolo, percorsoImg, anno, size, durata, id), artista(artista) {}
