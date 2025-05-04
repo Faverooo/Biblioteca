@@ -64,7 +64,7 @@ void AlbumView::showID(int id) {
     // Crea le card per ogni canzone nell'archivio
     for (int songId : archivio) {
         for (Media *media : *storage) {
-            Canzone *canzone = dynamic_cast<Canzone*>(media);
+            const Canzone *canzone = dynamic_cast<Canzone*>(media);
             if (canzone && canzone->getID() == songId) {
                 QWidget *card = createCard(canzone);
                 scrollLayout->addWidget(card);
