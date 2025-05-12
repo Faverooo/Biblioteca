@@ -10,11 +10,10 @@
 #include <QDir>
 #include <QCoreApplication>
 #include <QDebug>
+#include <QGuiApplication>
+#include <QScreen>
 
-
-CardVisitor::CardVisitor(QObject* parent) : QObject(parent){}
-
-
+CardVisitor::CardVisitor(QObject *parent) : QObject(parent) {}
 
 void CardVisitor::visit(Libro *libro)
 {
@@ -47,7 +46,7 @@ void CardVisitor::visit(Libro *libro)
     rightLayout->addLayout(buttonLayout);
 
     // Aggiungi i layout al layout principale
-    mainLayout->addLayout(leftLayout, 1); // Imposta il fattore di espansione a 1
+    mainLayout->addLayout(leftLayout, 1);  // Imposta il fattore di espansione a 1
     mainLayout->addLayout(rightLayout, 1); // Imposta il fattore di espansione a 1
 
     card->setLayout(mainLayout);
@@ -95,7 +94,7 @@ void CardVisitor::visit(Rivista *rivista)
     rightLayout->addLayout(buttonLayout);
 
     // Aggiungi i layout al layout principale
-    mainLayout->addLayout(leftLayout, 1); // Imposta il fattore di espansione a 1
+    mainLayout->addLayout(leftLayout, 1);  // Imposta il fattore di espansione a 1
     mainLayout->addLayout(rightLayout, 1); // Imposta il fattore di espansione a 1
 
     card->setLayout(mainLayout);
@@ -147,7 +146,7 @@ void CardVisitor::visit(Film *film)
     rightLayout->addLayout(buttonLayout);
 
     // Aggiungi i layout al layout principale
-    mainLayout->addLayout(leftLayout, 1); // Imposta il fattore di espansione a 1
+    mainLayout->addLayout(leftLayout, 1);  // Imposta il fattore di espansione a 1
     mainLayout->addLayout(rightLayout, 1); // Imposta il fattore di espansione a 1
 
     card->setLayout(mainLayout);
@@ -197,7 +196,7 @@ void CardVisitor::visit(Canzone *canzone)
     rightLayout->addLayout(buttonLayout);
 
     // Aggiungi i layout al layout principale
-    mainLayout->addLayout(leftLayout, 1); // Imposta il fattore di espansione a 1
+    mainLayout->addLayout(leftLayout, 1);  // Imposta il fattore di espansione a 1
     mainLayout->addLayout(rightLayout, 1); // Imposta il fattore di espansione a 1
 
     card->setLayout(mainLayout);
@@ -225,7 +224,7 @@ void CardVisitor::visit(Album *album)
     QDir dir(QCoreApplication::applicationDirPath());
     QString imgPath = dir.filePath(album->getPercorsoImg());
     QPixmap pixmap(imgPath);
-    imgLabel->setPixmap(pixmap.scaled(QSize(540,540), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    imgLabel->setPixmap(pixmap.scaled(QSize(540, 540), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     // attributi di base di album
     titolo = new QLabel("Nome Playlist: " + album->getTitolo(), card);
@@ -247,13 +246,13 @@ void CardVisitor::visit(Album *album)
     QVBoxLayout *rightLayout = new QVBoxLayout();
     rightLayout->addWidget(titolo);
     rightLayout->addWidget(anno);
-    
+
     // Aggiungi altri widget specifici per Album
 
-    QPushButton* visualizzaAlbum = new QPushButton("Vedi Contenuto", card);
+    QPushButton *visualizzaAlbum = new QPushButton("Vedi Contenuto", card);
     rightLayout->addWidget(visualizzaAlbum);
     connect(visualizzaAlbum, &QPushButton::clicked, [this, album]()
-    { handleViewAlbumButtonClicked(album->getID()); });
+            { handleViewAlbumButtonClicked(album->getID()); });
 
     rightLayout->addStretch();
 
@@ -263,7 +262,7 @@ void CardVisitor::visit(Album *album)
     rightLayout->addLayout(buttonLayout);
 
     // Aggiungi i layout al layout principale
-    mainLayout->addLayout(leftLayout, 1); // Imposta il fattore di espansione a 1
+    mainLayout->addLayout(leftLayout, 1);  // Imposta il fattore di espansione a 1
     mainLayout->addLayout(rightLayout, 1); // Imposta il fattore di espansione a 1
 
     card->setLayout(mainLayout);
@@ -278,7 +277,7 @@ void CardVisitor::visit(Album *album)
     remove->setStyleSheet("background-color: #f44336; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
 }
 
-void CardVisitor::setDefaultAttributes(const Media *media) //funzione ausiliaria comune
+void CardVisitor::setDefaultAttributes(const Media *media) // funzione ausiliaria comune
 {
     // carica foto
     imgLabel = new QLabel(card);
@@ -286,13 +285,20 @@ void CardVisitor::setDefaultAttributes(const Media *media) //funzione ausiliaria
     QString imgPath = dir.filePath(media->getPercorsoImg());
     QPixmap pixmap(imgPath);
 
-    if (pixmap.isNull()) {
+    if (pixmap.isNull())
+    {
         // Set a default placeholder image if the image is missing or invalid
         QDir dir(QCoreApplication::applicationDirPath() + "/salvataggi");
         pixmap = QPixmap(dir.filePath("placeholder.png")); // Ensure placeholder.png exists in the specified directory
     }
 
-    imgLabel->setPixmap(pixmap.scaled(QSize(540,540), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    // Ottieni la risoluzione dello schermo
+    QSize screenSize = QGuiApplication::primaryScreen()->size();
+    int maxWidth = screenSize.width() / 5;   // Adatta la larghezza massima (1/5 della larghezza dello schermo)
+    int maxHeight = screenSize.height() / 5; // Adatta l'altezza massima (1/5 dell'altezza dello schermo)
+
+    // Ridimensiona l'immagine
+    imgLabel->setPixmap(pixmap.scaled(QSize(maxWidth, maxHeight), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     // attributi di base di media
     titolo = new QLabel("Titolo: " + media->getTitolo(), card);
@@ -324,7 +330,6 @@ void CardVisitor::handleViewAlbumButtonClicked(int id)
     // Emitti il segnale con l'ID
     emit viewAlbumButtonClicked(id);
 }
-
 
 QWidget *CardVisitor::getCard()
 {

@@ -63,7 +63,7 @@ void SearchView::setupUI()
     sideBarWidget = new QWidget(this);
     sideBarWidget->setObjectName("sideBarWidget");
     sideBarWidget->setLayout(sideBarLayout);
-    sideBarWidget->setFixedWidth(this->width() * 0.28);
+    sideBarWidget->setFixedWidth(this->width() * 0.35);
 
     // Layout della barra superiore
     QHBoxLayout *topBarLayout = new QHBoxLayout();
