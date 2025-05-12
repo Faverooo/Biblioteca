@@ -224,7 +224,20 @@ void CardVisitor::visit(Album *album)
     QDir dir(QCoreApplication::applicationDirPath());
     QString imgPath = dir.filePath(album->getPercorsoImg());
     QPixmap pixmap(imgPath);
-    imgLabel->setPixmap(pixmap.scaled(QSize(540, 540), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    if (pixmap.isNull())
+    {
+        // Set a default placeholder image if the image is missing or invalid
+        QDir dir(QCoreApplication::applicationDirPath() + "/salvataggi");
+        pixmap = QPixmap(dir.filePath("placeholder.png")); // Ensure placeholder.png exists in the specified directory
+    }
+
+    // Ottieni la risoluzione dello schermo
+    QSize screenSize = QGuiApplication::primaryScreen()->size();
+    int maxWidth = screenSize.width() / 5;   // Adatta la larghezza massima (1/5 della larghezza dello schermo)
+    int maxHeight = screenSize.height() / 5; // Adatta l'altezza massima (1/5 dell'altezza dello schermo)
+
+    // Ridimensiona l'immagine
+    imgLabel->setPixmap(pixmap.scaled(QSize(maxWidth, maxHeight), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     // attributi di base di album
     titolo = new QLabel("Nome Playlist: " + album->getTitolo(), card);
