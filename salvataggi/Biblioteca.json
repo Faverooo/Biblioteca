@@ -66,14 +66,5 @@
         "percorsoImg": "salvataggi/immagini/vanity_fair2.png",
         "tipo": "Album",
         "titolo": "rew"
-    },
-    {
-        "anno": 32,
-        "autore": "io",
-        "id": 1558484619,
-        "pagine": 200,
-        "percorsoImg": "salvataggi/immagini/la_divina_commedia.png",
-        "tipo": "Libro",
-        "titolo": "prova"
     }
 ]

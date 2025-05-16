@@ -32,7 +32,6 @@ void CardVisitor::visit(Libro *libro)
     QVBoxLayout *rightLayout = new QVBoxLayout();
     QLabel *pagine = new QLabel("Pagine: " + QString::number(libro->getPagine()));
     QLabel *autore = new QLabel("Autore: " + libro->getAutore());
-
     rightLayout->addWidget(titolo);
     rightLayout->addWidget(anno);
     rightLayout->addWidget(autore);
@@ -79,7 +78,6 @@ void CardVisitor::visit(Rivista *rivista)
     QVBoxLayout *rightLayout = new QVBoxLayout();
     QLabel *pagine = new QLabel("Pagine: " + QString::number(rivista->getPagine()));
     QLabel *editore = new QLabel("Editore: " + rivista->getEditore());
-
     rightLayout->addWidget(titolo);
     rightLayout->addWidget(anno);
     rightLayout->addWidget(editore);
@@ -129,7 +127,6 @@ void CardVisitor::visit(Film *film)
     QLabel *durata = new QLabel("Durata (min): " + QString::number(film->getDurata()));
     QLabel *regista = new QLabel("Regista: " + film->getRegista());
     QLabel *lingua = new QLabel("Lingua: " + film->getLingua());
-
     rightLayout->addWidget(titolo);
     rightLayout->addWidget(anno);
     rightLayout->addWidget(durata);
@@ -182,7 +179,6 @@ void CardVisitor::visit(Canzone *canzone)
     QLabel *size = new QLabel("Dimensione (MB): " + QString::number(canzone->getSize()));
     QLabel *durata = new QLabel("Durata (sec): " + QString::number(canzone->getDurata()));
     QLabel *artista = new QLabel("Artista: " + canzone->getArtista());
-
     rightLayout->addWidget(titolo);
     rightLayout->addWidget(anno);
     rightLayout->addWidget(durata);

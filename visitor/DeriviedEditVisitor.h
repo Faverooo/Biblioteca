@@ -44,7 +44,8 @@ private slots:
 };
 
 
-//CREAZIONE DEI WIDGET PER OGNI TIPO DI MEDIA 
+// CREAZIONE DEI WIDGET PER OGNI TIPO DI MEDIA 
+// (LIBRO, RIVISTA, FILM, CANZONE, ALBUM)
 
 class LibroEditWidget : public AbsEditWidget
 {

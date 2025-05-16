@@ -17,8 +17,8 @@ public:
     void showID(int id);
 private:
     QPushButton *backButton;
-    QScrollArea *scrollArea;
-    QWidget *scrollContent;
+    QScrollArea *scrollArea; //scrollarea per le card (!!!diversa dalla scrollarea di CardScrollArea, riferita a tutte le card)
+    QWidget *scrollContent; //contenuto della scrollarea
     QVBoxLayout *scrollLayout; //le card sono qui dentro
 
 

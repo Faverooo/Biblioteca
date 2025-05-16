@@ -12,7 +12,7 @@ class SongSelectionDialog : public QDialog {
     Q_OBJECT
 
 public:
-    explicit SongSelectionDialog(QList<int> &albumArchivio, QWidget *parent = nullptr);
+    explicit SongSelectionDialog(QList<int> &albumArchivio, QWidget *parent = nullptr); //viene creata solo quando serve visto che è esterna
 
 private:
     QListWidget *songListWidget;

@@ -41,7 +41,7 @@ void SearchView::setupUI()
     searchBar = new QLineEdit(this);
     searchBar->setPlaceholderText("CERCA:");
 
-    //E' possibile fare la ricerca solo quando il bottone é premuto
+    //E' possibile fare la ricerca solo quando il bottone é premuto, il codice commentato lascia questa possibiità aperta
 
     //searchButton = new QPushButton(this);
     //searchButton->setText("O"); // Icona lente d'ingrandimento
@@ -67,7 +67,7 @@ void SearchView::setupUI()
 
     // Layout della barra superiore
     QHBoxLayout *topBarLayout = new QHBoxLayout();
-    selector = new QComboBox(this);
+    selector = new QComboBox(this); //selettore per le varie viste
     selector->addItem("TUTTO");
     selector->addItem("Libri");
     selector->addItem("Riviste");

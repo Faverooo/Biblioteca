@@ -13,15 +13,16 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr); //finestra che contiene le view
 
 private slots:
+    //per mostrare le varie View
     void showAddView();
     void showSearchView();
     void showEditView(int id);
     void showAlbum(int id);
 private:
-    QStackedWidget *stackedWidget;
+    QStackedWidget *stackedWidget; //stacked widget per le varie view
     SearchView *searchView;
     AddWindow *addWindow;
     EditWindow *editWindow;

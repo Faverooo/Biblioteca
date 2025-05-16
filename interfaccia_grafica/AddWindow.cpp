@@ -10,7 +10,7 @@
 AddWindow::AddWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullptr)
 {
 
-    layout = new QVBoxLayout(this);
+    layout = new QVBoxLayout(this); //layout principale
 
     
     banner = new QLabel("AGGIUNTA WIDGET", this);
@@ -61,7 +61,7 @@ void AddWindow::onComboBoxChanged(int index)
         currentEditWidget = nullptr;
     }
 
-    //a seconda dell'indice carica un widget diverso a seconda del media scelto
+    //a seconda dell'indice carica un widget diverso vuoto a seconda del media scelto,
     switch (index)
     {
     case 1: // Libro

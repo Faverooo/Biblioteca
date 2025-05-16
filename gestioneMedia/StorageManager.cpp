@@ -28,6 +28,7 @@ void StorageManager::fromJOToStorage(const QJsonObject &json)
     {
         Media *ptr = nullptr;
 
+        // varie casistiche a seconda del media
         if (json.contains("id") && json["id"].isDouble() &&
             json.contains("titolo") && json["titolo"].isString() &&
             json.contains("percorsoImg") && json["percorsoImg"].isString() &&
@@ -112,6 +113,7 @@ void StorageManager::fromFiletoStorage()
 {
     storage.clear();
 
+    // controlli per verificare se il file è valido
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
@@ -217,8 +219,10 @@ void StorageManager::removeToStorage(int id)
     }
 }
 
-int StorageManager::generateID() const
+int StorageManager::generateID() const 
 {
+    // Genera un ID unico per il nuovo oggetto
+    // Assicurati che l'ID non sia già presente nello storage
     int id;
     bool unique;
     do
@@ -237,7 +241,7 @@ int StorageManager::generateID() const
     return id;
 }
 
-void StorageManager::setPath(const QString &newPath)
+void StorageManager::setPath(const QString &newPath) //percorso del file json
 {
     path = newPath;
 }

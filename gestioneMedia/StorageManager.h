@@ -13,11 +13,11 @@ private:
 public:
     static StorageManager& instance(); //una sola istanza per tutto il programma
     void fromJOToStorage(const QJsonObject& json);
-    void fromFiletoStorage(); //da json a memoria, chiama fromJOTToStorage per ogni oggetto
+    void fromFiletoStorage(); //da json a memoria, chiama fromJOToStorage per ogni oggetto
     void printToFile() const; //stampa sul file
     void addToStorage(Media* media);
     void removeToStorage(int id);
-    int generateID() const;
+    int generateID() const; //genera id univoco
     QList<Media*>* getStorage(); //ritorna la qlist di memoria
     void setPath(const QString& newPath); //setta il path del file json
 };

@@ -21,7 +21,7 @@ public:
     void onSearch();
 
 private:
-    void setupUI();
+    void setupUI(); // Setup grafico 
 
     QLineEdit *searchBar;
     QPushButton *searchButton;
@@ -37,6 +37,7 @@ private:
     CardScrollArea *cardScrollArea;
 
 signals:
+    // segnali per il controllo di pulsanti, alcuni con id associato del chiamante
     void addButtonClicked();
     void editButtonClicked(int id);
     void viewAlbumButtonClicked(int id);

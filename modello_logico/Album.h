@@ -10,11 +10,8 @@ public:
     Album();
     Album(const QString& titolo, const QString& percorsoImg, int anno, QList<int> archivio, unsigned int id = 0);
     
-    //interi univoci (ID) che possono essere salvati in json, equivalente di puntatori
-    QList<int> getArchivio() const;
+    QList<int> getArchivio() const;//interi univoci (ID) che possono essere salvati in json, equivalente di puntatori
     void setArchivio(const QList<int>& nuovoArchivio);
-    // void addToArchivio(int id);
-    // void removeFromArchivio(int id);
 
     QString getFields() const; 
     void acceptVisitor(Visitor* visitor);    

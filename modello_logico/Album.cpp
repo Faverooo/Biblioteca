@@ -15,16 +15,6 @@ void Album::setArchivio(const QList<int>& nuovoArchivio) {
 }
 
 
-// void Album::addToArchivio(int id) {
-//     if (!archivio.contains(id)) {
-//         archivio.append(id);
-//     }
-// }
-
-// void Album::removeFromArchivio(int id) {
-//     archivio.removeAll(id);
-// }
-
 QString Album::getFields() const {
     QString allFields = getTitolo() + " " + QString::number(getAnno());
     return allFields;

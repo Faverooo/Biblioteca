@@ -6,7 +6,7 @@
 #include <QMessageBox>
 #include <QCoreApplication>
 
-AbsEditWidget::AbsEditWidget(QWidget *parent) : QWidget(parent)
+AbsEditWidget::AbsEditWidget(QWidget *parent) : QWidget(parent) //attributi di base 
 {
     layout = new QVBoxLayout(this);
 
@@ -283,7 +283,7 @@ void AlbumEditWidget::openSongSelectionDialog() { //apre e modifica l'archivio d
     dialog.exec();
 }
 
-void AlbumEditWidget::setArchivio(const QList<int> &newArchivio)
+void AlbumEditWidget::setArchivio(const QList<int> &newArchivio) //setta l'archivio del nuovo media
 {
     archivio = newArchivio;
 }

@@ -55,7 +55,7 @@ void JsonVisitor::visit(Album *album)
     json["archivio"] = jsonArray;
 }
 
-// ROUTINE DI SUPPORTO
+// ROUTINE DI SUPPORTO, da classi padri a json
 
 void JsonVisitor::toJsonM(const Media *m)
 {
@@ -78,7 +78,7 @@ void JsonVisitor::toJsonMD(const MediaDigital *md)
     json["durata"] = static_cast<int>(md->getDurata());
 }
 
-QJsonObject JsonVisitor::getJsonObj() const
+QJsonObject JsonVisitor::getJsonObj() const //Ritorna oggetto json
 {
     return json;
 }

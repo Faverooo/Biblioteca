@@ -8,7 +8,7 @@
 
 #include<QMessageBox>
 
-CardScrollArea::CardScrollArea(QWidget *parent) : QWidget(parent)
+CardScrollArea::CardScrollArea(QWidget *parent) : QWidget(parent) // conterrà tutte le card
 {
     cardVisitor = new CardVisitor;
     cardLayout = new QVBoxLayout();
@@ -59,7 +59,7 @@ void CardScrollArea::refreshCards()
             break;
             }
         }
-        
+        //applica i vari filtri in base al tipo di media richiesto
         if ((lastFilter == "TUTTO" ||
             (lastFilter == "Libri" && dynamic_cast<Libro*>(media)) ||
             (lastFilter == "Riviste" && dynamic_cast<Rivista*>(media)) ||
@@ -97,12 +97,14 @@ void CardScrollArea::refreshCards()
 
 void CardScrollArea::refreshView(const QString &filterType)
 {
+    //salvo il filtro di visualizzazione
     lastFilter = filterType;
     refreshCards();
 }
 
 void CardScrollArea::refreshSearch(const QString &key, bool newSearchByTitle, bool newSearchByYear, bool newSearchByAuthor)
-{
+{ 
+    //salvo i filtri di ricerca
     searchText = key;
     searchByTitle = newSearchByTitle;
     searchByYear = newSearchByYear;

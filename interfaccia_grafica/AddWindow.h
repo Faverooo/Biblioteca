@@ -8,7 +8,7 @@
 #include <QPushButton>
 #include "../visitor/DeriviedEditVisitor.h"
 
-class AddWindow : public QWidget {
+class AddWindow : public QWidget { // classe per la schermata di aggiunta
     Q_OBJECT
 
 public:

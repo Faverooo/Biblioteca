@@ -1,7 +1,7 @@
 #include "SongSelectionDialog.h"
 #include <QLabel>
 
-SongSelectionDialog::SongSelectionDialog(QList<int> &albumArchivio, QWidget *parent)
+SongSelectionDialog::SongSelectionDialog(QList<int> &albumArchivio, QWidget *parent) //finestra esterna per la selezione delle canzoni
     : QDialog(parent), albumArchivio(albumArchivio) {
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 

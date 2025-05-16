@@ -10,7 +10,7 @@ class MediaDigital;
 
 class JsonVisitor: public Visitor {
 private:
-    QJsonObject json;
+    QJsonObject json; //oggetto JSON che conterrà i dati da ritornare
 public:
     void visit(Libro *libro);
     void visit(Rivista *rivista);

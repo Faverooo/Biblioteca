@@ -6,16 +6,13 @@
 #include <QCoreApplication>
 #include <QShortcut>
 
-EditWindow::EditWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullptr)
+EditWindow::EditWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullptr) // finestra per modifica widget
 {
+    layout = new QVBoxLayout(this); // layout principale
 
-    layout = new QVBoxLayout(this);
-
-    
     banner = new QLabel("MODIFICA WIDGET", this);
     banner->setAlignment(Qt::AlignCenter);
     banner->setStyleSheet("font-size: 24px; font-weight: bold; color: black; background-color:rgb(225, 227, 222); border: 2px solid lightgreen; border-radius: 10px; padding: 10px; font-family: 'Arial', sans-serif;");
-    
     layout->addWidget(banner);
     
     backButton = new QPushButton("Indietro", this);
@@ -35,7 +32,6 @@ EditWindow::EditWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nul
 
     saveButton->setStyleSheet("background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
     backButton->setStyleSheet("background-color: #f44336; color: white; border: none; padding: 5px 10px; border-radius: 5px;");
-
 }
 
 

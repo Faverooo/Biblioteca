@@ -17,11 +17,14 @@ public:
     void refreshSearch(const QString &key, bool newSearchByTitle, bool newSearchByYear, bool newSearchByAuthor); // aggiornamento filtri, salvataggio filtri
 
 private:
+    //gestione filtri
     QString searchText;
     bool searchByTitle;
     bool searchByYear;
     bool searchByAuthor;
     QString lastFilter;
+    
+    //gestione layout
     QVBoxLayout *cardLayout;
     QWidget *contentWidget;
     CardVisitor *cardVisitor;
