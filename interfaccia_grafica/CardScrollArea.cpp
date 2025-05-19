@@ -89,7 +89,7 @@ void CardScrollArea::refreshCards()
             cardLayout->addWidget(card);
         }
     }
-
+    cardLayout->addStretch(); // Aggiungi uno spazio vuoto alla fine per il layout
 }
 
 

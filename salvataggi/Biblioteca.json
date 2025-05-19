@@ -1,70 +1,173 @@
 [
     {
-        "anno": 1990,
-        "autore": "marco",
-        "id": 1412719196,
-        "pagine": 200,
-        "percorsoImg": "",
+        "anno": 1945,
+        "autore": "George Orwell",
+        "id": 1952450921,
+        "pagine": 140,
+        "percorsoImg": "salvataggi/immagini/fattoriadeglianimali.jpg",
         "tipo": "Libro",
-        "titolo": "Isola tesoro"
+        "titolo": "La fattoria degli animali"
     },
     {
-        "anno": 2025,
-        "editore": "Rizzardi",
-        "id": 1963062480,
-        "pagine": 143,
-        "percorsoImg": "salvataggi/immagini/focus.png",
-        "tipo": "Rivista",
-        "titolo": "Focus 1"
+        "anno": 1915,
+        "autore": "Franz Kafka",
+        "id": 605228141,
+        "pagine": 90,
+        "percorsoImg": "salvataggi/immagini/lametamorfosi.jpg",
+        "tipo": "Libro",
+        "titolo": "La metamorfosi"
     },
     {
-        "anno": 2004,
-        "durata": 200,
-        "id": 1729226628,
-        "lingua": "italiano, inglese",
-        "percorsoImg": "salvataggi/immagini/harry_potter.png",
-        "regista": "Nolan",
-        "size": 2011,
+        "anno": 1864,
+        "autore": "Fedor Dostoevkij",
+        "id": 1945899969,
+        "pagine": 144,
+        "percorsoImg": "salvataggi/immagini/ricordidalsottosuolo.jpg",
+        "tipo": "Libro",
+        "titolo": "Ricordi dal sottosuolo"
+    },
+    {
+        "anno": 1963,
+        "autore": "Hannah Arendt",
+        "id": 22471634,
+        "pagine": 336,
+        "percorsoImg": "salvataggi/immagini/labanalitàdelmale.jpg",
+        "tipo": "Libro",
+        "titolo": "La banalità del male"
+    },
+    {
+        "anno": 2024,
+        "durata": 138,
+        "id": 895138649,
+        "lingua": "Italiano",
+        "percorsoImg": "salvataggi/immagini/megalopolis.jpg",
+        "regista": "Francis Ford Coppola",
+        "size": 2100,
         "tipo": "Film",
-        "titolo": "Harry Potter"
+        "titolo": "Megalopolis"
     },
     {
-        "anno": 1990,
-        "artista": "Pink Floyd",
-        "durata": 200,
-        "id": 910956012,
-        "percorsoImg": "salvataggi/immagini/dark_side.png",
-        "size": 333,
-        "tipo": "Canzone",
-        "titolo": "dark side"
+        "anno": 1977,
+        "durata": 121,
+        "id": 475722227,
+        "lingua": "Inglese",
+        "percorsoImg": "salvataggi/immagini/starwars.jpg",
+        "regista": "George Lucas",
+        "size": 1900,
+        "tipo": "Film",
+        "titolo": "Star Wars: Episode IV - A New Hope"
     },
     {
-        "anno": 1955,
-        "autore": "boh",
-        "id": 1424004136,
-        "pagine": 452,
-        "percorsoImg": "salvataggi/immagini/e_finita_la_pace.png",
-        "tipo": "Libro",
-        "titolo": "E' finita la pace"
+        "anno": 1985,
+        "durata": 116,
+        "id": 1216048064,
+        "lingua": "Italiano",
+        "percorsoImg": "salvataggi/immagini/ritornoalfuturo.jpg",
+        "regista": "Robert Zemeckis",
+        "size": 2400,
+        "tipo": "Film",
+        "titolo": "Ritorno al futuro"
     },
     {
-        "anno": 3232,
-        "editore": "gigi",
-        "id": 1942171182,
-        "pagine": 123,
-        "percorsoImg": "salvataggi/immagini/biblioteca.png",
+        "anno": 1989,
+        "durata": 126,
+        "id": 1834926783,
+        "lingua": "Inglese",
+        "percorsoImg": "salvataggi/immagini/batman.jpg",
+        "regista": "Tim Burton",
+        "size": 2200,
+        "tipo": "Film",
+        "titolo": "Batman"
+    },
+    {
+        "anno": 2024,
+        "editore": "National Geographic Partners LLC",
+        "id": 463023265,
+        "pagine": 160,
+        "percorsoImg": "salvataggi/immagini/nationalgeo.jpg",
         "tipo": "Rivista",
-        "titolo": "prova32"
+        "titolo": "National Geographic - Amazon (v.246 n. 04)"
     },
     {
-        "anno": 2,
+        "anno": 2019,
+        "editore": "Condé Nast Britain",
+        "id": 1530951926,
+        "pagine": 130,
+        "percorsoImg": "salvataggi/immagini/wired.jpg",
+        "tipo": "Rivista",
+        "titolo": "Wired Bill Gates Plan to save the world"
+    },
+    {
+        "anno": 1971,
+        "artista": "Bill Withers",
+        "durata": 125,
+        "id": 498771704,
+        "percorsoImg": "salvataggi/immagini/aintnosunshine.jpg",
+        "size": 58,
+        "tipo": "Canzone",
+        "titolo": "Ain't No Sunshine"
+    },
+    {
+        "anno": 1971,
+        "artista": "B.B. King",
+        "durata": 610,
+        "id": 979354310,
+        "percorsoImg": "salvataggi/immagini/L.A._Midnight.jpg",
+        "size": 90,
+        "tipo": "Canzone",
+        "titolo": "Lucille's Granny"
+    },
+    {
+        "anno": 1973,
+        "artista": "Eric Clapton",
+        "durata": 423,
+        "id": 786503037,
+        "percorsoImg": "salvataggi/immagini/layla.jpg",
+        "size": 68,
+        "tipo": "Canzone",
+        "titolo": "Layla"
+    },
+    {
+        "anno": 1978,
+        "artista": "Van Halen",
+        "durata": 229,
+        "id": 1259090629,
+        "percorsoImg": "salvataggi/immagini/ainttalkingboutlove.jpg",
+        "size": 74,
+        "tipo": "Canzone",
+        "titolo": "Ain't Talkin' 'bout Love"
+    },
+    {
+        "anno": 1972,
+        "artista": "Stevie Wonder",
+        "durata": 268,
+        "id": 1285866695,
+        "percorsoImg": "salvataggi/immagini/superstition.jpg",
+        "size": 80,
+        "tipo": "Canzone",
+        "titolo": "Superstition"
+    },
+    {
+        "anno": 1970,
         "archivio": [
-            52086776,
-            910956012
+            498771704,
+            979354310,
+            786503037,
+            1259090629
         ],
-        "id": 311884719,
-        "percorsoImg": "salvataggi/immagini/vanity_fair2.png",
+        "id": 840553201,
+        "percorsoImg": "salvataggi/immagini/70rock.jpg",
         "tipo": "Album",
-        "titolo": "rew"
+        "titolo": "ROCK"
+    },
+    {
+        "anno": 1970,
+        "archivio": [
+            1285866695
+        ],
+        "id": 1311802350,
+        "percorsoImg": "salvataggi/immagini/70pop.jpg",
+        "tipo": "Album",
+        "titolo": "POP"
     }
 ]

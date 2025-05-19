@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     headerLayout->addWidget(titleLabel);
     headerLayout->addStretch();
     headerLayout->addWidget(exitButton);
-    headerWidget->setFixedHeight(this->height() * 0.08);
+    headerWidget->setFixedHeight(this->height() * 0.12);
 
     // Imposta il layout principale per il contenuto
     QVBoxLayout *mainLayout = new QVBoxLayout();
