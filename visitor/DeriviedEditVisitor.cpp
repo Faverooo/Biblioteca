@@ -163,7 +163,10 @@ Media *RivistaEditWidget::getMedia()
     rivista->setAnno(LEanno->text().toInt());
     rivista->setPercorsoImg(filePath);
     rivista->setEditore(LEeditore->text());
-    rivista->setPagine(LEpagine->text().toInt());
+    int pagine = LEpagine->text().toInt();
+    if (pagine < 0)
+        return nullptr;
+    rivista->setPagine(pagine);
     rivista->setID(id);
     return rivista;
 }
@@ -215,8 +218,12 @@ Media *FilmEditWidget::getMedia()
     film->setTitolo(LEtitolo->text());
     film->setAnno(LEanno->text().toInt());
     film->setPercorsoImg(filePath);
-    film->setSize(LEsize->text().toInt());
-    film->setDurata(LEdurata->text().toInt());
+    int size = LEsize->text().toInt();
+    int durata = LEdurata->text().toInt();
+    if (size < 0 || durata < 0) // non possono essere negativi e verrá generato un errore nella creazione del media
+        return nullptr;
+    film->setSize(size);
+    film->setDurata(durata);
     film->setRegista(LEregista->text());
     film->setLingua(LElingua->text());
     film->setID(id);
@@ -261,8 +268,12 @@ Media *CanzoneEditWidget::getMedia()
     canzone->setTitolo(LEtitolo->text());
     canzone->setAnno(LEanno->text().toInt());
     canzone->setPercorsoImg(filePath);
-    canzone->setSize(LEsize->text().toInt());
-    canzone->setDurata(LEdurata->text().toInt());
+    int size = LEsize->text().toInt();
+    int durata = LEdurata->text().toInt();
+    if (size < 0 || durata < 0) // non possono essere negativi e verrá generato un errore nella creazione del media
+        return nullptr;
+    canzone->setSize(size);
+    canzone->setDurata(durata);
     canzone->setArtista(LEartista->text());
     canzone->setID(id);
     return canzone;
