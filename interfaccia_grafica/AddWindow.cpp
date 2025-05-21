@@ -33,7 +33,7 @@ AddWindow::AddWindow(QWidget *parent) : QWidget(parent), currentEditWidget(nullp
     comboBox->addItem("Rivista");
     comboBox->addItem("Film");
     comboBox->addItem("Canzone");
-    comboBox->addItem("Cartella");
+    comboBox->addItem("Playlist");
     layout->addWidget(comboBox);
     connect(comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &AddWindow::onComboBoxChanged);
     layout->addStretch();

@@ -235,9 +235,16 @@ void CardVisitor::visit(Album *album)
     // Ridimensiona l'immagine
     imgLabel->setPixmap(pixmap.scaled(QSize(maxWidth, maxHeight), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
+    // Layout per gli attributi e i pulsanti
+    QVBoxLayout *rightLayout = new QVBoxLayout();
+
     // attributi di base di album
     titolo = new QLabel("Nome Playlist: " + album->getTitolo(), card);
-    anno = new QLabel("Anno: " + QString::number(album->getAnno()), card);
+    rightLayout->addWidget(titolo);
+    if(album->getAnno() != std::numeric_limits<int>::min()){
+        anno = new QLabel("Anno: " + QString::number(album->getAnno()), card);
+        rightLayout->addWidget(anno);
+    }
     edit = new QPushButton("MODIFICA", card);
     remove = new QPushButton("RIMUOVI", card);
 
@@ -251,10 +258,9 @@ void CardVisitor::visit(Album *album)
     imgLabel->setAlignment(Qt::AlignCenter);
     leftLayout->addWidget(imgLabel);
 
-    // Layout per gli attributi e i pulsanti
-    QVBoxLayout *rightLayout = new QVBoxLayout();
-    rightLayout->addWidget(titolo);
-    rightLayout->addWidget(anno);
+    
+    
+    
 
     // Aggiungi altri widget specifici per Album
 

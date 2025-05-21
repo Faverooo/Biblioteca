@@ -6,7 +6,7 @@
 #include <QMessageBox>
 #include <QCoreApplication>
 
-AbsEditWidget::AbsEditWidget(QWidget *parent) : QWidget(parent) //attributi di base 
+AbsEditWidget::AbsEditWidget(QWidget *parent) : QWidget(parent) // attributi di base
 {
     layout = new QVBoxLayout(this);
 
@@ -41,7 +41,7 @@ void AbsEditWidget::setAnno(const QString &anno)
 void AbsEditWidget::setPercorso(const QString &percorso)
 {
     LApercorso->setText(percorso);
-    filePath=percorso;
+    filePath = percorso;
 }
 
 QString AbsEditWidget::getPercorso() const
@@ -168,7 +168,6 @@ Media *RivistaEditWidget::getMedia()
     return rivista;
 }
 
-
 FilmEditWidget::FilmEditWidget(QWidget *parent) : AbsEditWidget(parent)
 {
     layout->addWidget(new QLabel("Dimensione (MB):", this));
@@ -256,7 +255,7 @@ void CanzoneEditWidget::setArtista(const QString &artista)
 
 Media *CanzoneEditWidget::getMedia()
 {
-    if (LEtitolo->text().isEmpty() || LEanno->text().isEmpty()  || LEsize->text().isEmpty() || LEdurata->text().isEmpty() || LEartista->text().isEmpty())
+    if (LEtitolo->text().isEmpty() || LEanno->text().isEmpty() || LEsize->text().isEmpty() || LEdurata->text().isEmpty() || LEartista->text().isEmpty())
         return nullptr;
     Canzone *canzone = new Canzone();
     canzone->setTitolo(LEtitolo->text());
@@ -269,32 +268,46 @@ Media *CanzoneEditWidget::getMedia()
     return canzone;
 }
 
-
-
-AlbumEditWidget::AlbumEditWidget(QWidget *parent) : AbsEditWidget(parent) {
+AlbumEditWidget::AlbumEditWidget(QWidget *parent) : AbsEditWidget(parent)
+{
+    // Cambia il testo della label "Anno:"
+    QList<QLabel *> labels = this->findChildren<QLabel *>();
+    for (QLabel *label : labels)
+    {
+        // Usa contains invece di == per maggiore robustezza
+        if (label->text().contains("Anno"))
+        {
+            label->setText("Anno (facoltativo):");
+            break;
+        }
+    }
     manageSongsButton = new QPushButton("Gestisci Canzoni", this);
     layout->addWidget(manageSongsButton);
 
     connect(manageSongsButton, &QPushButton::clicked, this, &AlbumEditWidget::openSongSelectionDialog);
 }
 
-void AlbumEditWidget::openSongSelectionDialog() { //apre e modifica l'archivio del nuovo media tramite riferimento
+void AlbumEditWidget::openSongSelectionDialog()
+{ // apre e modifica l'archivio del nuovo media tramite riferimento
     SongSelectionDialog dialog(archivio, this);
     dialog.exec();
 }
 
-void AlbumEditWidget::setArchivio(const QList<int> &newArchivio) //setta l'archivio del nuovo media
+void AlbumEditWidget::setArchivio(const QList<int> &newArchivio) // setta l'archivio del nuovo media
 {
     archivio = newArchivio;
 }
 
-Media *AlbumEditWidget::getMedia() //media aggiornato
+Media *AlbumEditWidget::getMedia() // media aggiornato
 {
-    if (LEtitolo->text().isEmpty() || LEanno->text().isEmpty() )
+    if (LEtitolo->text().isEmpty())
         return nullptr;
     Album *album = new Album();
     album->setTitolo(LEtitolo->text());
-    album->setAnno(LEanno->text().toInt());
+    if (LEanno->text().isEmpty())
+        album->setAnno(std::numeric_limits<int>::min()); // Usa il valore minimo rappresentabile per int
+    else
+        album->setAnno(LEanno->text().toInt());
     album->setPercorsoImg(filePath);
     album->setID(id);
     album->setArchivio(archivio);

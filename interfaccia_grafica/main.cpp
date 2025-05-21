@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
     StorageManager::instance().fromFiletoStorage();
 
     MainWindow mainWindow;
+    mainWindow.setWindowTitle("MyArchive");
     mainWindow.show();
     return app.exec();
 }

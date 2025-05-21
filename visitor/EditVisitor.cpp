@@ -68,7 +68,10 @@ void EditVisitor::visit(Album *album) {
     editWidget = new AlbumEditWidget();
     AlbumEditWidget *albumEditWidget = qobject_cast<AlbumEditWidget*>(editWidget);
     albumEditWidget->setTitolo(album->getTitolo());
-    albumEditWidget->setAnno(QString::number(album->getAnno()));
+    if (album->getAnno() == std::numeric_limits<int>::min()) // se è vuoto scrivi vuoto
+        albumEditWidget->setAnno("");
+    else
+        albumEditWidget->setAnno(QString::number(album->getAnno()));
     albumEditWidget->setPercorso(album->getPercorsoImg());
     albumEditWidget->setID(album->getID());
     albumEditWidget->setArchivio(album->getArchivio());

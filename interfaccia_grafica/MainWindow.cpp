@@ -8,7 +8,7 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     resize(800, 500); // Larghezza: 1200, Altezza: 800
     setMinimumSize(600, 400); // Imposta la dimensione minima
-
+    
     stackedWidget = new QStackedWidget(this);
     QWidget *headerWidget = new QWidget(this);
     headerWidget->setStyleSheet("background-color:rgb(166, 250, 140); border: 2px solid rgb(3, 85, 34); border-radius: 10px;");
