@@ -16,6 +16,7 @@ AbsEditWidget::AbsEditWidget(QWidget *parent) : QWidget(parent) // attributi di 
 
     layout->addWidget(new QLabel("Anno:", this));
     LEanno = new QLineEdit(this);
+    LEanno->setValidator(new QIntValidator(this)); // Validazione per l'anno
     layout->addWidget(LEanno);
 
     layout->addWidget(new QLabel("Percorso immagine (facoltativo):", this));
@@ -106,6 +107,7 @@ LibroEditWidget::LibroEditWidget(QWidget *parent) : AbsEditWidget(parent)
 
     layout->addWidget(new QLabel("Pagine:", this));
     LEpagine = new QLineEdit(this);
+    LEpagine->setValidator(new QIntValidator(1, std::numeric_limits<int>::max(), this)); // Solo interi positivi per le pagine
     layout->addWidget(LEpagine);
 }
 
@@ -141,6 +143,7 @@ RivistaEditWidget::RivistaEditWidget(QWidget *parent) : AbsEditWidget(parent)
 
     layout->addWidget(new QLabel("Pagine:", this));
     LEpagine = new QLineEdit(this);
+    LEpagine->setValidator(new QIntValidator(1, std::numeric_limits<int>::max(), this)); // Solo interi positivi per le pagine
     layout->addWidget(LEpagine);
 }
 
@@ -164,8 +167,6 @@ Media *RivistaEditWidget::getMedia()
     rivista->setPercorsoImg(filePath);
     rivista->setEditore(LEeditore->text());
     int pagine = LEpagine->text().toInt();
-    if (pagine < 0)
-        return nullptr;
     rivista->setPagine(pagine);
     rivista->setID(id);
     return rivista;
@@ -175,10 +176,12 @@ FilmEditWidget::FilmEditWidget(QWidget *parent) : AbsEditWidget(parent)
 {
     layout->addWidget(new QLabel("Dimensione (MB):", this));
     LEsize = new QLineEdit(this);
+    LEsize->setValidator(new QIntValidator(1, std::numeric_limits<int>::max(), this)); // Validazione per la dimensione
     layout->addWidget(LEsize);
 
     layout->addWidget(new QLabel("Durata (min):", this));
     LEdurata = new QLineEdit(this);
+    LEdurata->setValidator(new QIntValidator(1, std::numeric_limits<int>::max(), this)); // Solo interi positivi per la durata
     layout->addWidget(LEdurata);
 
     layout->addWidget(new QLabel("Regista:", this));
@@ -220,8 +223,6 @@ Media *FilmEditWidget::getMedia()
     film->setPercorsoImg(filePath);
     int size = LEsize->text().toInt();
     int durata = LEdurata->text().toInt();
-    if (size < 0 || durata < 0) // non possono essere negativi e verrá generato un errore nella creazione del media
-        return nullptr;
     film->setSize(size);
     film->setDurata(durata);
     film->setRegista(LEregista->text());
@@ -234,10 +235,12 @@ CanzoneEditWidget::CanzoneEditWidget(QWidget *parent) : AbsEditWidget(parent)
 {
     layout->addWidget(new QLabel("Dimensione (MB):", this));
     LEsize = new QLineEdit(this);
+    LEsize->setValidator(new QIntValidator(1, std::numeric_limits<int>::max(), this)); // Solo interi positivi per la dimensione
     layout->addWidget(LEsize);
 
     layout->addWidget(new QLabel("Durata (sec):", this));
     LEdurata = new QLineEdit(this);
+    LEdurata->setValidator(new QIntValidator(0, std::numeric_limits<int>::max(), this)); // Solo interi positivi per la durata
     layout->addWidget(LEdurata);
 
     layout->addWidget(new QLabel("Artista:", this));
@@ -270,8 +273,6 @@ Media *CanzoneEditWidget::getMedia()
     canzone->setPercorsoImg(filePath);
     int size = LEsize->text().toInt();
     int durata = LEdurata->text().toInt();
-    if (size < 0 || durata < 0) // non possono essere negativi e verrá generato un errore nella creazione del media
-        return nullptr;
     canzone->setSize(size);
     canzone->setDurata(durata);
     canzone->setArtista(LEartista->text());

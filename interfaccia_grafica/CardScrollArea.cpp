@@ -48,6 +48,7 @@ void CardScrollArea::refreshCards()
     QList<Media *> mediaList = *StorageManager::instance().getStorage();
     bool match = false;
     QString fields;
+    //ricerca case-insensitive
     for (const auto &media : mediaList)
     {
         fields = media->getFields();

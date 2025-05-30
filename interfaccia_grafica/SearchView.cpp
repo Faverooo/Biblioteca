@@ -10,8 +10,8 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent)
 {
     setupUI();
 
-    // Shortcut Ctrl+A per addButtonClicked
-    const QShortcut *shortcut = new QShortcut(QKeySequence("Ctrl+A"), this);
+    // Shortcut Ctrl+N per addButtonClicked
+    const QShortcut *shortcut = new QShortcut(QKeySequence("Ctrl+N"), this);
     connect(shortcut, &QShortcut::activated, this, &SearchView::addButtonClicked);
 
     connect(addButton, &QPushButton::clicked, this, &SearchView::addButtonClicked);
@@ -55,7 +55,7 @@ void SearchView::setupUI()
     sideBarLayout->addWidget(titleCheckBox);
     sideBarLayout->addWidget(yearCheckBox);
     sideBarLayout->addWidget(authorCheckBox);
-    addButton = new QPushButton("+ AGGIUNGI", this);
+    addButton = new QPushButton("ADD (ctrl+n))", this);
     sideBarLayout->addStretch();
     sideBarLayout->addWidget(addButton);
 
@@ -84,7 +84,7 @@ void SearchView::setupUI()
     topBarWidget = new QWidget(this);
     topBarWidget->setObjectName("topBarWidget");
     topBarWidget->setLayout(topBarLayout);
-    topBarWidget->setFixedHeight(this->height() * 0.1);
+    topBarWidget->setFixedHeight(this->height() * 0.12);
 
     // Layout contenitore principale
     contentLayout = new QVBoxLayout();
