@@ -8,7 +8,7 @@ private:
    QList<int> archivio;
 public:
     Album();
-    Album(const QString& titolo, const QString& percorsoImg, int anno, QList<int> archivio, unsigned int id = 0);
+    Album(const QString& titolo, const QString& percorsoImg, int anno, QList<int> archivio, int id = 0);
     
     QList<int> getArchivio() const;//interi univoci (ID) che possono essere salvati in json, equivalente di puntatori
     void setArchivio(const QList<int>& nuovoArchivio);

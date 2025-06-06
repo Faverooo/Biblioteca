@@ -44,7 +44,7 @@ void StorageManager::fromJOToStorage(const QJsonObject &json)
             {
                 if (json.contains("pagine") && json["pagine"].isDouble())
                 {
-                    int pagine = json["pagine"].toInt();
+                    unsigned int pagine = json["pagine"].toInt();
 
                     if (json["tipo"].toString() == "Libro")
                     {

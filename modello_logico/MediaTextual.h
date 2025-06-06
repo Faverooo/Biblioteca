@@ -6,13 +6,13 @@
 
 class MediaTextual: public Media{
 private:
-   int pagine;
+   unsigned int pagine;
 public:
     MediaTextual();
-    MediaTextual(const QString& titolo, const QString& percorsoImg, int anno, int pagine, unsigned int id = 0);
+    MediaTextual(const QString& titolo, const QString& percorsoImg, int anno, unsigned int pagine, int id = 0);
 
-    int getPagine() const;
-    void setPagine(const int p);
+    unsigned int getPagine() const;
+    void setPagine(const unsigned int p);
 
 };
 

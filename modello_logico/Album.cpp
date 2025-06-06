@@ -3,7 +3,7 @@
 
 Album::Album() = default;
 
-Album::Album(const QString& titolo, const QString& percorsoImg, int anno, QList<int> archivio, unsigned int id)
+Album::Album(const QString& titolo, const QString& percorsoImg, int anno, QList<int> archivio, int id)
     : Media (titolo, percorsoImg, anno, id), archivio(archivio) {}
 
 QList<int> Album::getArchivio() const {

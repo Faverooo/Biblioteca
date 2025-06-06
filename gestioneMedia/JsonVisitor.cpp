@@ -68,7 +68,7 @@ void JsonVisitor::toJsonM(const Media *m)
 void JsonVisitor::toJsonMT(const MediaTextual *mt)
 {
     toJsonM(mt);
-    json["pagine"] = mt->getPagine();
+    json["pagine"] = static_cast<int>(mt->getPagine());
 }
 
 void JsonVisitor::toJsonMD(const MediaDigital *md)

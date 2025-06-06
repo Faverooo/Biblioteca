@@ -130,7 +130,8 @@ Media *LibroEditWidget::getMedia()
     libro->setAnno(LEanno->text().toInt());
     libro->setPercorsoImg(filePath);
     libro->setAutore(LEautore->text());
-    libro->setPagine(LEpagine->text().toInt());
+    unsigned int pagine = LEpagine->text().toUInt();
+    libro->setPagine(pagine);
     libro->setID(id);
     return libro;
 }
@@ -166,7 +167,7 @@ Media *RivistaEditWidget::getMedia()
     rivista->setAnno(LEanno->text().toInt());
     rivista->setPercorsoImg(filePath);
     rivista->setEditore(LEeditore->text());
-    int pagine = LEpagine->text().toInt();
+    unsigned int pagine = LEpagine->text().toInt();
     rivista->setPagine(pagine);
     rivista->setID(id);
     return rivista;
@@ -221,8 +222,8 @@ Media *FilmEditWidget::getMedia()
     film->setTitolo(LEtitolo->text());
     film->setAnno(LEanno->text().toInt());
     film->setPercorsoImg(filePath);
-    int size = LEsize->text().toInt();
-    int durata = LEdurata->text().toInt();
+    unsigned int size = LEsize->text().toInt();
+    unsigned int durata = LEdurata->text().toInt();
     film->setSize(size);
     film->setDurata(durata);
     film->setRegista(LEregista->text());
@@ -271,8 +272,8 @@ Media *CanzoneEditWidget::getMedia()
     canzone->setTitolo(LEtitolo->text());
     canzone->setAnno(LEanno->text().toInt());
     canzone->setPercorsoImg(filePath);
-    int size = LEsize->text().toInt();
-    int durata = LEdurata->text().toInt();
+    unsigned int size = LEsize->text().toInt();
+    unsigned int durata = LEdurata->text().toInt();
     canzone->setSize(size);
     canzone->setDurata(durata);
     canzone->setArtista(LEartista->text());

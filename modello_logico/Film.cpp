@@ -2,7 +2,7 @@
 
 Film::Film() = default;
 
-Film::Film(const QString& titolo, const QString& percorsoImg, int anno, unsigned int size, unsigned int durata, QString regista, QString lingua, unsigned int id)
+Film::Film(const QString& titolo, const QString& percorsoImg, int anno, unsigned int size, unsigned int durata, QString regista, QString lingua, int id)
     : MediaDigital(titolo, percorsoImg, anno, size, durata, id), regista(regista), lingua(lingua) {}
 
 QString Film::getRegista() const {

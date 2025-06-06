@@ -10,7 +10,7 @@ private:
    QString lingua;
 public:
     Film();
-    Film(const QString& titolo, const QString& percorsoImg, int anno, unsigned int size, unsigned int durata, QString regista, QString lingua, unsigned int id = 0);
+    Film(const QString& titolo, const QString& percorsoImg, int anno, unsigned int size, unsigned int durata, QString regista, QString lingua, int id = 0);
     QString getRegista() const;
     void setRegista(const QString& newRegista);
     QString getLingua() const;
