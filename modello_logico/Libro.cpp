@@ -3,7 +3,7 @@
 
 Libro::Libro() = default;
 
-Libro::Libro(const QString& titolo, const QString& percorsoImg, int anno, int pagine, const QString& autore, int id)
+Libro::Libro(const QString& titolo, const QString& percorsoImg, int anno, unsigned int pagine, const QString& autore, int id)
     : MediaTextual(titolo, percorsoImg, anno, pagine, id), autore(autore) {}
 
 QString Libro::getAutore() const {
