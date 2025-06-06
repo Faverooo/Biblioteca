@@ -19,7 +19,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     titleLabel->setStyleSheet("font-size: 24px; font-weight: bold; color: rgb(3, 85, 34); border: 0px; padding: 5px;");
     titleLabel->setAlignment(Qt::AlignCenter);
     QPushButton *exitButton = new QPushButton("Exit", headerWidget);
-    exitButton->setStyleSheet("padding: 10px;");
+    exitButton->setStyleSheet(
+        "QPushButton {"
+        "  background-color: none;"
+        "  padding: 10px;"
+        "}"
+        "QPushButton:hover {"
+        "  background-color: rgb(147, 214, 126);"
+        "}"
+    );
     headerLayout->addWidget(titleLabel);
     headerLayout->addStretch();
     headerLayout->addWidget(exitButton);
