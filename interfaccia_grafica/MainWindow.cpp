@@ -6,7 +6,7 @@
 
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
-    resize(800, 500); // Larghezza: 1200, Altezza: 800
+    resize(1000, 700); 
     setMinimumSize(600, 400); // Imposta la dimensione minima
     
     stackedWidget = new QStackedWidget(this);
